@@ -9,7 +9,7 @@
 
 ## This Fork
 ### What is it for?
-This fork exists solely to allow r2modman to mod games that are not through any one launcher.  (For those who may be concerned, I do not condone piracy.) 
+This fork exists solely to allow r2modman to mod games that are not through any one launcher.  (For those who may be concerned, the purpose of this fork is not to assist in piracy.) 
 ### Will it get additional features?
 I do not know any of the programming languages that this project utilizes, and I do not have a very good understanding of Git. I will not be maintaining this fork apart from adding support for new games and merging changes from upstream. 
 ### I got an error in r2modman after closing out a game, what is that about?
