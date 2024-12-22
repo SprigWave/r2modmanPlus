@@ -142,6 +142,20 @@ export default class InstallationRuleApplicator {
             buildBepInExRules("NineSols"),
             buildBepInExRules("GoodbyeVolcanoHigh"),
             buildBepInExRules("SupermarketTogether"),
+            buildBepInExRules("Shapez2"),
+            buildBepInExRules("PaqueretteDownTheBunburrows"),
+            buildBepInExRules("HardTime3"),
+            buildBepInExRules("TankTeam"),
+            buildBepInExRules("Distance"),
+            buildBepInExRules("FiveNightsAtFreddysIntoThePit"),
+            buildBepInExRules("GoreBox"),
+            buildBepInExRules("TCGCardShopSimulator"),
+            buildBepInExRules("OldMarketSimulator"),
+            buildBepInExRules("Subterranauts"),
+            buildBepInExRules("SULFUR"),
+            buildBepInExRules("STRAFTAT"),
+            buildBepInExRules("ATLYSS"),
+            buildBepInExRules("PeaksOfYore"),
         ]
     }
 }

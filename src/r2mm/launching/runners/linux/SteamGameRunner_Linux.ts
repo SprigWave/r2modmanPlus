@@ -11,6 +11,7 @@ import LoggerProvider, { LogSeverity } from '../../../../providers/ror2/logging/
 import { exec } from 'child_process';
 import GameInstructions from '../../instructions/GameInstructions';
 import GameInstructionParser from '../../instructions/GameInstructionParser';
+import { PackageLoader } from '../../../../model/installing/PackageLoader';
 
 export default class SteamGameRunner_Linux extends GameRunnerProvider {
 
@@ -27,18 +28,20 @@ export default class SteamGameRunner_Linux extends GameRunnerProvider {
         }
 
         if (isProton) {
-            const promise = await this.ensureWineWillLoadBepInEx(game);
+            // BepInEx uses winhttp, GDWeave uses winmm. More can be added later.
+            const proxyDll = game.packageLoader == PackageLoader.GDWEAVE ? "winmm" : "winhttp";
+            const promise = await this.ensureWineWillLoadDllOverride(game, proxyDll);
             if (promise instanceof R2Error) {
                 return promise;
             }
         } else {
             // If sh files aren't executable then the wrapper will fail.
-            const shFiles = (await FsProvider.instance.readdir(await FsProvider.instance.realpath(path.join(Profile.getActiveProfile().getPathOfProfile()))))
+            const shFiles = (await FsProvider.instance.readdir(await FsProvider.instance.realpath(Profile.getActiveProfile().getProfilePath())))
                 .filter(value => value.endsWith(".sh"));
 
             try {
                 for (const shFile of shFiles) {
-                    await FsProvider.instance.chmod(await FsProvider.instance.realpath(path.join(Profile.getActiveProfile().getPathOfProfile(), shFile)), 0o755);
+                    await FsProvider.instance.chmod(await FsProvider.instance.realpath(Profile.getActiveProfile().joinToProfilePath(shFile)), 0o755);
                 }
             } catch (e) {
                 const err: Error = e as Error;
@@ -66,7 +69,7 @@ export default class SteamGameRunner_Linux extends GameRunnerProvider {
             return steamDir;
         }
 
-        LoggerProvider.instance.Log(LogSeverity.INFO, `Steam directory is: ${steamDir}`);
+        LoggerProvider.instance.Log(LogSeverity.INFO, `Steam folder is: ${steamDir}`);
 
         try {
             const cmd = `"${steamDir}/steam.sh" -applaunch ${game.activePlatform.storeIdentifier} ${args} ${settings.getContext().gameSpecific.launchParameters}`;
@@ -75,12 +78,12 @@ export default class SteamGameRunner_Linux extends GameRunnerProvider {
         } catch(err) {
             LoggerProvider.instance.Log(LogSeverity.ACTION_STOPPED, 'Error was thrown whilst starting the game');
             LoggerProvider.instance.Log(LogSeverity.ERROR, (err as Error).message);
-            throw new R2Error('Error starting Steam', (err as Error).message, 'Ensure that the Steam directory has been set correctly in the settings');
+            throw new R2Error('Error starting Steam', (err as Error).message, 'Ensure that the Steam folder has been set correctly in the settings');
         }
 
     }
 
-    private async ensureWineWillLoadBepInEx(game: Game): Promise<void | R2Error>{
+    private async ensureWineWillLoadDllOverride(game: Game, proxyDll: string): Promise<void | R2Error>{
         const fs = FsProvider.instance;
         const compatDataDir = await (GameDirectoryResolverProvider.instance as LinuxGameDirectoryResolver).getCompatDataDirectory(game);
         if(compatDataDir instanceof R2Error)
@@ -90,7 +93,7 @@ export default class SteamGameRunner_Linux extends GameRunnerProvider {
         const ensuredUserRegData = this.regAddInSection(
             userRegData,
             "[Software\\\\Wine\\\\DllOverrides]",
-            "winhttp",
+            proxyDll,
             "native,builtin"
         );
 

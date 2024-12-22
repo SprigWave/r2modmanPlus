@@ -15,7 +15,7 @@
 			<div class="modal-background" @click="showSteamIncorrectDirectoryModal = false"></div>
 			<div class='modal-content'>
 				<div class='notification is-danger'>
-					<h3 class='title'>Failed to set the Steam directory</h3>
+					<h3 class='title'>Failed to set the Steam folder</h3>
 					<p>The steam executable was not selected.</p>
 					<p>If this error has appeared but the executable is correct, please run as administrator.</p>
 				</div>
@@ -27,7 +27,7 @@
 			<div class="modal-background" @click="showRor2IncorrectDirectoryModal = false"></div>
 			<div class='modal-content'>
 				<div class='notification is-danger'>
-					<h3 class='title'>Failed to set the {{ activeGame.displayName }} directory</h3>
+					<h3 class='title'>Failed to set the {{ activeGame.displayName }} folder</h3>
 					<p>The executable must be either of the following: "{{ activeGame.exeName.join('", "') }}".</p>
 					<p>If this error has appeared but the executable is correct, please run as administrator.</p>
 				</div>
@@ -35,25 +35,29 @@
 			<button class="modal-close is-large" aria-label="close"
 			        @click="showRor2IncorrectDirectoryModal = false"></button>
 		</div>
-		<ModalCard :is-active="fixingPreloader" @close-modal="closePreloaderFixModal" :can-close="true">
+		<ModalCard :is-active="isValidatingSteamInstallation" @close-modal="closeSteamInstallationValidationModal" :can-close="true">
 			<template v-slot:header>
-				<h2 class='modal-title'>Attempting to fix preloader issues</h2>
+				<h2 class='modal-title'>Clearing the {{activeGame.displayName}} installation directory</h2>
 			</template>
 			<template v-slot:body>
 				<div class='notification is-warning'>
-					<p>You will not not be able to launch the game until Steam has verified the integrity of the
-						game.
+					<p>
+						You will not not be able to launch the game until
+						Steam has verified the integrity of the game files.
 					</p>
 				</div>
-				<p>Steam will be started, and will attempt to verify the integrity of {{ activeGame.displayName }}.</p>
+				<p>
+					Steam will be started and will attempt to verify the
+					integrity of {{ activeGame.displayName }}.
+				</p>
 				<br/>
-				<p>Please check the Steam window for validation progress. If the window has not yet appeared, please be
-					patient.
+				<p>
+					Please check the Steam window for validation progress.
+					If the window has not yet appeared, please be patient.
 				</p>
 			</template>
 			<template v-slot:footer>
-				<button v-if="dependencyListDisplayType === 'view'" class="button is-info"
-				        @click="closePreloaderFixModal()">
+				<button class="button is-info" @click="closeSteamInstallationValidationModal()">
 					I understand
 				</button>
 			</template>
@@ -121,7 +125,7 @@
 				</p>
 			</template>
 			<template v-slot:footer>
-				<button v-if="dependencyListDisplayType === 'view'" class="button is-info" @click="exportCode = ''">
+				<button class="button is-info" @click="exportCode = ''">
 					Done
 				</button>
 			</template>
@@ -141,17 +145,15 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Hero, Link, Modal, Progress } from '../components/all';
 
-import ThunderstoreMod from '../model/ThunderstoreMod';
 import ThunderstoreCombo from '../model/ThunderstoreCombo';
 import ProfileModList from '../r2mm/mods/ProfileModList';
 import PathResolver from '../r2mm/manager/PathResolver';
-import PreloaderFixer from '../r2mm/manager/PreloaderFixer';
+import { SteamInstallationValidator} from '../r2mm/manager/SteamInstallationValidator';
 
 import { LogSeverity } from '../providers/ror2/logging/LoggerProvider';
 
 import Profile from '../model/Profile';
 import VersionNumber from '../model/VersionNumber';
-import DependencyListDisplayType from '../model/enums/DependencyListDisplayType';
 import R2Error from '../model/errors/R2Error';
 import ManifestV2 from '../model/ManifestV2';
 import ManagerSettings from '../r2mm/manager/ManagerSettings';
@@ -188,10 +190,9 @@ import ModalCard from '../components/ModalCard.vue';
 		}
 	})
 	export default class Manager extends Vue {
-		dependencyListDisplayType: string = DependencyListDisplayType.DISABLE;
 		portableUpdateAvailable: boolean = false;
 		updateTagName: string = '';
-		fixingPreloader: boolean = false;
+		isValidatingSteamInstallation: boolean = false;
 		exportCode: string = '';
 		showSteamIncorrectDirectoryModal: boolean = false;
 		showRor2IncorrectDirectoryModal: boolean = false;
@@ -214,24 +215,20 @@ import ModalCard from '../components/ModalCard.vue';
             return this.$store.getters['profile/activeProfile'];
         };
 
-		get thunderstoreModList(): ThunderstoreMod[] {
-            return this.$store.state.tsMods.mods;
-        }
-
 		get localModList(): ManifestV2[] {
 			return this.$store.state.profile.modList;
 		}
 
-		closePreloaderFixModal() {
-			this.fixingPreloader = false;
+		closeSteamInstallationValidationModal() {
+			this.isValidatingSteamInstallation = false;
 		}
 
-		async fixPreloader() {
-			const res = await PreloaderFixer.fix(this.activeGame);
+		async validateSteamInstallation() {
+			const res = await SteamInstallationValidator.validateInstallation(this.activeGame);
 			if (res instanceof R2Error) {
 				this.$store.commit('error/handleError', res);
 			} else {
-				this.fixingPreloader = true;
+				this.isValidatingSteamInstallation = true;
 			}
 		}
 
@@ -280,7 +277,7 @@ import ModalCard from '../components/ModalCard.vue';
                             this.showRor2IncorrectDirectoryModal = true;
                         }
                     } catch (e) {
-                        const err = R2Error.fromThrownValue(e, 'Failed to change the game directory');
+                        const err = R2Error.fromThrownValue(e, 'Failed to change the game folder');
                         this.$store.commit('error/handleError', err);
                     }
                 }
@@ -304,7 +301,7 @@ import ModalCard from '../components/ModalCard.vue';
 							throw new Error("The selected executable is not gamelaunchhelper.exe");
 						}
 					} catch (e) {
-						const err = R2Error.fromThrownValue(e, 'Failed to change the game directory');
+						const err = R2Error.fromThrownValue(e, 'Failed to change the game folder');
 						this.$store.commit('error/handleError', err);
 					}
 				}
@@ -356,7 +353,7 @@ import ModalCard from '../components/ModalCard.vue';
                             this.showSteamIncorrectDirectoryModal = true;
                         }
                     } catch (e) {
-                        const err = R2Error.fromThrownValue(e, 'Failed to change the Steam directory');
+                        const err = R2Error.fromThrownValue(e, 'Failed to change the Steam folder');
                         this.$store.commit('error/handleError', err);
                     }
 				}
@@ -376,7 +373,7 @@ import ModalCard from '../components/ModalCard.vue';
 				this.$store.commit('error/handleError', err);
 				return;
 			}
-			const exportErr = await ProfileModList.exportModListToFile(this.profile);
+			const exportErr = await ProfileModList.exportModListToFile(this.profile.asImmutableProfile());
 			if (exportErr instanceof R2Error) {
 				this.$store.commit('error/handleError', exportErr);
 			}
@@ -391,7 +388,7 @@ import ModalCard from '../components/ModalCard.vue';
 				this.$store.commit('error/handleError', err);
 				return;
 			}
-			const exportErr = await ProfileModList.exportModListAsCode(this.profile, (code: string, err: R2Error | null) => {
+			const exportErr = await ProfileModList.exportModListAsCode(this.profile.asImmutableProfile(), (code: string, err: R2Error | null) => {
 				if (err !== null) {
 					this.$store.commit('error/handleError', err);
 				} else {
@@ -409,7 +406,7 @@ import ModalCard from '../components/ModalCard.vue';
 		}
 
         browseProfileFolder() {
-            LinkProvider.instance.openLink('file://' + this.profile.getPathOfProfile());
+            LinkProvider.instance.openLink('file://' + this.profile.getProfilePath());
 		}
 
 		toggleCardExpanded(expanded: boolean) {
@@ -490,13 +487,16 @@ import ModalCard from '../components/ModalCard.vue';
             let logOutputPath = "";
             switch (this.activeGame.packageLoader) {
                 case PackageLoader.BEPINEX:
-                    logOutputPath = path.join(this.profile.getPathOfProfile(), "BepInEx", "LogOutput.log");
+                    logOutputPath = path.join(this.profile.getProfilePath(), "BepInEx", "LogOutput.log");
                     break;
                 case PackageLoader.MELON_LOADER:
-                    logOutputPath = path.join(this.profile.getPathOfProfile(), "MelonLoader", "Latest.log");
+                    logOutputPath = path.join(this.profile.getProfilePath(), "MelonLoader", "Latest.log");
                     break;
-				case PackageLoader.RETURN_OF_MODDING:
-                    logOutputPath = path.join(this.profile.getPathOfProfile(), "ReturnOfModding", "LogOutput.log");
+                case PackageLoader.RETURN_OF_MODDING:
+                    logOutputPath = path.join(this.profile.getProfilePath(), "ReturnOfModding", "LogOutput.log");
+                    break;
+                case PackageLoader.GDWEAVE:
+                    logOutputPath = path.join(this.profile.getProfilePath(), "GDWeave", "GDWeave.log");
                     break;
             }
             const text = (await fs.readFile(logOutputPath)).toString();
@@ -548,8 +548,8 @@ import ModalCard from '../components/ModalCard.vue';
                 case "ToggleDownloadCache":
                     this.toggleIgnoreCache();
                     break;
-                case "RunPreloaderFix":
-                    this.fixPreloader();
+                case "ValidateSteamInstallation":
+                    this.validateSteamInstallation();
                     break;
                 case "SetLaunchParameters":
                     this.showLaunchParameters();
@@ -619,8 +619,9 @@ import ModalCard from '../components/ModalCard.vue';
 			this.launchParametersModel = this.settings.getContext().gameSpecific.launchParameters;
 			const ignoreCache = this.settings.getContext().global.ignoreCache;
 
-			InteractionProvider.instance.hookModInstallProtocol(async data => {
-                const combo: ThunderstoreCombo | R2Error = ThunderstoreCombo.fromProtocol(data, this.thunderstoreModList);
+            InteractionProvider.instance.hookModInstallProtocol(async (protocolUrl) => {
+                const game = this.$store.state.activeGame;
+                const combo: ThunderstoreCombo | R2Error = await ThunderstoreCombo.fromProtocol(protocolUrl, game);
                 if (combo instanceof R2Error) {
                     this.$store.commit('error/handleError', {
                         error: combo,
@@ -628,9 +629,9 @@ import ModalCard from '../components/ModalCard.vue';
                     });
                     return;
                 }
-                DownloadModModal.downloadSpecific(this.profile, combo, this.thunderstoreModList, ignoreCache)
+                DownloadModModal.downloadSpecific(this.profile, combo, ignoreCache)
                     .then(async value => {
-                        const modList = await ProfileModList.getModList(this.profile);
+                        const modList = await ProfileModList.getModList(this.profile.asImmutableProfile());
                         if (!(modList instanceof R2Error)) {
                             await this.$store.dispatch('profile/updateModList', modList);
                         } else {

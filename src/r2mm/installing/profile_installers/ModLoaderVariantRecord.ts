@@ -70,8 +70,10 @@ export const MODLOADER_PACKAGES = [
     new ModLoaderPackageMapping("Thunderstore-lovely", "", PackageLoader.LOVELY),
     new ModLoaderPackageMapping("ReturnOfModding-ReturnOfModding", "ReturnOfModdingPack", PackageLoader.RETURN_OF_MODDING),
     new ModLoaderPackageMapping("Hell2Modding-Hell2Modding", "ReturnOfModdingPack", PackageLoader.RETURN_OF_MODDING),
+    new ModLoaderPackageMapping("NotNet-GDWeave", "", PackageLoader.GDWEAVE),
 ];
 
+const DEFAULT_MELONLOADER_MAPPING = [new ModLoaderPackageMapping("LavaGang-MelonLoader", "", PackageLoader.MELON_LOADER)];
 
 /**
  * While this object is a bit silly given that all the keys are pointing to the
@@ -112,18 +114,18 @@ const VARIANTS = {
     Titanfall2: MODLOADER_PACKAGES,
     Peglin: MODLOADER_PACKAGES,
     VRising: MODLOADER_PACKAGES,
-    HardBullet: MODLOADER_PACKAGES,
+    HardBullet: DEFAULT_MELONLOADER_MAPPING,
     GreenHellVR: MODLOADER_PACKAGES,
     "20MinutesTillDawn": MODLOADER_PACKAGES,
     VTOL_VR: MODLOADER_PACKAGES,
-    BackpackHero: MODLOADER_PACKAGES,
+    BackpackHero: DEFAULT_MELONLOADER_MAPPING,
     Stacklands: MODLOADER_PACKAGES,
     ETG: MODLOADER_PACKAGES,
     Ravenfield: MODLOADER_PACKAGES,
     Aloft: MODLOADER_PACKAGES,
     COTL: MODLOADER_PACKAGES,
     ChronoArk: MODLOADER_PACKAGES,
-    BONELAB: [new ModLoaderPackageMapping("LavaGang-MelonLoader", "", PackageLoader.MELON_LOADER, new VersionNumber("0.5.7"))],
+    BONELAB: [new ModLoaderPackageMapping("LavaGang-MelonLoader", "", PackageLoader.MELON_LOADER)],
     TromboneChamp: MODLOADER_PACKAGES,
     RogueGenesia: MODLOADER_PACKAGES,
     AcrossTheObelisk: MODLOADER_PACKAGES,
@@ -132,7 +134,7 @@ const VARIANTS = {
     AtrioTheDarkWild: MODLOADER_PACKAGES,
     AncientDungeonVR: MODLOADER_PACKAGES,
     Brotato: MODLOADER_PACKAGES,
-    RUMBLE: MODLOADER_PACKAGES,
+    RUMBLE: DEFAULT_MELONLOADER_MAPPING,
     DomeKeeper: MODLOADER_PACKAGES,
     SkulTheHeroSlayer: MODLOADER_PACKAGES,
     SonsOfTheForest: MODLOADER_PACKAGES,
@@ -140,7 +142,7 @@ const VARIANTS = {
     WrestlingEmpire: MODLOADER_PACKAGES,
     Receiver2: MODLOADER_PACKAGES,
     ThePlanetCrafter: MODLOADER_PACKAGES,
-    PatchQuest: MODLOADER_PACKAGES,
+    PatchQuest: DEFAULT_MELONLOADER_MAPPING,
     ShadowsOverLoathing: MODLOADER_PACKAGES,
     WestofLoathing: MODLOADER_PACKAGES,
     SunHaven: MODLOADER_PACKAGES,
@@ -193,9 +195,33 @@ const VARIANTS = {
     GoodbyeVolcanoHigh: MODLOADER_PACKAGES,
     SupermarketTogether: MODLOADER_PACKAGES,
     HadesII: MODLOADER_PACKAGES,
+    Shapez2: MODLOADER_PACKAGES,
+    PaqueretteDownTheBunburrows: MODLOADER_PACKAGES,
+    HardTime3: MODLOADER_PACKAGES,
+    TankTeam: MODLOADER_PACKAGES,
+    Distance: MODLOADER_PACKAGES,
+    FiveNightsAtFreddysIntoThePit: MODLOADER_PACKAGES,
+    GoreBox: MODLOADER_PACKAGES,
+    TCGCardShopSimulator: MODLOADER_PACKAGES,
+    OldMarketSimulator: MODLOADER_PACKAGES,
+    Subterranauts: MODLOADER_PACKAGES,
+    SULFUR: MODLOADER_PACKAGES,
+    WEBFISHING: MODLOADER_PACKAGES,
+    STRAFTAT: MODLOADER_PACKAGES,
+    ATLYSS: MODLOADER_PACKAGES,
+    PeaksOfYore: MODLOADER_PACKAGES,
 };
 // Exported separately from the definition in order to preserve the key names in the type definition.
 // Otherwise this would become [key: string] and we couldn't use the game names for type hinting elsewhere.
 // Casting is done here to ensure the values are ModLoaderPackageMapping[]
 export type GAME_NAME = keyof typeof VARIANTS;
 export const MOD_LOADER_VARIANTS: {[key in GAME_NAME]: ModLoaderPackageMapping[]} = VARIANTS;
+
+export function getModLoaderPackageNames() {
+    const names = MODLOADER_PACKAGES.map((mapping) => mapping.packageName);
+
+    // Hard code MelonLoader to avoid having to iterate over MODLOADER_PACKAGES
+    // for each game separately.
+    names.push("LavaGang-MelonLoader");
+    return names;
+}

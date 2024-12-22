@@ -4,7 +4,7 @@
             v-for='(key, index) in pagedModList' :key="`online-${key.getFullName()}-${index}-${settings.getContext().global.expandedCards}`"
             :image="getImageUrl(key)"
             :id="index"
-            :description="key.getVersions()[0].getDescription()">
+            :description="key.getDescription()">
             <template v-slot:title>
                 <span v-if="key.isPinned()">
                     <span class="tag is-info margin-right margin-right--half-width"
@@ -46,7 +46,7 @@
                 <DonateButton :mod="key"/>
             </template>
             <div class='card-footer-item non-selectable'>
-                <span><i class='fas fa-download'/> {{key.getTotalDownloads()}}</span>
+                <span><i class='fas fa-download'/> {{key.getDownloadCount()}}</span>
             </div>
             <div class='card-footer-item non-selectable'>
                 <span><i class='fas fa-thumbs-up'/> {{key.getRating()}}</span>
@@ -100,34 +100,28 @@ export default class OnlineModList extends Vue {
         return this.$store.state.tsMods.deprecated;
     }
 
-    isModDeprecated(key: any) {
-        const mod: ThunderstoreMod = new ThunderstoreMod().fromReactive(key);
+    isModDeprecated(mod: ThunderstoreMod) {
         return this.deprecationMap.get(mod.getFullName()) || false;
     }
 
-    isThunderstoreModInstalled(vueMod: any) {
-        const mod: ThunderstoreMod = new ThunderstoreMod().fromReactive(vueMod);
+    isThunderstoreModInstalled(mod: ThunderstoreMod) {
         return this.localModList.find((local: ManifestV2) => local.getName() === mod.getFullName()) != undefined;
     }
 
-    showDownloadModal(mod: any) {
-        const modToDownload = new ThunderstoreMod().fromReactive(mod);
-        this.$store.commit("openDownloadModModal", modToDownload);
+    showDownloadModal(mod: ThunderstoreMod) {
+        this.$store.commit("openDownloadModModal", mod);
     }
 
     getReadableDate(date: Date): string {
         return valueToReadableDate(date);
     }
 
-    getReadableCategories(tsMod: ThunderstoreMod) {
-        const mod = new ThunderstoreMod().fromReactive(tsMod);
+    getReadableCategories(mod: ThunderstoreMod) {
         return mod.getCategories().join(", ");
     }
 
-    getImageUrl(tsMod: ThunderstoreMod): string {
-        return CdnProvider.replaceCdnHost(
-            tsMod.getVersions()[0].getIcon()
-        );
+    getImageUrl(mod: ThunderstoreMod): string {
+        return CdnProvider.replaceCdnHost(mod.getIcon());
     }
 
     async created() {
