@@ -3,7 +3,7 @@ import path from "path";
 import * as yaml from "yaml";
 
 import FileUtils from "./FileUtils";
-import R2Error from "../model/errors/R2Error";
+import R2Error, { throwForR2Error } from "../model/errors/R2Error";
 import ExportFormat from "../model/exports/ExportFormat";
 import ExportMod from "../model/exports/ExportMod";
 import Game from "../model/game/Game";
@@ -17,19 +17,23 @@ import ProfileInstallerProvider from "../providers/ror2/installing/ProfileInstal
 import * as PackageDb from '../r2mm/manager/PackageDexieStore';
 import ProfileModList from "../r2mm/mods/ProfileModList";
 
-export async function exportModsToCombos(exportMods: ExportMod[], game: Game): Promise<ThunderstoreCombo[]> {
-    const dependencyStrings = exportMods.map((m) => m.getDependencyString());
-    const combos = await PackageDb.getCombosByDependencyStrings(game, dependencyStrings);
+export async function exportModsToCombos(
+    exportMods: ExportMod[],
+    game: Game
+): Promise<{known: ThunderstoreCombo[], unknown: string[]}> {
+    const allDependencyStrings = exportMods.map((m) => m.getDependencyString());
+    const known = await PackageDb.getCombosByDependencyStrings(game, allDependencyStrings);
+    const knownDependencyStrings = known.map((c) => c.getDependencyString());
+    let unknown: string[] = [];
 
-    if (combos.length === 0) {
-        throw new R2Error(
-            'No importable mods found',
-            'None of the mods or versions listed in the shared profile are available on Thunderstore.',
-            'Make sure the shared profile is meant for the currently selected game.'
-        );
+    for (const dependencyString of allDependencyStrings) {
+        if (!knownDependencyStrings.includes(dependencyString)) {
+            unknown.push(dependencyString);
+        }
     }
 
-    return combos;
+    unknown.sort();
+    return {known, unknown};
 }
 
 async function extractConfigsToImportedProfile(
@@ -65,7 +69,7 @@ export async function installModsToProfile(
     comboList: ThunderstoreCombo[],
     profile: ImmutableProfile,
     disabledModsOverride?: string[],
-    progressCallback?: (status: string) => void
+    progressCallback?: (status: string, modName?: string, progress?: number) => void
 ): Promise<ManifestV2[]> {
     const profileMods = await ProfileModList.getModList(profile);
     if (profileMods instanceof R2Error) {
@@ -74,20 +78,33 @@ export async function installModsToProfile(
 
     const installedVersions = profileMods.map((m) => m.getDependencyString());
     const disabledMods = disabledModsOverride || profileMods.filter((m) => !m.isEnabled()).map((m) => m.getName());
-    let currentMod;
+    let modName = 'Unknown';
+    let preDiskSaveError: R2Error | undefined;
 
     try {
         for (const [index, comboMod] of comboList.entries()) {
-            currentMod = comboMod;
+            modName = comboMod.getMod().getName();
+
             const manifestMod = new ManifestV2().fromThunderstoreMod(comboMod.getMod(), comboMod.getVersion());
 
             if (installedVersions.includes(manifestMod.getDependencyString())) {
                 continue;
             }
 
+            const positionInProfile = profileMods.findIndex((m) => m.getName() === manifestMod.getName());
+
             // Uninstall possible different version of the mod before installing the target version.
             throwForR2Error(await ProfileInstallerProvider.instance.uninstallMod(manifestMod, profile));
+            if (positionInProfile >= 0) {
+                profileMods.splice(positionInProfile, 1);  // Remove from list in case the install throws.
+            }
+
             throwForR2Error(await ProfileInstallerProvider.instance.installMod(manifestMod, profile));
+            if (positionInProfile >= 0) {
+                profileMods.splice(positionInProfile, 0, manifestMod);  // Inject back to original position.
+            } else {
+                profileMods.push(manifestMod);
+            }
 
             if (disabledMods.includes(manifestMod.getName())) {
                 throwForR2Error(await ProfileInstallerProvider.instance.disableMod(manifestMod, profile));
@@ -97,29 +114,28 @@ export async function installModsToProfile(
             manifestMod.setInstalledAtTime(Number(new Date()));
             ProfileModList.setIconPath(manifestMod, profile);
 
-            const positionInProfile = profileMods.findIndex((m) => m.getName() === manifestMod.getName());
-            if (positionInProfile >= 0) {
-                profileMods[positionInProfile] = manifestMod;
-            } else {
-                profileMods.push(manifestMod);
-            }
-
             if (typeof progressCallback === "function") {
                 const progress = Math.floor(((index + 1) / comboList.length) * 100);
-                progressCallback(`Copying mods to profile: ${progress}%`);
+                progressCallback(`Copying mods to profile: ${progress}%`, modName, progress);
             }
         }
     } catch (e) {
         const originalError = R2Error.fromThrownValue(e);
-        const modName = currentMod ? currentMod.getMod().getFullName() : 'Unknown';
-        throw new R2Error(
+        preDiskSaveError = new R2Error(
             `Failed to install mod [${modName}] to profile`,
             'All mods/dependencies might not be installed properly. Please try again.',
             `The original error might provide hints about what went wrong: ${originalError.name}: ${originalError.message}`
         );
     }
 
-    throwForR2Error(await ProfileModList.saveModList(profile, profileMods));
+    // Always try to save to disk to sync any changes made before preDiskSaveError.
+    const diskSaveError = await ProfileModList.saveModList(profile, profileMods);
+    throwForR2Error(preDiskSaveError || diskSaveError);
+
+    if (typeof progressCallback === "function") {
+        progressCallback("Copying mods to profile: 100%", modName, 100);
+    }
+
     return profileMods;
 }
 
@@ -218,10 +234,4 @@ export async function readProfileFile(file: string): Promise<string> {
         );
     }
     return read;
-}
-
-function throwForR2Error(maybeError: unknown) {
-    if (maybeError instanceof R2Error) {
-        throw maybeError;
-    }
 }

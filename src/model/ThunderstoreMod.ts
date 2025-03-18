@@ -11,8 +11,24 @@ export default class ThunderstoreMod extends ThunderstoreVersion {
     private deprecated: boolean = false;
     private categories: string[] = [];
     private hasNsfwContent: boolean = false;
-    private donationLink: string | undefined;
+    private donationLink: string | null = null;
     private latestVersion: string = '';
+
+    // Imitate the order where mods are returned from Thunderstore package listing API.
+    public static defaultOrderComparer(a: ThunderstoreMod, b: ThunderstoreMod): number {
+        // Pinned mods first.
+        if (a.isPinned() !== b.isPinned()) {
+            return a.isPinned() ? -1 : 1;
+        }
+
+        // Deprecated mods last.
+        if (a.isDeprecated() !== b.isDeprecated()) {
+            return a.isDeprecated() ? 1 : -1;
+        }
+
+        // Sort mods with same boolean flags by update date.
+        return a.getDateUpdated() >= b.getDateUpdated() ? -1 : 1;
+    }
 
     public static parseFromThunderstoreData(data: any): ThunderstoreMod {
         const mod = new ThunderstoreMod();
@@ -132,11 +148,11 @@ export default class ThunderstoreMod extends ThunderstoreVersion {
         this.hasNsfwContent = isNsfw;
     }
 
-    public getDonationLink(): string | undefined {
+    public getDonationLink(): string | null {
         return this.donationLink;
     }
 
-    public setDonationLink(url: string | undefined) {
-        this.donationLink = url;
+    public setDonationLink(url: string | null | undefined) {
+        this.donationLink = url || null;
     }
 }

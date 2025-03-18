@@ -2,16 +2,20 @@
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 import { ExpandableCard, Link } from '../../all';
 import DonateButton from '../../buttons/DonateButton.vue';
+import DonateIconButton from '../../buttons/DonateIconButton.vue';
 import R2Error from '../../../model/errors/R2Error';
 import ManifestV2 from '../../../model/ManifestV2';
 import ThunderstoreMod from '../../../model/ThunderstoreMod';
+import VersionNumber from '../../../model/VersionNumber';
 import { LogSeverity } from '../../../providers/ror2/logging/LoggerProvider';
 import Dependants from '../../../r2mm/mods/Dependants';
 import { valueToReadableDate } from '../../../utils/DateUtils';
+import { splitToNameAndVersion } from '../../../utils/DependencyUtils';
 
 @Component({
     components: {
         DonateButton,
+        DonateIconButton,
         ExpandableCard,
         Link,
     }
@@ -32,7 +36,7 @@ export default class LocalModCard extends Vue {
     }
 
     get donationLink() {
-        return this.tsMod ? this.tsMod.getDonationLink() : undefined;
+        return this.tsMod ? this.tsMod.getDonationLink() : null;
     }
 
     get isDeprecated() {
@@ -161,9 +165,11 @@ export default class LocalModCard extends Vue {
     }
 
     downloadDependency(dependencyString: string) {
-        const packages: ThunderstoreMod[] = this.$store.state.thunderstoreModList;
-        const lowerCaseName = dependencyStringToModName(dependencyString).toLowerCase();
-        const dependency = packages.find((m) => m.getFullName().toLowerCase() === lowerCaseName);
+        const [name, version] = splitToNameAndVersion(dependencyString);
+        const partialManifest = new ManifestV2();
+        partialManifest.setName(name);
+        partialManifest.setVersionNumber(new VersionNumber(version));
+        const dependency = this.$store.getters['tsMods/tsMod'](partialManifest);
 
         if (dependency === undefined) {
             const error = new R2Error(
@@ -234,13 +240,9 @@ function dependencyStringToModName(x: string) {
             <p class='card-timestamp' v-if="mod.getInstalledAtTime() !== 0"><strong>Installed on:</strong> {{ getReadableDate(mod.getInstalledAtTime()) }}</p>
         </template>
 
+        <!-- Show icon button row even when card is collapsed -->
         <template v-slot:other-icons>
-            <!-- Show update and missing dependency icons -->
-            <span v-if="donationLink" class='card-header-icon'>
-                <Link :url="donationLink" target="external" tag="span">
-                    <i class='fas fa-heart' v-tooltip.left="'Donate to the mod author'"></i>
-                </Link>
-            </span>
+            <DonateIconButton :mod="tsMod"/>
             <span v-if="!isLatestVersion"
                 @click.prevent.stop="updateMod()"
                 class='card-header-icon'>
@@ -303,7 +305,7 @@ function dependencyStringToModName(x: string) {
             Enable {{disabledDependencies[0].getDisplayName()}}
         </a>
 
-        <DonateButton v-if="donationLink" :mod="tsMod"/>
+        <DonateButton :mod="tsMod"/>
     </expandable-card>
 </template>
 
