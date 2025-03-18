@@ -119,7 +119,7 @@ export default class GameManager {
         new Game("BONEWORKS", "BONEWORKS", "BONEWORKS",
             path.join("BONEWORKS", "BONEWORKS"), ["BONEWORKS.exe", "Boneworks_Oculus_Windows64.exe"], "BONEWORKS_Data",
             "https://thunderstore.io/c/boneworks/api/v1/package-listing-index/",
-            [new StorePlatformMetadata(StorePlatform.STEAM, "823500"), new StorePlatformMetadata(StorePlatform.OCULUS_STORE)], "BONEWORKS.jpg",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "823500"), new StorePlatformMetadata(StorePlatform.OCULUS_STORE), new StorePlatformMetadata(StorePlatform.OTHER)], "BONEWORKS.jpg",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.MELON_LOADER, ["BW"]),
 
         new Game("Lethal League Blaze", "LethalLeagueBlaze", "LethalLeagueBlaze",
@@ -160,7 +160,7 @@ export default class GameManager {
         new Game("Starsand", "Starsand", "Starsand",
             "Starsand", ["Starsand.exe"], "Starsand_Data",
             "https://thunderstore.io/c/starsand/api/v1/package-listing-index/",
-            [new StorePlatformMetadata(StorePlatform.STEAM, "1380220"), new StorePlatformMetadata(StorePlatform.EPIC_GAMES_STORE, "a774278c0813447c96a76b053cbf73ff")], "Starsand.png",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "1380220"), new StorePlatformMetadata(StorePlatform.EPIC_GAMES_STORE, "a774278c0813447c96a76b053cbf73ff"), new StorePlatformMetadata(StorePlatform.OTHER)], "Starsand.png",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game('Cats are Liquid - A Better Place', 'CatsAreLiquidABP', 'CatsAreLiquidABP',
@@ -191,7 +191,7 @@ export default class GameManager {
             'AGAINST_steam', ['AGAINST.exe'], "AGAINST_Data",
             'https://thunderstore.io/c/against/api/v1/package-listing-index/',
             [new StorePlatformMetadata(StorePlatform.STEAM, "1584840"), new StorePlatformMetadata(StorePlatform.OTHER)], "AGAINST.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX,),
 
         new Game('Rogue Tower', 'RogueTower', 'RogueTower',
             'Rogue Tower', ['Rogue Tower.exe'], "Rogue Tower_Data",
@@ -208,7 +208,7 @@ export default class GameManager {
         new Game('For The King', 'ForTheKing', 'ForTheKing',
             'For The King', ['FTK.exe'], 'FTK_Data',
             'https://thunderstore.io/c/for-the-king/api/v1/package-listing-index/',
-            [new StorePlatformMetadata(StorePlatform.STEAM, "527230"), new StorePlatformMetadata(StorePlatform.EPIC_GAMES_STORE, "Discus")], "ForTheKing.png",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "527230"), new StorePlatformMetadata(StorePlatform.EPIC_GAMES_STORE, "Discus"), new StorePlatformMetadata(StorePlatform.OTHER)], "ForTheKing.png",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["ftk"]),
 
         new Game('Subnautica', 'Subnautica', 'Subnautica',
@@ -219,7 +219,7 @@ export default class GameManager {
                 new StorePlatformMetadata(StorePlatform.EPIC_GAMES_STORE, "Jaguar"),
                 new StorePlatformMetadata(StorePlatform.XBOX_GAME_PASS, "UnknownWorldsEntertainmen.GAMEPREVIEWSubnautica"),
                 new StorePlatformMetadata(StorePlatform.OTHER),
-            ], "Subnautica.png", GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            ], "Subnautica.png", GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX,),
 
         new Game('Subnautica: Below Zero', 'SubnauticaBZ', 'SubnauticaBZ',
             'SubnauticaZero', ['SubnauticaZero.exe'], 'SubnauticaZero_Data',
@@ -239,14 +239,14 @@ export default class GameManager {
         new Game("Titanfall 2", "Titanfall2", "Titanfall2",
             "Titanfall2", ["NorthstarLauncher.exe", "Titanfall2.exe"], "",
             'https://thunderstore.io/c/northstar/api/v1/package-listing-index/',
-            [new StorePlatformMetadata(StorePlatform.STEAM_DIRECT, "1237970"), new StorePlatformMetadata(StorePlatform.ORIGIN, "")], "Titanfall2.jpg",
+            [new StorePlatformMetadata(StorePlatform.STEAM_DIRECT, "1237970"), new StorePlatformMetadata(StorePlatform.ORIGIN, ""), new StorePlatformMetadata(StorePlatform.OTHER)], "Titanfall2.jpg",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.NORTHSTAR, ["northstar", "ns", "tf2", "tf|2"]),
 
         new Game("Peglin", "Peglin", "Peglin",
             "Peglin", ["Peglin.exe"], "Peglin_Data",
             "https://thunderstore.io/c/peglin/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1296610"), new StorePlatformMetadata(StorePlatform.OTHER)], "Peglin.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX,),
 
         new Game("V Rising", "VRising", "VRising",
             "VRising", ["VRising.exe"], "VRising_Data",
@@ -273,14 +273,14 @@ export default class GameManager {
         new Game("Green Hell VR", "GreenHellVR", "GreenHellVR",
             "Green Hell VR", ["GHVR.exe"], "GHVR_Data",
             "https://thunderstore.io/c/green-hell-vr/api/v1/package-listing-index/",
-            [new StorePlatformMetadata(StorePlatform.STEAM, "1782330"), new StorePlatformMetadata(StorePlatform.OCULUS_STORE)], "GreenHellVR.png",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "1782330"), new StorePlatformMetadata(StorePlatform.OCULUS_STORE), new StorePlatformMetadata(StorePlatform.OTHER)], "GreenHellVR.png",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["ghvr"]),
 
         new Game("VTOL VR", "VTOL_VR", "VTOL_VR",
             "VTOL VR", ["VTOLVR.exe"], "VTOLVR_Data",
             "https://thunderstore.io/c/vtol-vr/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "667970"), new StorePlatformMetadata(StorePlatform.OTHER)], "VtolVR.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Backpack Hero", "BackpackHero", "BackpackHero",
             "Backpack Hero", ["Backpack Hero.exe", "linux.x86_64"], "Backpack Hero_Data",
@@ -292,7 +292,7 @@ export default class GameManager {
             "Stacklands", ["Stacklands.exe"], "Stacklands_Data",
             "https://thunderstore.io/c/stacklands/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1948280"), new StorePlatformMetadata(StorePlatform.OTHER)], "Stacklands.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Enter the Gungeon", "ETG", "EnterTheGungeon",
             "Enter the Gungeon", ["EtG.exe"], "EtG_Data",
@@ -310,7 +310,7 @@ export default class GameManager {
             "Aloft Demo", ["Aloft.exe"], "Aloft_Data",
             "https://thunderstore.io/c/aloft/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1660080"), new StorePlatformMetadata(StorePlatform.OTHER)], "Aloft.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Cult of the Lamb", "COTL", "COTL",
             "Cult of the Lamb", ["Cult Of The Lamb.exe"], "Cult Of The Lamb_Data",
@@ -324,12 +324,12 @@ export default class GameManager {
             path.join("Chrono Ark", "x64", "Master"), ["ChronoArk.exe"], "ChronoArk_Data",
             "https://thunderstore.io/c/chrono-ark/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1188930"), new StorePlatformMetadata(StorePlatform.OTHER)], "ChronoArk.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("BONELAB", "BONELAB", "BONELAB",
             "BONELAB", ["BONELAB_Steam_Windows64.exe", "BONELAB_Oculus_Windows64.exe"], "BONELAB_Steam_Windows64",
             "https://thunderstore.io/c/bonelab/api/v1/package-listing-index/",
-            [new StorePlatformMetadata(StorePlatform.STEAM, "1592190"), new StorePlatformMetadata(StorePlatform.OCULUS_STORE)], "BONELAB.jpg",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "1592190"), new StorePlatformMetadata(StorePlatform.OCULUS_STORE), new StorePlatformMetadata(StorePlatform.OTHER)], "BONELAB.jpg",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.MELON_LOADER, ["BL"]),
 
         new Game("Trombone Champ", "TromboneChamp", "TromboneChamp",
@@ -372,19 +372,19 @@ export default class GameManager {
             "Brotato", ["Brotato.exe"], "",
             "https://thunderstore.io/c/brotato/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1942280"), new StorePlatformMetadata(StorePlatform.OTHER)], "brotato.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.GODOT_ML, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.GODOT_ML),
 
         new Game("Ancient Dungeon VR", "AncientDungeonVR", "AncientDungeonVR",
             "Ancient Dungeon VR", ["Ancient_Dungeon.exe"], "Ancient_Dungeon_Data",
             "https://thunderstore.io/c/ancient-dungeon-vr/api/v1/package-listing-index/",
-            [new StorePlatformMetadata(StorePlatform.STEAM, "1125240"), new StorePlatformMetadata(StorePlatform.OCULUS_STORE)], "ancient-dungeon-vr.png",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "1125240"), new StorePlatformMetadata(StorePlatform.OCULUS_STORE), new StorePlatformMetadata(StorePlatform.OTHER)], "ancient-dungeon-vr.png",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.ANCIENT_DUNGEON_VR, ["adv"]),
 
         new Game("RUMBLE", "RUMBLE", "RUMBLE",
             "RUMBLE", ["RUMBLE.exe"], "RUMBLE_Data",
             "https://thunderstore.io/c/rumble/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "890550"), new StorePlatformMetadata(StorePlatform.OTHER)], "RUMBLE.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.MELON_LOADER, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.MELON_LOADER),
 
         new Game("Dome Keeper", "DomeKeeper", "DomeKeeper",
             "Dome Keeper", ["domekeeper.exe"], "",
@@ -396,7 +396,7 @@ export default class GameManager {
             "Skul", ["Skul.exe"], "Skul_Data",
             "https://thunderstore.io/c/skul-the-hero-slayer/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1147560"), new StorePlatformMetadata(StorePlatform.OTHER)], "skul-the-hero-slayer.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Sons Of The Forest", "SonsOfTheForest", "SonsOfTheForest",
             "Sons Of The Forest", ["SonsOfTheForest.exe"], "SonsOfTheForest_Data",
@@ -521,7 +521,7 @@ export default class GameManager {
             "Sunkenland", ["Sunkenland.exe"], "Sunkenland_Data",
             "https://thunderstore.io/c/sunkenland/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "2080690"), new StorePlatformMetadata(StorePlatform.OTHER)], "Sunkenland.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Atomicrops", "Atomicrops", "Atomicrops",
             "Atomicrops", ["Atomicrops.exe"], "Atomicrops_Data",
@@ -533,7 +533,7 @@ export default class GameManager {
             "Erenshor", ["Erenshor.exe"], "Erenshor_Data",
             "https://thunderstore.io/c/erenshor/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "2382520"), new StorePlatformMetadata(StorePlatform.OTHER)], "Erenshor.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Last Train Outta' Wormtown", "LastTrainOuttaWormtown", "LastTrainOuttaWormtown",
             "Last Train Outta' Wormtown", ["Last Train Out Of WormTown.exe"], "Last Train Out Of WormTown_Data",
@@ -545,12 +545,12 @@ export default class GameManager {
             "DREDGE", ["DREDGE.exe"], "DREDGE_Data",
             "https://thunderstore.io/c/dredge/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1562430"), new StorePlatformMetadata(StorePlatform.OTHER)], "Dredge.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Cities: Skylines II", "CitiesSkylines2", "CitiesSkylines2",
             "Cities Skylines II", ["Cities2.exe"], "CitiesSkylines2_Data",
             "https://thunderstore.io/c/cities-skylines-ii/api/v1/package-listing-index/",
-            [new StorePlatformMetadata(StorePlatform.STEAM, "949230"), new StorePlatformMetadata(StorePlatform.XBOX_GAME_PASS, "ParadoxInteractive.CitiesSkylinesII-PCEdition")], "CitiesSkylines2.png",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "949230"), new StorePlatformMetadata(StorePlatform.XBOX_GAME_PASS, "ParadoxInteractive.CitiesSkylinesII-PCEdition"), new StorePlatformMetadata(StorePlatform.OTHER)], "CitiesSkylines2.png",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["cs2"]),
 
         new Game("Lethal Company", "LethalCompany", "LethalCompany",
@@ -575,7 +575,7 @@ export default class GameManager {
             "Sailwind", ["Sailwind.exe"], "Sailwind_Data",
             "https://thunderstore.io/c/sailwind/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1764530"), new StorePlatformMetadata(StorePlatform.OTHER)], "Sailwind.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game(
             "Voices of the Void", "VotV", "VotV",
@@ -595,7 +595,7 @@ export default class GameManager {
             "Plasma", ["Plasma.exe"], "Plasma_Data",
             "https://thunderstore.io/c/plasma/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1409160"), new StorePlatformMetadata(StorePlatform.OTHER)], "Plasma.jpg",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
             new Game("Content Warning", "ContentWarning", "ContentWarning",
             "Content Warning", ["Content Warning.exe"], "Content Warning_Data",
@@ -607,7 +607,7 @@ export default class GameManager {
             "Balatro", ["Balatro.exe"], "Balatro_Data",
             "https://thunderstore.io/c/balatro/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "2379780"), new StorePlatformMetadata(StorePlatform.OTHER)], "Balatro.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.LOVELY, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.LOVELY),
 
         new Game(
             "Bopl Battle", "BoplBattle", "BoplBattle",
@@ -620,7 +620,7 @@ export default class GameManager {
             "Vertigo 2", ["vertigo2.exe"], "vertigo2_Data",
             "https://thunderstore.io/c/vertigo-2/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "843390"), new StorePlatformMetadata(StorePlatform.OTHER)], "Vertigo2.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Against the Storm", "AgainstTheStorm", "AgainstTheStorm",
             "Against the Storm", ["Against the Storm.exe"], "Against the Storm_Data",
@@ -632,7 +632,7 @@ export default class GameManager {
             "Lycans", ["Lycans.exe"], "Lycans_Data",
             "https://thunderstore.io/c/lycans/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "2596100"), new StorePlatformMetadata(StorePlatform.OTHER)], "Lycans.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Castle Story", "CastleStory", "CastleStory",
             "Castle Story", ["Castle Story.exe"], "Castle Story_Data",
@@ -657,7 +657,7 @@ export default class GameManager {
             "Magicraft", ["Magicraft.exe"], "Magicraft_Data",
             "https://thunderstore.io/c/magicraft/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "2103140"), new StorePlatformMetadata(StorePlatform.OTHER)], "Magicraft.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, []),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX),
 
         new Game("Another Crab's Treasure", "AnotherCrabsTreasure", "AnotherCrabsTreasure",
             "AnotherCrabsTreasure", ["AnotherCrabsTreasure.exe"], "AnotherCrabsTreasure_Data",
@@ -830,7 +830,7 @@ export default class GameManager {
             "WEBFISHING", ["webfishing.exe"], "",
             "https://thunderstore.io/c/webfishing/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "3146520"), new StorePlatformMetadata(StorePlatform.OTHER)], "WEBFISHING.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.GDWEAVE, [""]),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.GDWEAVE),
 
         new Game("STRAFTAT", "STRAFTAT", "STRAFTAT",
             "STRAFTAT", ["STRAFTAT.exe"], "STRAFTAT_Data",
