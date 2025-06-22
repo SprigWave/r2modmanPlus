@@ -2,8 +2,12 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-import R2Error from '../../model/errors/R2Error';
+import R2Error, { throwForR2Error } from '../../model/errors/R2Error';
+import ThunderstoreCombo from '../../model/ThunderstoreCombo';
 import CdnProvider from '../../providers/generic/connection/CdnProvider';
+import InteractionProvider from '../../providers/ror2/system/InteractionProvider';
+import { LogSeverity } from '../../providers/ror2/logging/LoggerProvider';
+import ProfileModList from '../../r2mm/mods/ProfileModList';
 
 @Component
 export default class UtilityMixin extends Vue {
@@ -12,6 +16,40 @@ export default class UtilityMixin extends Vue {
 
     hookBackgroundUpdateThunderstoreModList() {
         setInterval(this.backgroundRefreshThunderstoreModList, this.REFRESH_INTERVAL);
+    }
+
+    hookModInstallingViaProtocol() {
+        InteractionProvider.instance.hookModInstallProtocol(async (protocolUrl) => {
+            const profileSelectedRoutes = ["manager", "manager.installed", "manager.online", "manager.settings", "config-editor", "help", "downloads"];
+
+            if (this.$route.name && !profileSelectedRoutes.includes(this.$route.name)) {
+                this.$store.commit('error/handleError', {
+                    error: new R2Error(
+                        "Unable to install mod(s)",
+                        "Mod installation via a link is not possible when a game and a profile are not selected",
+                        "Please select a game and a profile before attempting to install a mod via a link."
+                    ),
+                    severity: LogSeverity.ACTION_STOPPED
+                });
+                return;
+            }
+
+            try {
+                const game = this.$store.state.activeGame;
+                const profile = this.$store.getters['profile/activeProfile'].asImmutableProfile();
+                const combo = throwForR2Error(await ThunderstoreCombo.fromProtocol(protocolUrl, game));
+
+                await this.$store.dispatch('download/downloadAndInstallSpecific', {profile, combo});
+
+                const modList = throwForR2Error(await ProfileModList.getModList(profile));
+                await this.$store.dispatch('profile/updateModList', modList);
+            } catch (err) {
+                this.$store.commit('error/handleError', {
+                    error: R2Error.fromThrownValue(err),
+                    severity: LogSeverity.ACTION_STOPPED
+                });
+            }
+        });
     }
 
     /**

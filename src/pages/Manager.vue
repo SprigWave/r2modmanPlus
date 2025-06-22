@@ -1,13 +1,12 @@
 <template>
-	<div>
+	<div class="manager-main-view">
 		<div class='notification is-warning' v-if="portableUpdateAvailable">
 			<div class='container'>
 				<p>
 					An update is available.
-					<link-component :url="`https://github.com/ebkr/r2modmanPlus/releases/tag/${updateTagName}`"
-					                :target="'external'"
-					>Click here to go to the release page.
-					</link-component>
+					<ExternalLink :url="`https://github.com/ebkr/r2modmanPlus/releases/tag/${updateTagName}`">
+                        Click here to go to the release page.
+					</ExternalLink>
 				</p>
 			</div>
 		</div>
@@ -35,7 +34,7 @@
 			<button class="modal-close is-large" aria-label="close"
 			        @click="showRor2IncorrectDirectoryModal = false"></button>
 		</div>
-		<ModalCard :is-active="isValidatingSteamInstallation" @close-modal="closeSteamInstallationValidationModal" :can-close="true">
+		<ModalCard id="steam-installation-validation-modal" :is-active="isValidatingSteamInstallation" @close-modal="closeSteamInstallationValidationModal" :can-close="true">
 			<template v-slot:header>
 				<h2 class='modal-title'>Clearing the {{activeGame.displayName}} installation directory</h2>
 			</template>
@@ -62,7 +61,7 @@
 				</button>
 			</template>
 		</ModalCard>
-        <ModalCard :is-active="showDependencyStrings" @close-modal="showDependencyStrings = false;" :can-close="true">
+        <ModalCard id="dependency-strings-modal" :is-active="showDependencyStrings" @close-modal="showDependencyStrings = false;" :can-close="true">
             <template v-slot:header>
                 <h2 class='modal-title'>Dependency string list</h2>
             </template>
@@ -80,7 +79,7 @@
                 </button>
             </template>
         </ModalCard>
-		<ModalCard :is-active="showLaunchParameterModal" @close-modal="() => {showLaunchParameterModal = false;}" :can-close="true">
+		<ModalCard id="launch-parameters-modal" :is-active="showLaunchParameterModal" @close-modal="() => {showLaunchParameterModal = false;}" :can-close="true">
 			<template v-slot:header>
 				<h2 class='modal-title'>Set custom launch parameters</h2>
 			</template>
@@ -121,42 +120,26 @@
 				</button>
 			</template>
 		</ModalCard>
-		<ModalCard :is-active="exportCode !== ''" @close-modal="() => {exportCode = '';}" :can-close="true">
-			<template v-slot:header>
-				<h2 class='modal-title'>Profile exported</h2>
-			</template>
-			<template v-slot:body>
-				<p>Your code: <strong>{{exportCode}}</strong> has been copied to your clipboard. Just give it to a
-					friend!
-				</p>
-			</template>
-			<template v-slot:footer>
-				<button class="button is-info" @click="exportCode = ''">
-					Done
-				</button>
-			</template>
-		</ModalCard>
 
         <CategoryFilterModal />
+        <SortModal />
         <LocalFileImportModal :visible="importingLocalMod" @close-modal="importingLocalMod = false" />
+        <ProfileCodeExportModal />
         <DownloadModModal />
 
-        <router-view name="subview"
-                     v-on:setting-invoked="handleSettingsCallbacks($event)" />
+        <div class="router-view">
+            <router-view name="subview" v-on:setting-invoked="handleSettingsCallbacks($event)" />
+        </div>
     </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Hero, Link, Modal, Progress } from '../components/all';
+import { Hero, ExternalLink, Modal, Progress } from '../components/all';
 
-import ThunderstoreCombo from '../model/ThunderstoreCombo';
-import ProfileModList from '../r2mm/mods/ProfileModList';
 import PathResolver from '../r2mm/manager/PathResolver';
 import { SteamInstallationValidator} from '../r2mm/manager/SteamInstallationValidator';
-
-import { LogSeverity } from '../providers/ror2/logging/LoggerProvider';
 
 import Profile from '../model/Profile';
 import VersionNumber from '../model/VersionNumber';
@@ -173,7 +156,6 @@ import * as path from 'path';
 import FsProvider from '../providers/generic/file/FsProvider';
 import DownloadModModal from '../components/views/DownloadModModal.vue';
 import CacheUtil from '../r2mm/mods/CacheUtil';
-import 'bulma-checkradio/dist/css/bulma-checkradio.min.css';
 import LinkProvider from '../providers/components/LinkProvider';
 import Game from '../model/game/Game';
 import GameRunnerProvider from '../providers/generic/game/GameRunnerProvider';
@@ -182,24 +164,27 @@ import { PackageLoader } from '../model/installing/PackageLoader';
 import GameInstructions from '../r2mm/launching/instructions/GameInstructions';
 import CategoryFilterModal from '../components/modals/CategoryFilterModal.vue';
 import ModalCard from '../components/ModalCard.vue';
+import ProfileCodeExportModal from '../components/modals/ProfileCodeExportModal.vue';
+import SortModal from '../components/modals/SortModal.vue';
 
 @Component({
 		components: {
+            ProfileCodeExportModal,
+            SortModal,
             ModalCard,
             LocalFileImportModal,
             CategoryFilterModal,
             DownloadModModal,
 			'hero': Hero,
 			'progress-bar': Progress,
-			'link-component': Link,
 			'modal': Modal,
+            ExternalLink,
 		}
 	})
 	export default class Manager extends Vue {
 		portableUpdateAvailable: boolean = false;
 		updateTagName: string = '';
 		isValidatingSteamInstallation: boolean = false;
-		exportCode: string = '';
 		showSteamIncorrectDirectoryModal: boolean = false;
 		showRor2IncorrectDirectoryModal: boolean = false;
 		launchParametersModel: string = '';
@@ -370,43 +355,6 @@ import ModalCard from '../components/ModalCard.vue';
 			this.settings.setFunkyMode(value);
 		}
 
-		async exportProfile() {
-			if (!this.localModList.length) {
-				const err = new R2Error(
-					'Profile is empty',
-					'The profile must contain at least one mod to export it as a file.'
-				);
-				this.$store.commit('error/handleError', err);
-				return;
-			}
-			const exportErr = await ProfileModList.exportModListToFile(this.profile.asImmutableProfile());
-			if (exportErr instanceof R2Error) {
-				this.$store.commit('error/handleError', exportErr);
-			}
-		}
-
-		async exportProfileAsCode() {
-			if (!this.localModList.length) {
-				const err = new R2Error(
-					'Profile is empty',
-					'The profile must contain at least one mod to export it as a code.'
-				);
-				this.$store.commit('error/handleError', err);
-				return;
-			}
-			const exportErr = await ProfileModList.exportModListAsCode(this.profile.asImmutableProfile(), (code: string, err: R2Error | null) => {
-				if (err !== null) {
-					this.$store.commit('error/handleError', err);
-				} else {
-					this.exportCode = code;
-					InteractionProvider.instance.copyToClipboard(code);
-				}
-			});
-			if (exportErr instanceof R2Error) {
-				this.$store.commit('error/handleError', exportErr);
-			}
-		}
-
 		browseDataFolder() {
             LinkProvider.instance.openLink('file://' + PathResolver.ROOT);
 		}
@@ -484,10 +432,6 @@ import ModalCard from '../components/ModalCard.vue';
 			this.showLaunchParameterModal = false;
 		}
 
-		toggleIgnoreCache() {
-			this.settings.setIgnoreCache(!this.settings.getContext().global.ignoreCache);
-		}
-
 		async copyLogToClipboard() {
             const fs = FsProvider.instance;
             let logOutputPath = "";
@@ -560,7 +504,7 @@ import ModalCard from '../components/ModalCard.vue';
                     this.copyTroubleshootingInfoToClipboard();
                     break;
                 case "ToggleDownloadCache":
-                    this.toggleIgnoreCache();
+                    await this.$store.dispatch('download/toggleIgnoreCache');
                     break;
                 case "ValidateSteamInstallation":
                     this.validateSteamInstallation();
@@ -573,12 +517,6 @@ import ModalCard from '../components/ModalCard.vue';
                     break;
                 case "ImportLocalMod":
                     this.importingLocalMod = true;
-                    break;
-                case "ExportFile":
-                    this.exportProfile();
-                    break;
-                case "ExportCode":
-                    this.exportProfileAsCode();
                     break;
                 case "ToggleFunkyMode":
                     this.setFunkyMode(!this.settings.getContext().global.funkyModeEnabled);
@@ -631,34 +569,23 @@ import ModalCard from '../components/ModalCard.vue';
 
 		async created() {
 			this.launchParametersModel = this.settings.getContext().gameSpecific.launchParameters;
-			const ignoreCache = this.settings.getContext().global.ignoreCache;
-
-            InteractionProvider.instance.hookModInstallProtocol(async (protocolUrl) => {
-                const game = this.$store.state.activeGame;
-                const combo: ThunderstoreCombo | R2Error = await ThunderstoreCombo.fromProtocol(protocolUrl, game);
-                if (combo instanceof R2Error) {
-                    this.$store.commit('error/handleError', {
-                        error: combo,
-                        severity: LogSeverity.ACTION_STOPPED
-                    });
-                    return;
-                }
-                DownloadModModal.downloadSpecific(this.profile, combo, ignoreCache, this.$store)
-                    .then(async value => {
-                        const modList = await ProfileModList.getModList(this.profile.asImmutableProfile());
-                        if (!(modList instanceof R2Error)) {
-                            await this.$store.dispatch('profile/updateModList', modList);
-                        } else {
-                            this.$store.commit('error/handleError', modList);
-                        }
-                    })
-                    .catch(
-                        (err: R2Error) => this.$store.commit('error/handleError', err)
-                    );
-            });
 
 			this.isManagerUpdateAvailable();
 		}
 	}
 
 </script>
+
+<style lang="scss">
+.manager-main-view {
+    display: flex;
+    flex: 1;
+    width: 100%;
+}
+
+.router-view {
+    display: flex;
+    flex: 1;
+    width: 100%;
+}
+</style>

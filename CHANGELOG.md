@@ -1,3 +1,36 @@
+### 3.2.0
+#### Major changes
+- You can now preview a mod's README, CHANGELOG, and dependencies all within the Online section.
+- Profile management now belongs in the bottom left of the screen.
+  - You can use this to:
+    - Change profile
+    - Export profile
+    - Import local mods
+
+#### Games added
+- ANEURISM IV
+- Lost Skies
+- Labyrinthine
+
+### 3.1.58
+#### Games added
+- Schedule 1
+- Zort
+- Disco Elysium
+- Odd Remedy
+- Dusk
+- Monster Train 2
+- My Dream Setup
+- Hades 2 (@xiaoxiao921)
+- Gatekeeper
+- Pulsar: Lost Colony
+- Songs of Conquest
+- White Knuckle
+- ENA: Dream BBQ
+- Human Fall Flat
+- Magicite
+- ASKA
+
 ### 3.1.57
 #### Games added
 - R.E.P.O

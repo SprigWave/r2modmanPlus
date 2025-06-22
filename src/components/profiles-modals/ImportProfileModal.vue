@@ -34,6 +34,7 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
     private profileImportFilePath: string | null = null;
     private profileImportContent: ExportFormat | null = null;
     private profileMods: {known: ThunderstoreCombo[], unknown: string[]} = {known: [], unknown: []};
+    private isPartialImportAllowed: boolean = false;
     private activeStep:
         'FILE_CODE_SELECTION'
         | 'IMPORT_FILE'
@@ -246,8 +247,7 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
         const progressCallback = (progress: number|string) => typeof progress === "number"
             ? this.importPhaseDescription = `Downloading mods: ${Math.floor(progress)}%`
             : this.importPhaseDescription = progress;
-        const settings = this.$store.getters['settings'];
-        const ignoreCache = settings.getContext().global.ignoreCache;
+        const ignoreCache = this.$store.state.download.ignoreCache;
         const isUpdate = this.importUpdateSelection === 'UPDATE';
 
         try {
@@ -274,7 +274,7 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
 </script>
 
 <template>
-    <ModalCard v-if="activeStep === 'FILE_CODE_SELECTION'" key="FILE_CODE_SELECTION" :is-active="isOpen" @close-modal="closeModal">
+    <ModalCard id="import-profile-from-file-or-code-modal" v-if="activeStep === 'FILE_CODE_SELECTION'" key="FILE_CODE_SELECTION" :is-active="isOpen" @close-modal="closeModal">
         <template v-slot:header>
             <h2 class="modal-title" v-if="importUpdateSelection === 'CREATE'">How are you importing a profile?</h2>
             <h2 class="modal-title" v-if="importUpdateSelection === 'UPDATE'">How are you updating your profile?</h2>
@@ -289,7 +289,7 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
         </template>
     </ModalCard>
 
-    <ModalCard v-else-if="activeStep === 'IMPORT_FILE'" key="IMPORT_FILE" :is-active="isOpen" @close-modal="closeModal">
+    <ModalCard id="import-profile-from-file-modal" v-else-if="activeStep === 'IMPORT_FILE'" key="IMPORT_FILE" :is-active="isOpen" @close-modal="closeModal">
         <template v-slot:header>
             <h2 class="modal-title">Loading file</h2>
         </template>
@@ -298,7 +298,7 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
         </template>
     </ModalCard>
 
-    <ModalCard v-else-if="activeStep === 'IMPORT_CODE'" :can-close="!importViaCodeInProgress" key="IMPORT_CODE" :is-active="isOpen" @close-modal="closeModal">
+    <ModalCard id="import-profile-from-code-modal" v-else-if="activeStep === 'IMPORT_CODE'" :can-close="!importViaCodeInProgress" key="IMPORT_CODE" :is-active="isOpen" @close-modal="closeModal">
         <template v-slot:header>
             <h2 class="modal-title">Enter the profile code</h2>
         </template>
@@ -330,7 +330,7 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
         </template>
     </ModalCard>
 
-    <ModalCard v-else-if="activeStep === 'REFRESH_MOD_LIST'" key="REFRESH_MOD_LIST" :is-active="isOpen" :can-close="false">
+    <ModalCard id="import-profile-refresh-mod-list-modal" v-else-if="activeStep === 'REFRESH_MOD_LIST'" key="REFRESH_MOD_LIST" :is-active="isOpen" :can-close="false">
         <template v-slot:header>
             <h2 class="modal-title">Refreshing online mod list</h2>
         </template>
@@ -350,7 +350,7 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
         </template>
     </ModalCard>
 
-    <ModalCard v-else-if="activeStep === 'REVIEW_IMPORT'" key="REVIEW_IMPORT" :is-active="isOpen" @close-modal="closeModal">
+    <ModalCard id="review-profile-import-modal" v-else-if="activeStep === 'REVIEW_IMPORT'" key="REVIEW_IMPORT" :is-active="isOpen" @close-modal="closeModal">
         <template v-slot:header>
             <h2 class="modal-title">Packages to be installed</h2>
         </template>
@@ -372,18 +372,30 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
             />
         </template>
         <template v-slot:footer>
+
+            <div v-if="knownProfileMods.length > 0 && profileMods.unknown.length > 0" class="is-flex-grow-1">
+                <input
+                    v-model="isPartialImportAllowed"
+                    id="partialImportAllowedCheckbox"
+                    class="is-checkradio has-background-color"
+                    type="checkbox"
+                >
+                <label for="partialImportAllowedCheckbox">I understand that some of the mods won't be imported</label>
+            </div>
+
             <button
                 id="modal-review-confirmed"
                 class="button is-info"
-                :disabled="knownProfileMods.length === 0"
+                :disabled="knownProfileMods.length === 0 || (profileMods.unknown.length > 0 && !isPartialImportAllowed)"
                 @click="onProfileReviewConfirmed"
             >
                 Import
             </button>
+
         </template>
     </ModalCard>
 
-    <ModalCard v-else-if="activeStep === 'IMPORT_UPDATE_SELECTION'" key="IMPORT_UPDATE_SELECTION" :is-active="isOpen" @close-modal="closeModal">
+    <ModalCard id="import-or-update-profile-selection-modal" v-else-if="activeStep === 'IMPORT_UPDATE_SELECTION'" key="IMPORT_UPDATE_SELECTION" :is-active="isOpen" @close-modal="closeModal">
         <template v-slot:header>
             <h2 class="modal-title">Are you going to be updating an existing profile or creating a new one?</h2>
         </template>
@@ -401,7 +413,7 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
         </template>
     </ModalCard>
 
-    <ModalCard v-else-if="activeStep === 'ADDING_PROFILE'" key="ADDING_PROFILE" :is-active="isOpen" @close-modal="closeModal">
+    <ModalCard id="import-add-profile-modal" v-else-if="activeStep === 'ADDING_PROFILE'" key="ADDING_PROFILE" :is-active="isOpen" @close-modal="closeModal">
         <template v-slot:header>
             <h2 v-if="importUpdateSelection === 'CREATE'" class="modal-title">Import a profile</h2>
         </template>
@@ -447,7 +459,7 @@ export default class ImportProfileModal extends mixins(ProfilesMixin) {
         </template>
     </ModalCard>
 
-    <ModalCard v-else-if="activeStep === 'PROFILE_IS_BEING_IMPORTED'" key="PROFILE_IS_BEING_IMPORTED" :is-active="isOpen" :canClose="false">
+    <ModalCard id="profile-importing-in-progress-modal" v-else-if="activeStep === 'PROFILE_IS_BEING_IMPORTED'" key="PROFILE_IS_BEING_IMPORTED" :is-active="isOpen" :canClose="false">
         <template v-slot:header>
             <h2 class="modal-title">{{importPhaseDescription}}</h2>
         </template>

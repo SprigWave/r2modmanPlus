@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="download-monitor-view">
         <Hero title="Downloads" subtitle="Monitor progress of downloads" hero-type="primary"/>
         <template v-if="$store.state.download.allDownloads.length === 0">
             <div class='text-center top'>
@@ -13,14 +13,22 @@
             </div>
         </template>
         <template v-else>
+            <div class="download-monitor-action-buttons border-at-bottom">
+                <button
+                    class="button ghost"
+                    @click="$store.commit('download/removeAllInactive')"
+                >
+                    <i class="fas fa-times mr-2" />Clear finished
+                </button>
+            </div>
             <div v-for="(downloadObject, index) of $store.getters['download/newestFirst']" :key="`download-progress-${index}`">
-                <div>
-                    <div class="container margin-right">
-                        <div class="border-at-bottom pad pad--sides">
-                            <div class="card is-shadowless">
-                                <p><strong>{{ downloadObject.initialMods.join(", ") }}</strong></p>
+                <div class="container">
+                    <div class="row no-wrap border-at-bottom pad pad--sides">
+                        <div class="is-flex-grow-1 margin-right card is-shadowless">
+                            <p><strong>{{ downloadObject.initialMods.join(", ") }}</strong></p>
 
-                                <div v-if="downloadObject.failed">
+                            <div class="row" v-if="downloadObject.status === DownloadStatusEnum.FAILED">
+                                <div class="col">
                                     <p>Download failed</p>
                                     <Progress
                                         :max='100'
@@ -28,8 +36,10 @@
                                         :className="['is-danger']"
                                     />
                                 </div>
+                            </div>
 
-                                <div v-else-if="downloadObject.downloadProgress === 100 && downloadObject.installProgress === 100">
+                            <div class="row" v-else-if="downloadObject.status === DownloadStatusEnum.DONE">
+                                <div class="col">
                                     <p>Download complete</p>
                                     <Progress
                                         :max='100'
@@ -37,42 +47,50 @@
                                         :className="['is-success']"
                                     />
                                 </div>
+                            </div>
 
-                                <div v-else class="row">
+                            <div v-else class="row">
 
-                                    <div class="col">
-                                        <p v-if="downloadObject.downloadProgress < 100">Downloading: {{ downloadObject.modName }}</p>
-                                        <p v-else>Downloading:</p>
-                                        <p>{{Math.min(Math.floor(downloadObject.downloadProgress), 100)}}% complete</p>
-                                        <Progress
-                                            :max='100'
-                                            :value='downloadObject.downloadProgress'
-                                            :className="['is-info']"
-                                        />
-                                    </div>
-
-                                    <div v-if="downloadObject.downloadProgress < 100" class="col">
-                                        <p>Installing:</p>
-                                        <p>Waiting for download to finish</p>
-                                        <Progress
-                                            :max='100'
-                                            :value='0'
-                                            :className="['is-info']"
-                                        />
-                                    </div>
-                                    <div v-else class="col">
-                                        <p>Installing: {{ downloadObject.modName }}</p>
-                                        <p>{{Math.min(Math.floor(downloadObject.installProgress), 100)}}% complete</p>
-                                        <Progress
-                                            :max='100'
-                                            :value='downloadObject.installProgress'
-                                            :className="['is-info']"
-                                        />
-                                    </div>
-
+                                <div class="col">
+                                    <p v-if="downloadObject.status === DownloadStatusEnum.DOWNLOADING">Downloading: {{ downloadObject.modName }}</p>
+                                    <p v-else>Downloading:</p>
+                                    <p>{{Math.min(Math.floor(downloadObject.downloadProgress), 100)}}% complete</p>
+                                    <Progress
+                                        :max='100'
+                                        :value='downloadObject.downloadProgress'
+                                        :className="['is-info']"
+                                    />
                                 </div>
+
+                                <div v-if="downloadObject.status === DownloadStatusEnum.DOWNLOADING" class="col">
+                                    <p>Installing:</p>
+                                    <p>Waiting for download to finish</p>
+                                    <Progress
+                                        :max='100'
+                                        :value='0'
+                                        :className="['is-info']"
+                                    />
+                                </div>
+                                <div v-else class="col">
+                                    <p>Installing: {{ downloadObject.modName }}</p>
+                                    <p>{{Math.min(Math.floor(downloadObject.installProgress), 100)}}% complete</p>
+                                    <Progress
+                                        :max='100'
+                                        :value='downloadObject.installProgress'
+                                        :className="['is-info']"
+                                    />
+                                </div>
+
                             </div>
                         </div>
+                        <button
+                            v-if="downloadObject.status === DownloadStatusEnum.FAILED || downloadObject.status === DownloadStatusEnum.DONE"
+                            class="button download-item-action-button"
+                            v-tooltip.left="'Remove'"
+                            @click="$store.commit('download/removeDownload', downloadObject)"
+                        >
+                            <i class="fas fa-times" />
+                        </button>
                     </div>
                 </div>
             </div>
@@ -86,6 +104,7 @@ import { Component, Vue } from 'vue-property-decorator';
 
 import { Hero } from '../components/all';
 import Progress from '../components/Progress.vue';
+import { DownloadStatusEnum } from '../model/enums/DownloadStatusEnum';
 
 @Component({
     components: {
@@ -94,6 +113,29 @@ import Progress from '../components/Progress.vue';
     }
 })
 export default class DownloadMonitor extends Vue {
+    DownloadStatusEnum = DownloadStatusEnum;
 }
 
 </script>
+
+<style lang="scss" scoped>
+#download-monitor-view {
+    width: 100%;
+}
+
+.download-item-action-button {
+    font-size: 1.5rem;
+    padding: 0;
+    height: 1em;
+    margin: auto 1rem;
+    border: none;
+}
+
+.download-monitor-action-buttons {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.5rem;
+    text-align: right;
+}
+</style>

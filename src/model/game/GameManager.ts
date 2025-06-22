@@ -378,7 +378,7 @@ export default class GameManager {
             "Ancient Dungeon VR", ["Ancient_Dungeon.exe"], "Ancient_Dungeon_Data",
             "https://thunderstore.io/c/ancient-dungeon-vr/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "1125240"), new StorePlatformMetadata(StorePlatform.OCULUS_STORE), new StorePlatformMetadata(StorePlatform.OTHER)], "ancient-dungeon-vr.png",
-            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.ANCIENT_DUNGEON_VR, ["adv"]),
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.NONE, ["adv"]),
 
         new Game("RUMBLE", "RUMBLE", "RUMBLE",
             "RUMBLE", ["RUMBLE.exe"], "RUMBLE_Data",
@@ -757,7 +757,12 @@ export default class GameManager {
         new Game("Hades II", "HadesII", "HadesII",
             path.join("Hades II", "Ship"), ["Hades2.exe"], "",
             "https://thunderstore.io/c/hades-ii/api/v1/package-listing-index/",
-            [new StorePlatformMetadata(StorePlatform.STEAM, "1145350"), new StorePlatformMetadata(StorePlatform.OTHER)], "Hades2.png",
+            [
+                new StorePlatformMetadata(StorePlatform.STEAM, "1145350"),
+                new StorePlatformMetadata(StorePlatform.EPIC_GAMES_STORE, "07c634c7291a49b5b2455e14b9a83950"), 
+                new StorePlatformMetadata(StorePlatform.OTHER)
+            ],
+            "Hades2.png",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.RETURN_OF_MODDING, ["h2"]),
 
         new Game("Shapez 2", "Shapez2", "Shapez2",
@@ -883,7 +888,7 @@ export default class GameManager {
         new Game("R.E.P.O.", "REPO", "REPO",
             "REPO", ["REPO.exe"], "REPO_Data",
             "https://thunderstore.io/c/repo/api/v1/package-listing-index/",
-            [new StorePlatformMetadata(StorePlatform.STEAM, "3241660"), new StorePlatformMetadata(StorePlatform.OTHER)], "repo.webp",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "3241660"), new StorePlatformMetadata(StorePlatform.OTHER)], "REPO.png",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["repo"]),
 
         new Game("Zort", "Zort", "Zort",
@@ -921,6 +926,78 @@ export default class GameManager {
             "https://thunderstore.io/c/monster-train-2/api/v1/package-listing-index/",
             [new StorePlatformMetadata(StorePlatform.STEAM, "3296150"), new StorePlatformMetadata(StorePlatform.OTHER)], "MonsterTrain2.png",
             GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["mt2"]),
+
+        new Game("Schedule I", "ScheduleI", "ScheduleI",
+            "Schedule I", ["Schedule I.exe"], "Schedule I_Data",
+            "https://thunderstore.io/c/schedule-i/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "3164500"), new StorePlatformMetadata(StorePlatform.OTHER)], "ScheduleI.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.RECURSIVE_MELON_LOADER, [""]),
+
+        new Game("Gatekeeper", "Gatekeeper", "Gatekeeper",
+            "Gatekeeper", ["Gatekeeper.exe"], "Gatekeeper_Data",
+            "https://thunderstore.io/c/gatekeeper/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "2106670"), new StorePlatformMetadata(StorePlatform.OTHER)], "Gatekeeper.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["gk"]),
+
+        new Game("Pulsar: Lost Colony", "PulsarLostColony", "PulsarLostColony",
+            "PULSARLostColony", ["PULSAR_LostColony.exe"], "PULSAR_LostColony_Data",
+            "https://thunderstore.io/c/pulsar-lost-colony/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "252870"), new StorePlatformMetadata(StorePlatform.OTHER)], "PulsarLostColony.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["plc"]),
+
+        new Game("Songs of Conquest", "SongsOfConquest", "SongsOfConquest",
+            "SongsOfConquest", ["SongsOfConquest.exe"], "SongsOfConquest_Data",
+            "https://thunderstore.io/c/songs-of-conquest/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "867210"), new StorePlatformMetadata(StorePlatform.OTHER)], "SongsOfConquest.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["soc"]),
+
+        new Game("White Knuckle", "WhiteKnuckle", "WhiteKnuckle",
+            "White Knuckle Demo", ["White Knuckle.exe"], "White Knuckle_Data",
+            "https://thunderstore.io/c/white-knuckle/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "3195790"), new StorePlatformMetadata(StorePlatform.OTHER)], "WhiteKnuckle.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["wk"]),
+
+        new Game("Human Fall Flat", "HumanFallFlat", "HumanFallFlat",
+            "Human Fall Flat", ["Human.exe"], "Human_Data",
+            "https://thunderstore.io/c/human-fall-flat/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "477160"), new StorePlatformMetadata(StorePlatform.OTHER)], "HumanFallFlat.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["hff"]),
+
+        new Game("Magicite", "Magicite", "Magicite",
+            "Magicite", ["Magicite.exe"], "Magicite_Data",
+            "https://thunderstore.io/c/magicite/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "268750"), new StorePlatformMetadata(StorePlatform.OTHER)], "Magicite.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, [""]),
+
+        new Game("ENA: Dream BBQ", "ENADreamBBQ", "ENADreamBBQ",
+            "ENA-4-DreamBBQ", ["ENA-4-DreamBBQ.exe"], "ENA-4-DreamBBQ_Data",
+            "https://thunderstore.io/c/ena-dream-bbq/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "2134320"), new StorePlatformMetadata(StorePlatform.OTHER)], "ENADreamBBQ.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["edbbq"]),
+
+        new Game("ASKA", "ASKA", "ASKA",
+            "ASKA", ["Aska.exe"], "ASKA_Data",
+            "https://thunderstore.io/c/aska/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "1898300"), new StorePlatformMetadata(StorePlatform.OTHER)], "ASKA.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, [""]),
+
+        new Game("Lost Skies", "LostSkies", "LostSkies",
+            "Wild Skies", ["LostSkies.exe"], "LostSkies_Data",
+            "https://thunderstore.io/c/lost-skies/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "1931180"), new StorePlatformMetadata(StorePlatform.OTHER)], "LostSkies.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, ["ls"]),
+
+        new Game("ANEURISM IV", "ANEURISMIV", "ANEURISMIV",
+            "ANEURISMIV", ["ANEURISM IV.exe"], "ANEURISM IV_Data",
+            "https://thunderstore.io/c/aneurism-iv/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "2773280"), new StorePlatformMetadata(StorePlatform.OTHER)], "ANEURISM_IV.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.BEPINEX, [""]),
+
+        new Game("Labyrinthine", "Labyrinthine", "Labyrinthine",
+            "Labyrinthine", ["Labyrinthine.exe"], "Labyrinthine_Data",
+            "https://thunderstore.io/c/labyrinthine/api/v1/package-listing-index/",
+            [new StorePlatformMetadata(StorePlatform.STEAM, "1302240"), new StorePlatformMetadata(StorePlatform.OTHER)], "Labyrinthine.png",
+            GameSelectionDisplayMode.VISIBLE, GameInstanceType.GAME, PackageLoader.RECURSIVE_MELON_LOADER, [""]),
     ];
 
     static get activeGame(): Game {

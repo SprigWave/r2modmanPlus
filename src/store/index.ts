@@ -1,11 +1,12 @@
 import Vue from 'vue';
-import Vuex, { ActionContext } from 'vuex';
+import Vuex, { ActionContext, Store } from 'vuex';
 
 import ErrorModule from './modules/ErrorModule';
 import { DownloadModule } from './modules/DownloadModule';
 import ModalsModule from './modules/ModalsModule';
 import ModFilterModule from './modules/ModFilterModule';
 import ProfileModule from './modules/ProfileModule';
+import ProfileExportModule from './modules/ProfileExportModule';
 import { ProfilesModule } from './modules/ProfilesModule';
 import { TsModsModule } from './modules/TsModsModule';
 import { FolderMigration } from '../migrations/FolderMigration';
@@ -59,18 +60,20 @@ export const store = {
             return await dispatch('setActiveGame', GameManager.defaultGame);
         },
 
-        async setActiveGame({commit}: Context, game: Game): Promise<ManagerSettings> {
+        async setActiveGame({commit, dispatch}: Context, game: Game): Promise<ManagerSettings> {
             // Some parts of the code base reads the active game from
             // this static class attribute for now. Ideally we wouldn't
             // need to track it on two separate places.
             GameManager.activeGame = game;
             commit('setActiveGame', game);
 
+            const settings = await ManagerSettings.getSingleton(game);
+            commit('setSettings', settings);
+            commit('download/setIgnoreCacheVuexOnly', settings.getContext().global.ignoreCache);
+
             // Return settings for the new active game. This comes handy
             // when accessing settings before user has selected the game
             // as the settings-getter might throw a sanity check error.
-            const settings = await ManagerSettings.getSingleton(game);
-            commit('setSettings', settings);
             return settings;
         },
 
@@ -79,6 +82,7 @@ export const store = {
             commit('profiles/reset');
             commit('tsMods/reset');
             commit('modFilters/reset');
+            commit('profileExport/reset');
             await dispatch('resetActiveGame');
         },
     },
@@ -130,6 +134,7 @@ export const store = {
         profile: ProfileModule,
         profiles: ProfilesModule,
         tsMods: TsModsModule,
+        profileExport: ProfileExportModule,
     },
 
     // enable strict mode (adds overhead!)
@@ -141,5 +146,11 @@ export const store = {
  * If not building with SSR mode, you can
  * directly export the Store instantiation
  */
+let singletonStore!: Store<State>;
 
-export default (/* { ssrContext } */) => new Vuex.Store<State>(store);
+export default (/* { ssrContext } */) => {
+    if (!singletonStore) {
+        singletonStore = new Store<State>(store);
+    }
+    return singletonStore;
+};
