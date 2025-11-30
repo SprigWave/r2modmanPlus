@@ -16,6 +16,10 @@
         {
           "platform": "epic-games-store",
           "identifier": "4656facc740742a39e265b026e13d075"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -34,6 +38,10 @@
             {
               "platform": "epic-games-store",
               "identifier": "4656facc740742a39e265b026e13d075"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "20MinutesTillDawn",
@@ -105,6 +113,10 @@
         {
           "platform": "steam",
           "identifier": "2784470"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -119,6 +131,10 @@
             {
               "platform": "steam",
               "identifier": "2784470"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "9Kings",
@@ -230,6 +246,10 @@
         {
           "platform": "steam",
           "identifier": "1385380"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -244,6 +264,10 @@
             {
               "platform": "steam",
               "identifier": "1385380"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "AcrossTheObelisk",
@@ -315,6 +339,10 @@
         {
           "platform": "steam",
           "identifier": "1336490"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -329,6 +357,10 @@
             {
               "platform": "steam",
               "identifier": "1336490"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "AgainstTheStorm",
@@ -438,6 +470,10 @@
         {
           "platform": "steam",
           "identifier": "1584840"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -452,6 +488,10 @@
             {
               "platform": "steam",
               "identifier": "1584840"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "AGAINST",
@@ -520,6 +560,10 @@
         {
           "platform": "steam",
           "identifier": "2683150"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -534,6 +578,10 @@
             {
               "platform": "steam",
               "identifier": "2683150"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "AleAndTaleTavern",
@@ -645,6 +693,10 @@
         {
           "platform": "steam",
           "identifier": "1660080"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -659,6 +711,10 @@
             {
               "platform": "steam",
               "identifier": "1660080"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Aloft",
@@ -887,6 +943,10 @@
         {
           "platform": "oculus-store",
           "identifier": null
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -904,6 +964,10 @@
             },
             {
               "platform": "oculus-store",
+              "identifier": null
+            },
+            {
+              "platform": "other",
               "identifier": null
             }
           ],
@@ -976,6 +1040,10 @@
         {
           "platform": "steam",
           "identifier": "2773280"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -990,6 +1058,10 @@
             {
               "platform": "steam",
               "identifier": "2773280"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ANEURISMIV",
@@ -1102,6 +1174,10 @@
         {
           "platform": "steam",
           "identifier": "1887840"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -1116,6 +1192,10 @@
             {
               "platform": "steam",
               "identifier": "1887840"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "AnotherCrabsTreasure",
@@ -1231,6 +1311,10 @@
         {
           "platform": "steam",
           "identifier": "1447350"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -1245,6 +1329,10 @@
             {
               "platform": "steam",
               "identifier": "1447350"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ArcusChroma",
@@ -1356,6 +1444,10 @@
         {
           "platform": "steam",
           "identifier": "1898300"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -1370,6 +1462,10 @@
             {
               "platform": "steam",
               "identifier": "1898300"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ASKA",
@@ -1481,6 +1577,10 @@
         {
           "platform": "steam",
           "identifier": "2768430"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -1495,6 +1595,10 @@
             {
               "platform": "steam",
               "identifier": "2768430"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ATLYSS",
@@ -1635,6 +1739,10 @@
         {
           "platform": "steam",
           "identifier": "757320"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -1649,6 +1757,10 @@
             {
               "platform": "steam",
               "identifier": "757320"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Atomicrops",
@@ -1757,6 +1869,10 @@
         {
           "platform": "steam",
           "identifier": "1125390"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -1771,6 +1887,10 @@
             {
               "platform": "steam",
               "identifier": "1125390"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "AtrioTheDarkWild",
@@ -1882,6 +2002,10 @@
         {
           "platform": "steam",
           "identifier": "1735700"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -1896,6 +2020,10 @@
             {
               "platform": "steam",
               "identifier": "1735700"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "BacktotheDawn",
@@ -2016,6 +2144,10 @@
         {
           "platform": "steam",
           "identifier": "1970580"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -2030,6 +2162,10 @@
             {
               "platform": "steam",
               "identifier": "1970580"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "BackpackHero",
@@ -2117,6 +2253,10 @@
         {
           "platform": "steam",
           "identifier": "2379780"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -2131,6 +2271,10 @@
             {
               "platform": "steam",
               "identifier": "2379780"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Balatro",
@@ -2197,6 +2341,10 @@
         {
           "platform": "steam",
           "identifier": "1170230"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -2211,6 +2359,10 @@
             {
               "platform": "steam",
               "identifier": "1170230"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "BelowTheStone",
@@ -2323,6 +2475,10 @@
         {
           "platform": "steam",
           "identifier": "2643810"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -2337,6 +2493,10 @@
             {
               "platform": "steam",
               "identifier": "2643810"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "BetrayalBeach",
@@ -2609,6 +2769,10 @@
         {
           "platform": "oculus-store",
           "identifier": null
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -2626,6 +2790,10 @@
             },
             {
               "platform": "oculus-store",
+              "identifier": null
+            },
+            {
+              "platform": "other",
               "identifier": null
             }
           ],
@@ -2809,6 +2977,10 @@
         {
           "platform": "oculus-store",
           "identifier": null
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -2826,6 +2998,10 @@
             },
             {
               "platform": "oculus-store",
+              "identifier": null
+            },
+            {
+              "platform": "other",
               "identifier": null
             }
           ],
@@ -3005,6 +3181,10 @@
         {
           "platform": "steam",
           "identifier": "1686940"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -3019,6 +3199,10 @@
             {
               "platform": "steam",
               "identifier": "1686940"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "BoplBattle",
@@ -3128,6 +3312,10 @@
         {
           "platform": "steam",
           "identifier": "1942280"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -3142,6 +3330,10 @@
             {
               "platform": "steam",
               "identifier": "1942280"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Brotato",
@@ -3219,6 +3411,10 @@
         {
           "platform": "steam-direct",
           "identifier": "227860"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -3233,6 +3429,10 @@
             {
               "platform": "steam-direct",
               "identifier": "227860"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "CastleStory",
@@ -3438,6 +3638,10 @@
         {
           "platform": "steam",
           "identifier": "1188930"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -3452,6 +3656,10 @@
             {
               "platform": "steam",
               "identifier": "1188930"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ChronoArk",
@@ -3524,6 +3732,10 @@
         {
           "platform": "xbox-game-pass",
           "identifier": "ParadoxInteractive.CitiesSkylinesII-PCEdition"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -3542,6 +3754,10 @@
             {
               "platform": "xbox-game-pass",
               "identifier": "ParadoxInteractive.CitiesSkylinesII-PCEdition"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "CitiesSkylines2",
@@ -3650,6 +3866,10 @@
         {
           "platform": "steam",
           "identifier": "2881650"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -3664,6 +3884,10 @@
             {
               "platform": "steam",
               "identifier": "2881650"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ContentWarning",
@@ -3856,6 +4080,10 @@
         {
           "platform": "steam",
           "identifier": "1621690"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -3870,6 +4098,10 @@
             {
               "platform": "steam",
               "identifier": "1621690"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "CoreKeeper",
@@ -4032,6 +4264,10 @@
         {
           "platform": "steam",
           "identifier": "2920570"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -4046,6 +4282,10 @@
             {
               "platform": "steam",
               "identifier": "2920570"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "DaleAndDawson",
@@ -4117,6 +4357,10 @@
         {
           "platform": "steam",
           "identifier": "2321470"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -4131,6 +4375,10 @@
             {
               "platform": "steam",
               "identifier": "2321470"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "DeepRockGalacticSurvivor",
@@ -4241,6 +4489,10 @@
         {
           "platform": "steam",
           "identifier": "1091320"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -4255,6 +4507,10 @@
             {
               "platform": "steam",
               "identifier": "1091320"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "DEPO",
@@ -4366,6 +4622,10 @@
         {
           "platform": "steam",
           "identifier": "632470"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -4380,6 +4640,10 @@
             {
               "platform": "steam",
               "identifier": "632470"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Disco Elysium",
@@ -4490,6 +4754,10 @@
         {
           "platform": "steam",
           "identifier": "233610"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -4504,6 +4772,10 @@
             {
               "platform": "steam",
               "identifier": "233610"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Distance",
@@ -4706,6 +4978,10 @@
         {
           "platform": "steam",
           "identifier": "1637320"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -4720,6 +4996,10 @@
             {
               "platform": "steam",
               "identifier": "1637320"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "DomeKeeper",
@@ -4795,6 +5075,10 @@
         {
           "platform": "steam",
           "identifier": "1562430"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -4809,6 +5093,10 @@
             {
               "platform": "steam",
               "identifier": "1562430"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Dredge",
@@ -4916,6 +5204,10 @@
         {
           "platform": "steam",
           "identifier": "519860"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -4930,6 +5222,10 @@
             {
               "platform": "steam",
               "identifier": "519860"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "DUSK",
@@ -5046,6 +5342,10 @@
         {
           "platform": "xbox-game-pass",
           "identifier": "GameraGame.DysonSphereProgram"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -5064,6 +5364,10 @@
             {
               "platform": "xbox-game-pass",
               "identifier": "GameraGame.DysonSphereProgram"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "DysonSphereProgram",
@@ -5134,6 +5438,10 @@
         {
           "platform": "steam",
           "identifier": "2134320"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -5148,6 +5456,10 @@
             {
               "platform": "steam",
               "identifier": "2134320"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ENADreamBBQ",
@@ -5359,6 +5671,10 @@
         {
           "platform": "steam",
           "identifier": "2382520"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -5373,6 +5689,10 @@
             {
               "platform": "steam",
               "identifier": "2382520"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Erenshor",
@@ -5484,6 +5804,10 @@
         {
           "platform": "epic-games-store",
           "identifier": "Discus"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -5502,6 +5826,10 @@
             {
               "platform": "epic-games-store",
               "identifier": "Discus"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ForTheKing",
@@ -5572,6 +5900,10 @@
         {
           "platform": "steam",
           "identifier": "285900"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -5586,6 +5918,10 @@
             {
               "platform": "steam",
               "identifier": "285900"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "GangBeasts",
@@ -5657,6 +5993,10 @@
         {
           "platform": "steam",
           "identifier": "1085510"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -5671,6 +6011,10 @@
             {
               "platform": "steam",
               "identifier": "1085510"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "GarfieldKartFuriousRacing",
@@ -5778,6 +6122,10 @@
         {
           "platform": "steam",
           "identifier": "2106670"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -5792,6 +6140,10 @@
             {
               "platform": "steam",
               "identifier": "2106670"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Gatekeeper",
@@ -5904,6 +6256,10 @@
         {
           "platform": "steam",
           "identifier": "2689120"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -5918,6 +6274,10 @@
             {
               "platform": "steam",
               "identifier": "2689120"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "GladioMori",
@@ -6026,6 +6386,10 @@
         {
           "platform": "steam",
           "identifier": "1150760"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -6040,6 +6404,10 @@
             {
               "platform": "steam",
               "identifier": "1150760"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Gloomwood",
@@ -6150,6 +6518,10 @@
         {
           "platform": "steam",
           "identifier": "1310330"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -6164,6 +6536,10 @@
             {
               "platform": "steam",
               "identifier": "1310330"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "GoodbyeVolcanoHigh",
@@ -6275,6 +6651,10 @@
         {
           "platform": "steam",
           "identifier": "2027330"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -6289,6 +6669,10 @@
             {
               "platform": "steam",
               "identifier": "2027330"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "GoreBox",
@@ -6405,6 +6789,10 @@
         {
           "platform": "oculus-store",
           "identifier": null
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -6422,6 +6810,10 @@
             },
             {
               "platform": "oculus-store",
+              "identifier": null
+            },
+            {
+              "platform": "other",
               "identifier": null
             }
           ],
@@ -6493,6 +6885,10 @@
         {
           "platform": "steam",
           "identifier": "493520"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -6507,6 +6903,10 @@
             {
               "platform": "steam",
               "identifier": "493520"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "GTFO",
@@ -6589,6 +6989,10 @@
         {
           "platform": "steam",
           "identifier": "3400930"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -6603,6 +7007,10 @@
             {
               "platform": "steam",
               "identifier": "3400930"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "GuiltyasSock",
@@ -6714,6 +7122,10 @@
         {
           "platform": "steam",
           "identifier": "450540"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -6728,6 +7140,10 @@
             {
               "platform": "steam",
               "identifier": "450540"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "H3VR",
@@ -6813,6 +7229,10 @@
         {
           "platform": "epic-games-store",
           "identifier": "07c634c7291a49b5b2455e14b9a83950"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -6831,6 +7251,10 @@
             {
               "platform": "epic-games-store",
               "identifier": "07c634c7291a49b5b2455e14b9a83950"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "HadesII",
@@ -6899,6 +7323,10 @@
         {
           "platform": "steam",
           "identifier": "1294760"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -6913,6 +7341,10 @@
             {
               "platform": "steam",
               "identifier": "1294760"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "HardBullet",
@@ -7007,6 +7439,10 @@
         {
           "platform": "steam",
           "identifier": "3009850"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -7021,6 +7457,10 @@
             {
               "platform": "steam",
               "identifier": "3009850"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "HardTime3",
@@ -7156,6 +7596,10 @@
         {
           "platform": "steam",
           "identifier": "283160"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -7170,6 +7614,10 @@
             {
               "platform": "steam",
               "identifier": "283160"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "HOTDS",
@@ -7240,6 +7688,10 @@
         {
           "platform": "steam",
           "identifier": "477160"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -7254,6 +7706,10 @@
             {
               "platform": "steam",
               "identifier": "477160"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "HumanFallFlat",
@@ -7365,6 +7821,10 @@
         {
           "platform": "steam",
           "identifier": "1876590"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -7379,6 +7839,10 @@
             {
               "platform": "steam",
               "identifier": "1876590"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "I Am Your Beast",
@@ -7580,6 +8044,10 @@
         {
           "platform": "steam",
           "identifier": "1302240"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -7594,6 +8062,10 @@
             {
               "platform": "steam",
               "identifier": "1302240"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Labyrinthine",
@@ -7670,6 +8142,10 @@
         {
           "platform": "steam",
           "identifier": "2318480"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -7684,6 +8160,10 @@
             {
               "platform": "steam",
               "identifier": "2318480"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "LastTrainOuttaWormtown",
@@ -7811,6 +8291,10 @@
         {
           "platform": "steam",
           "identifier": "1966720"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -7825,6 +8309,10 @@
             {
               "platform": "steam",
               "identifier": "1966720"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "LethalCompany",
@@ -8025,6 +8513,10 @@
         {
           "platform": "steam",
           "identifier": "553310"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -8039,6 +8531,10 @@
             {
               "platform": "steam",
               "identifier": "553310"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "LethalLeagueBlaze",
@@ -8112,6 +8608,10 @@
         {
           "platform": "steam",
           "identifier": "1931180"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -8126,6 +8626,10 @@
             {
               "platform": "steam",
               "identifier": "1931180"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "LostSkies",
@@ -8243,6 +8747,10 @@
         {
           "platform": "steam",
           "identifier": "2596100"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -8257,6 +8765,10 @@
             {
               "platform": "steam",
               "identifier": "2596100"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Lycans",
@@ -8364,6 +8876,10 @@
         {
           "platform": "steam",
           "identifier": "268750"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -8378,6 +8894,10 @@
             {
               "platform": "steam",
               "identifier": "268750"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Magicite",
@@ -8488,6 +9008,10 @@
         {
           "platform": "steam",
           "identifier": "2103140"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -8502,6 +9026,10 @@
             {
               "platform": "steam",
               "identifier": "2103140"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Magicraft",
@@ -8607,6 +9135,10 @@
         {
           "platform": "steam",
           "identifier": "1226990"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -8621,6 +9153,10 @@
             {
               "platform": "steam",
               "identifier": "1226990"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Mechanica",
@@ -8689,6 +9225,10 @@
         {
           "platform": "steam",
           "identifier": "900010"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -8703,6 +9243,10 @@
             {
               "platform": "steam",
               "identifier": "900010"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "MeepleStation",
@@ -8812,6 +9356,10 @@
         {
           "platform": "steam",
           "identifier": "2527500"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -8826,6 +9374,10 @@
             {
               "platform": "steam",
               "identifier": "2527500"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "MiSide",
@@ -8938,6 +9490,10 @@
         {
           "platform": "steam",
           "identifier": "2742830"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -8952,6 +9508,10 @@
             {
               "platform": "steam",
               "identifier": "2742830"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "MonsterTrain2",
@@ -9067,6 +9627,10 @@
         {
           "platform": "steam",
           "identifier": "1625450"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -9081,6 +9645,10 @@
             {
               "platform": "steam",
               "identifier": "1625450"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Muck",
@@ -9150,6 +9718,10 @@
         {
           "platform": "steam",
           "identifier": "2200780"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -9164,6 +9736,10 @@
             {
               "platform": "steam",
               "identifier": "2200780"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "MyDreamSetup",
@@ -9284,6 +9860,10 @@
         {
           "platform": "steam",
           "identifier": "1414850"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -9298,6 +9878,10 @@
             {
               "platform": "steam",
               "identifier": "1414850"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "NASB",
@@ -9401,6 +9985,10 @@
         {
           "platform": "steam",
           "identifier": "1268900"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -9415,6 +10003,10 @@
             {
               "platform": "steam",
               "identifier": "1268900"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "NearlyDead",
@@ -9485,6 +10077,10 @@
         {
           "platform": "steam",
           "identifier": "1809540"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -9499,6 +10095,10 @@
             {
               "platform": "steam",
               "identifier": "1809540"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "NineSols",
@@ -9614,6 +10214,10 @@
         {
           "platform": "origin",
           "identifier": ""
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -9632,6 +10236,10 @@
             {
               "platform": "origin",
               "identifier": ""
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Titanfall2",
@@ -9690,6 +10298,10 @@
         {
           "platform": "steam",
           "identifier": "1745680"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -9704,6 +10316,10 @@
             {
               "platform": "steam",
               "identifier": "1745680"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "OddRemedy",
@@ -9815,6 +10431,10 @@
         {
           "platform": "steam",
           "identifier": "2878420"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -9829,6 +10449,10 @@
             {
               "platform": "steam",
               "identifier": "2878420"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Old Market Simulator",
@@ -10125,6 +10749,10 @@
         {
           "platform": "steam",
           "identifier": "1905940"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -10139,6 +10767,10 @@
             {
               "platform": "steam",
               "identifier": "1905940"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "PaintingVr",
@@ -10210,6 +10842,10 @@
         {
           "platform": "steam",
           "identifier": "1623730"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -10224,6 +10860,10 @@
             {
               "platform": "steam",
               "identifier": "1623730"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Palworld",
@@ -10291,6 +10931,10 @@
         {
           "platform": "steam",
           "identifier": "2695940"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -10305,6 +10949,10 @@
             {
               "platform": "steam",
               "identifier": "2695940"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Panicore",
@@ -10373,6 +11021,10 @@
         {
           "platform": "steam",
           "identifier": "1628610"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -10387,6 +11039,10 @@
             {
               "platform": "steam",
               "identifier": "1628610"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "PaqueretteDownTheBunburrows",
@@ -10499,6 +11155,10 @@
         {
           "platform": "steam",
           "identifier": "1347970"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -10513,6 +11173,10 @@
             {
               "platform": "steam",
               "identifier": "1347970"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "PatchQuest",
@@ -10636,6 +11300,10 @@
         {
           "platform": "steam",
           "identifier": "3527290"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -10650,6 +11318,10 @@
             {
               "platform": "steam",
               "identifier": "3527290"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "PEAK",
@@ -10820,6 +11492,10 @@
         {
           "platform": "steam",
           "identifier": "2236070"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -10834,6 +11510,10 @@
             {
               "platform": "steam",
               "identifier": "2236070"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Peaks of Yore",
@@ -11036,6 +11716,10 @@
         {
           "platform": "steam",
           "identifier": "1409160"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -11050,6 +11734,10 @@
             {
               "platform": "steam",
               "identifier": "1409160"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Plasma",
@@ -11165,6 +11853,10 @@
         {
           "platform": "steam",
           "identifier": "1210320"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -11179,6 +11871,10 @@
             {
               "platform": "steam",
               "identifier": "1210320"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "PotionCraft",
@@ -11249,6 +11945,10 @@
         {
           "platform": "steam",
           "identifier": "252870"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -11263,6 +11963,10 @@
             {
               "platform": "steam",
               "identifier": "252870"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "PulsarLostColony",
@@ -11375,6 +12079,10 @@
         {
           "platform": "steam",
           "identifier": "636480"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -11389,6 +12097,10 @@
             {
               "platform": "steam",
               "identifier": "636480"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Ravenfield",
@@ -11459,6 +12171,10 @@
         {
           "platform": "steam",
           "identifier": "1129310"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -11473,6 +12189,10 @@
             {
               "platform": "steam",
               "identifier": "1129310"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Receiver2",
@@ -11596,6 +12316,10 @@
         {
           "platform": "steam",
           "identifier": "3241660"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -11610,6 +12334,10 @@
             {
               "platform": "steam",
               "identifier": "3241660"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "REPO",
@@ -11752,6 +12480,10 @@
         {
           "platform": "steam",
           "identifier": "653530"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -11766,6 +12498,10 @@
             {
               "platform": "steam",
               "identifier": "653530"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ObraDinn",
@@ -11877,6 +12613,10 @@
         {
           "platform": "steam",
           "identifier": "1337520"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -11891,6 +12631,10 @@
             {
               "platform": "steam",
               "identifier": "1337520"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "RiskofRainReturns",
@@ -12012,6 +12756,10 @@
         {
           "platform": "steam",
           "identifier": "1180760"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -12030,6 +12778,10 @@
             {
               "platform": "epic-games-store",
               "identifier": "4b3dcc5723454a47a9112d8fe8fd5f5c"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "RiskOfRain2",
@@ -12098,6 +12850,10 @@
             {
               "platform": "steam",
               "identifier": "1180760"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "RiskOfRain2Server",
@@ -12168,6 +12924,10 @@
         {
           "platform": "steam",
           "identifier": "2067920"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -12182,6 +12942,10 @@
             {
               "platform": "steam",
               "identifier": "2067920"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "RogueGenesia",
@@ -12252,6 +13016,10 @@
         {
           "platform": "steam",
           "identifier": "1843760"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -12266,6 +13034,10 @@
             {
               "platform": "steam",
               "identifier": "1843760"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "RogueTower",
@@ -12336,6 +13108,10 @@
         {
           "platform": "steam",
           "identifier": "1557740"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -12350,6 +13126,10 @@
             {
               "platform": "steam",
               "identifier": "1557740"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ROUNDS",
@@ -12418,6 +13198,10 @@
         {
           "platform": "steam",
           "identifier": "890550"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -12432,6 +13216,10 @@
             {
               "platform": "steam",
               "identifier": "890550"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "RUMBLE",
@@ -12553,6 +13341,10 @@
         {
           "platform": "steam",
           "identifier": "1764530"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -12567,6 +13359,10 @@
             {
               "platform": "steam",
               "identifier": "1764530"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Sailwind",
@@ -12673,6 +13469,10 @@
         {
           "platform": "steam",
           "identifier": "3164500"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -12687,6 +13487,10 @@
             {
               "platform": "steam",
               "identifier": "3164500"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ScheduleI",
@@ -12773,6 +13577,10 @@
         {
           "platform": "steam",
           "identifier": "1279510"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -12787,6 +13595,10 @@
             {
               "platform": "steam",
               "identifier": "1279510"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ScrewDrivers",
@@ -13049,6 +13861,10 @@
         {
           "platform": "steam",
           "identifier": "1939160"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -13063,6 +13879,10 @@
             {
               "platform": "steam",
               "identifier": "1939160"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ShadowsOverLoathing",
@@ -13170,6 +13990,10 @@
         {
           "platform": "steam",
           "identifier": "2162800"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -13184,6 +14008,10 @@
             {
               "platform": "steam",
               "identifier": "2162800"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Shapez2",
@@ -13296,6 +14124,10 @@
         {
           "platform": "steam",
           "identifier": "1147560"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -13310,6 +14142,10 @@
             {
               "platform": "steam",
               "identifier": "1147560"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "SkulTheHeroSlayer",
@@ -13415,6 +14251,10 @@
         {
           "platform": "steam",
           "identifier": "2765860"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -13429,6 +14269,10 @@
             {
               "platform": "steam",
               "identifier": "2765860"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "SlipstreamRogueSpace",
@@ -13537,6 +14381,10 @@
         {
           "platform": "steam",
           "identifier": "867210"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -13551,6 +14399,10 @@
             {
               "platform": "steam",
               "identifier": "867210"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "SongsOfConquest",
@@ -13663,6 +14515,10 @@
         {
           "platform": "steam",
           "identifier": "1326470"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -13677,6 +14533,10 @@
             {
               "platform": "steam",
               "identifier": "1326470"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "SonsOfTheForest",
@@ -13788,6 +14648,10 @@
         {
           "platform": "steam",
           "identifier": "1948280"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -13802,6 +14666,10 @@
             {
               "platform": "steam",
               "identifier": "1948280"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Stacklands",
@@ -13874,6 +14742,10 @@
         {
           "platform": "epic-games-store",
           "identifier": "a774278c0813447c96a76b053cbf73ff"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -13892,6 +14764,10 @@
             {
               "platform": "epic-games-store",
               "identifier": "a774278c0813447c96a76b053cbf73ff"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Starsand",
@@ -13960,6 +14836,10 @@
         {
           "platform": "steam",
           "identifier": "2386720"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -13974,6 +14854,10 @@
             {
               "platform": "steam",
               "identifier": "2386720"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "STRAFTAT",
@@ -14092,6 +14976,10 @@
         {
           "platform": "xbox-game-pass",
           "identifier": "UnknownWorldsEntertainmen.SubnauticaBelowZero"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -14110,6 +14998,10 @@
             {
               "platform": "xbox-game-pass",
               "identifier": "UnknownWorldsEntertainmen.SubnauticaBelowZero"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "SubnauticaBZ",
@@ -14201,6 +15093,10 @@
         {
           "platform": "xbox-game-pass",
           "identifier": "UnknownWorldsEntertainmen.GAMEPREVIEWSubnautica"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -14223,6 +15119,10 @@
             {
               "platform": "xbox-game-pass",
               "identifier": "UnknownWorldsEntertainmen.GAMEPREVIEWSubnautica"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Subnautica",
@@ -14302,6 +15202,10 @@
         {
           "platform": "steam",
           "identifier": "3075800"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -14316,6 +15220,10 @@
             {
               "platform": "steam",
               "identifier": "3075800"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Subterranauts",
@@ -14428,6 +15336,10 @@
         {
           "platform": "steam",
           "identifier": "2846060"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -14442,6 +15354,10 @@
             {
               "platform": "steam",
               "identifier": "2846060"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Subterror",
@@ -14552,6 +15468,10 @@
         {
           "platform": "steam",
           "identifier": "2124120"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -14566,6 +15486,10 @@
             {
               "platform": "steam",
               "identifier": "2124120"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "SULFUR",
@@ -14677,6 +15601,10 @@
         {
           "platform": "steam",
           "identifier": "1432860"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -14691,6 +15619,10 @@
             {
               "platform": "steam",
               "identifier": "1432860"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "SunHaven",
@@ -14799,6 +15731,10 @@
         {
           "platform": "steam",
           "identifier": "2080690"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -14813,6 +15749,10 @@
             {
               "platform": "steam",
               "identifier": "2080690"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Sunkenland",
@@ -14919,6 +15859,10 @@
         {
           "platform": "steam",
           "identifier": "2709570"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -14933,6 +15877,10 @@
             {
               "platform": "steam",
               "identifier": "2709570"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "SupermarketTogether",
@@ -15042,6 +15990,10 @@
         {
           "platform": "steam",
           "identifier": "720620"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -15056,6 +16008,10 @@
             {
               "platform": "steam",
               "identifier": "720620"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "TaleSpire",
@@ -15126,6 +16082,10 @@
         {
           "platform": "steam",
           "identifier": "2587450"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -15140,6 +16100,10 @@
             {
               "platform": "steam",
               "identifier": "2587450"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "TankTeam",
@@ -15251,6 +16215,10 @@
         {
           "platform": "steam",
           "identifier": "3070070"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -15265,6 +16233,10 @@
             {
               "platform": "steam",
               "identifier": "3070070"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "TCG Card Shop Simulator",
@@ -15413,6 +16385,10 @@
         {
           "platform": "steam",
           "identifier": "1457320"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -15427,6 +16403,10 @@
             {
               "platform": "steam",
               "identifier": "1457320"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Techtonica",
@@ -15534,6 +16514,10 @@
         {
           "platform": "steam",
           "identifier": "2096510"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -15548,6 +16532,10 @@
             {
               "platform": "steam",
               "identifier": "2096510"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "TheOuroborosKing",
@@ -15656,6 +16644,10 @@
         {
           "platform": "steam",
           "identifier": "1284190"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -15670,6 +16662,10 @@
             {
               "platform": "steam",
               "identifier": "1284190"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ThePlanetCrafter",
@@ -15778,6 +16774,10 @@
         {
           "platform": "steam",
           "identifier": "2239150"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -15792,6 +16792,10 @@
             {
               "platform": "steam",
               "identifier": "2239150"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Thronefall",
@@ -16014,6 +17018,10 @@
         {
           "platform": "xbox-game-pass",
           "identifier": "LandfallGames.TotallyAccurateBattleSimulator"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -16036,6 +17044,10 @@
             {
               "platform": "xbox-game-pass",
               "identifier": "LandfallGames.TotallyAccurateBattleSimulator"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "TotallyAccurateBattleSimulator",
@@ -16106,6 +17118,10 @@
         {
           "platform": "steam",
           "identifier": "1140150"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -16120,6 +17136,10 @@
             {
               "platform": "steam",
               "identifier": "1140150"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "TouhouLostBranchOfLegend",
@@ -16274,6 +17294,10 @@
         {
           "platform": "steam",
           "identifier": "1059990"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -16288,6 +17312,10 @@
             {
               "platform": "steam",
               "identifier": "1059990"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "TromboneChamp",
@@ -16358,6 +17386,10 @@
         {
           "platform": "steam",
           "identifier": "386940"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -16372,6 +17404,10 @@
             {
               "platform": "steam",
               "identifier": "386940"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "UltimateChickenHorse",
@@ -16483,6 +17519,10 @@
         {
           "platform": "steam",
           "identifier": "1229490"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -16497,6 +17537,10 @@
             {
               "platform": "steam",
               "identifier": "1229490"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ULTRAKILL",
@@ -16618,6 +17662,10 @@
         {
           "platform": "steam",
           "identifier": "1604030"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -16632,6 +17680,10 @@
             {
               "platform": "steam",
               "identifier": "1604030"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "VRising",
@@ -16710,6 +17762,10 @@
         {
           "platform": "steam",
           "identifier": "896660"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -16728,6 +17784,10 @@
             {
               "platform": "xbox-game-pass",
               "identifier": "CoffeeStainStudios.Valheim"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Valheim",
@@ -16802,6 +17862,10 @@
             {
               "platform": "steam",
               "identifier": "896660"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "ValheimServer",
@@ -16878,6 +17942,10 @@
         {
           "platform": "steam",
           "identifier": "843390"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -16892,6 +17960,10 @@
             {
               "platform": "steam",
               "identifier": "843390"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Vertigo2",
@@ -17108,6 +18180,10 @@
         {
           "platform": "steam",
           "identifier": "1063420"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -17122,6 +18198,10 @@
             {
               "platform": "steam",
               "identifier": "1063420"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "VoidCrew",
@@ -17252,6 +18332,10 @@
         {
           "platform": "steam",
           "identifier": "667970"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -17266,6 +18350,10 @@
             {
               "platform": "steam",
               "identifier": "667970"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "VTOL_VR",
@@ -17334,6 +18422,10 @@
         {
           "platform": "steam",
           "identifier": "1730700"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -17348,6 +18440,10 @@
             {
               "platform": "steam",
               "identifier": "1730700"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "WeLoveKatamariRerollRoyalReverie",
@@ -17455,6 +18551,10 @@
         {
           "platform": "steam",
           "identifier": "3146520"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -17469,6 +18569,10 @@
             {
               "platform": "steam",
               "identifier": "3146520"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "WEBFISHING",
@@ -17538,6 +18642,10 @@
         {
           "platform": "steam",
           "identifier": "597220"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -17552,6 +18660,10 @@
             {
               "platform": "steam",
               "identifier": "597220"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "WestofLoathing",
@@ -17659,6 +18771,10 @@
         {
           "platform": "steam",
           "identifier": "3195790"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -17673,6 +18789,10 @@
             {
               "platform": "steam",
               "identifier": "3195790"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "WhiteKnuckle",
@@ -17820,6 +18940,10 @@
         {
           "platform": "steam",
           "identifier": "1811990"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -17834,6 +18958,10 @@
             {
               "platform": "steam",
               "identifier": "1811990"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Wildfrost",
@@ -17941,6 +19069,10 @@
         {
           "platform": "steam",
           "identifier": "445980"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -17955,6 +19087,10 @@
             {
               "platform": "steam",
               "identifier": "445980"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "WizardOfLegend",
@@ -18025,6 +19161,10 @@
         {
           "platform": "steam",
           "identifier": "1150530"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -18039,6 +19179,10 @@
             {
               "platform": "steam",
               "identifier": "1150530"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "WizardWithAGun",
@@ -18147,6 +19291,10 @@
         {
           "platform": "steam",
           "identifier": "1620340"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -18161,6 +19309,10 @@
             {
               "platform": "steam",
               "identifier": "1620340"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "WrestlingEmpire",
@@ -18296,6 +19448,10 @@
         {
           "platform": "steam",
           "identifier": "3121110"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -18310,6 +19466,10 @@
             {
               "platform": "steam",
               "identifier": "3121110"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "Zort",
@@ -18418,7 +19578,12 @@
         "displayName": "Inscryption Multiplayer",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Inscryption Multiplayer",
         "categories": {
@@ -18466,7 +19631,12 @@
         "displayName": "2 Ship 2 Harkinian",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "2 Ship 2 Harkinian",
         "categories": {
@@ -18516,7 +19686,12 @@
         "displayName": "Aeruta",
         "iconUrl": "aeruta.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -18524,6 +19699,10 @@
             {
               "platform": "steam",
               "identifier": "2286780"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Aeruta",
@@ -18631,7 +19810,12 @@
         "displayName": "An Unfinished Game",
         "iconUrl": "an-unfinished-game.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -18639,6 +19823,10 @@
             {
               "platform": "steam",
               "identifier": "2919990"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "An Unfinished Game",
@@ -18708,7 +19896,12 @@
         "displayName": "Astroneer",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Astroneer",
         "categories": {
@@ -18752,7 +19945,12 @@
         "displayName": "Bad North",
         "iconUrl": "bad-north.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -18760,6 +19958,10 @@
             {
               "platform": "steam",
               "identifier": "688420"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "BadNorth",
@@ -18871,7 +20073,12 @@
         "displayName": "Beetleball",
         "iconUrl": "beetleball.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -18879,6 +20086,10 @@
             {
               "platform": "steam",
               "identifier": "3821880"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "BeetleBall Playtest",
@@ -18948,7 +20159,12 @@
         "displayName": "Bendy and the Ink Machine",
         "iconUrl": "bendy-and-the-ink-machine.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -18960,6 +20176,10 @@
             {
               "platform": "epic-games-store",
               "identifier": "39700e23ec114d7581aedea23779ce2d"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Bendy and the Ink Machine",
@@ -19069,7 +20289,12 @@
         "displayName": "BETON BRUTAL",
         "iconUrl": "beton-brutal.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -19077,6 +20302,10 @@
             {
               "platform": "steam",
               "identifier": "2330500"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "BETON BRUTAL",
@@ -19147,7 +20376,12 @@
         "displayName": "Broforce",
         "iconUrl": "broforce.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -19155,6 +20389,10 @@
             {
               "platform": "steam",
               "identifier": "274190"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Broforce",
@@ -19251,7 +20489,12 @@
         "displayName": "CloverPit",
         "iconUrl": "clover-pit.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -19259,6 +20502,10 @@
             {
               "platform": "steam",
               "identifier": "3314790"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "CloverPit",
@@ -19396,7 +20643,12 @@
         "displayName": "Cobalt Core",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Cobalt Core",
         "categories": {
@@ -19465,7 +20717,12 @@
         "displayName": "Darkwater",
         "iconUrl": "darkwater.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -19473,6 +20730,10 @@
             {
               "platform": "steam",
               "identifier": "619540"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Darkwater",
@@ -19584,7 +20845,12 @@
         "displayName": "Dicey Dungeons",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Dicey Dungeons",
         "categories": {
@@ -19631,7 +20897,12 @@
         "displayName": "Dread Hunger",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Dread Hunger",
         "categories": {
@@ -19683,7 +20954,12 @@
         "displayName": "Easy Delivery Co",
         "iconUrl": "easy-delivery-co.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -19691,6 +20967,10 @@
             {
               "platform": "steam",
               "identifier": "3293010"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Easy Delivery Co",
@@ -19801,7 +21081,12 @@
         "displayName": "Endless Space 2",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Endless Space 2",
         "categories": {
@@ -19857,6 +21142,10 @@
         {
           "platform": "epic-games-store",
           "identifier": "a0fbc3eb950341e290ae20a7d02cc501"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -19875,6 +21164,10 @@
             {
               "platform": "epic-games-store",
               "identifier": "a0fbc3eb950341e290ae20a7d02cc501"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "settingsIdentifier": "FiveNightsAtFreddysIntoThePit",
@@ -19983,7 +21276,12 @@
         "displayName": "Football Manager 26",
         "iconUrl": "football-manager-26.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -19991,6 +21289,10 @@
             {
               "platform": "steam",
               "identifier": "3551340"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Football Manager 26",
@@ -20098,7 +21400,12 @@
         "displayName": "Forsaken Frontiers",
         "iconUrl": "forsaken-frontiers.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -20106,6 +21413,10 @@
             {
               "platform": "steam",
               "identifier": "2810780"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Forsaken Frontiers",
@@ -20175,7 +21486,12 @@
         "displayName": "GearBlocks",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "GearBlocks",
         "categories": {
@@ -20222,7 +21538,12 @@
         "displayName": "Grey Hack",
         "iconUrl": "grey-hack.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -20230,6 +21551,10 @@
             {
               "platform": "steam",
               "identifier": "605230"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Grey Hack",
@@ -20505,7 +21830,12 @@
         "displayName": "House of Legacy",
         "iconUrl": "house-of-legacy.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -20513,6 +21843,10 @@
             {
               "platform": "steam",
               "identifier": "2503770"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "吾今有世家",
@@ -20625,7 +21959,12 @@
         "displayName": "Jump Space",
         "iconUrl": "jump-space.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -20633,6 +21972,10 @@
             {
               "platform": "steam",
               "identifier": "1757300"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "JumpSpace",
@@ -20704,7 +22047,12 @@
         "displayName": "Kerbal Space Program 2",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Kerbal Space Program 2",
         "categories": {
@@ -20752,7 +22100,12 @@
         "displayName": "Len's Island",
         "iconUrl": "lens-island.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -20760,6 +22113,10 @@
             {
               "platform": "steam",
               "identifier": "1335830"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Len's Island",
@@ -20869,7 +22226,12 @@
         "displayName": "Lizards Must Die",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Lizards Must Die",
         "categories": {
@@ -20917,7 +22279,12 @@
         "displayName": "Logic World",
         "iconUrl": "logic-world.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -20925,6 +22292,10 @@
             {
               "platform": "steam",
               "identifier": "1054340"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Logic World",
@@ -21039,6 +22410,10 @@
         {
           "platform": "steam",
           "identifier": "2102670"
+        },
+        {
+          "platform": "other",
+          "identifier": null
         }
       ],
       "r2modman": [
@@ -21048,6 +22423,10 @@
             {
               "platform": "steam",
               "identifier": "2102670"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Lost Skies Island Creator",
@@ -21139,7 +22518,12 @@
         "displayName": "Mage Arena",
         "iconUrl": "mage-arena.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -21147,6 +22531,10 @@
             {
               "platform": "steam",
               "identifier": "3716600"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Mage Arena",
@@ -21257,7 +22645,12 @@
         "displayName": "Maltese's Fluffy Onsen",
         "iconUrl": "malteses-fluffy-onsen.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -21265,6 +22658,10 @@
             {
               "platform": "steam",
               "identifier": "3404470"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Animal Spa",
@@ -21377,7 +22774,12 @@
         "displayName": "Megabonk",
         "iconUrl": "megabonk.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -21385,6 +22787,10 @@
             {
               "platform": "steam",
               "identifier": "3405340"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Megabonk",
@@ -21496,7 +22902,12 @@
         "displayName": "Mimesis",
         "iconUrl": "mimesis.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -21504,6 +22915,10 @@
             {
               "platform": "steam",
               "identifier": "2827200"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "MIMESIS",
@@ -21574,7 +22989,12 @@
         "displayName": "Mirror's Edge",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Mirror's Edge",
         "categories": {
@@ -21622,7 +23042,12 @@
         "displayName": "Mycopunk",
         "iconUrl": "mycopunk.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -21630,6 +23055,10 @@
             {
               "platform": "steam",
               "identifier": "3247750"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Mycopunk",
@@ -21762,7 +23191,12 @@
         "displayName": "Necropolis",
         "iconUrl": "necropolis.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -21770,6 +23204,10 @@
             {
               "platform": "steam",
               "identifier": "384490"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Necropolis",
@@ -21878,7 +23316,12 @@
         "displayName": "Ostranauts",
         "iconUrl": "ostranauts.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -21886,6 +23329,10 @@
             {
               "platform": "steam",
               "identifier": "1022980"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Ostranauts",
@@ -21997,7 +23444,12 @@
         "displayName": "PAC-MAN WORLD Re-PAC",
         "iconUrl": "pac-man-world-re-pac.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -22005,6 +23457,10 @@
             {
               "platform": "steam",
               "identifier": "1859470"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "PAC-MAN WORLD Re-PAC",
@@ -22114,7 +23570,12 @@
         "displayName": "Pair A Dice",
         "iconUrl": "pair-a-dice.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -22122,6 +23583,10 @@
             {
               "platform": "steam",
               "identifier": "2842150"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "PairADice",
@@ -22194,7 +23659,12 @@
         "displayName": "Paper Animal Adventure",
         "iconUrl": "paper-animal-adventure.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -22202,6 +23672,10 @@
             {
               "platform": "steam",
               "identifier": "1982120"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Paper Animal Adventure",
@@ -22313,7 +23787,12 @@
         "displayName": "PATAPON 1+2 REPLAY",
         "iconUrl": "patapon-1-2-replay.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -22321,6 +23800,10 @@
             {
               "platform": "steam",
               "identifier": "2383200"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "PATAPON12_REPLAY",
@@ -22445,7 +23928,12 @@
         "displayName": "Phasmophobia",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Phasmophobia",
         "categories": {
@@ -22494,7 +23982,12 @@
         "displayName": "PIGFACE",
         "iconUrl": "pigface.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -22502,6 +23995,10 @@
             {
               "platform": "steam",
               "identifier": "3341650"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "PIGFACE",
@@ -22613,7 +24110,12 @@
         "displayName": "R5Reloaded",
         "iconUrl": ""
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": null,
       "thunderstore": {
         "displayName": "R5Reloaded",
@@ -22675,7 +24177,12 @@
         "displayName": "R5Valkyrie",
         "iconUrl": ""
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": null,
       "thunderstore": {
         "displayName": "R5Valkyrie",
@@ -22737,7 +24244,12 @@
         "displayName": "Resonite",
         "iconUrl": "resonite.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -22745,6 +24257,10 @@
             {
               "platform": "steam",
               "identifier": "2519830"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Resonite",
@@ -22900,7 +24416,12 @@
         "displayName": "Return From Core",
         "iconUrl": "return-from-core.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -22908,6 +24429,10 @@
             {
               "platform": "steam",
               "identifier": "2171630"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Return From Core/Return From Core",
@@ -23017,7 +24542,12 @@
         "displayName": "Ship of Harkinian",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Ship of Harkinian",
         "categories": {
@@ -23067,7 +24597,12 @@
         "displayName": "Slasher's Keep",
         "iconUrl": "slashers-keep.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -23075,6 +24610,10 @@
             {
               "platform": "steam",
               "identifier": "598060"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Slasher's Keep",
@@ -23182,7 +24721,12 @@
         "displayName": "Spaghetti Kart",
         "iconUrl": "spaghetti-kart.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": null,
       "thunderstore": {
         "displayName": "Spaghetti Kart",
@@ -23231,7 +24775,12 @@
         "displayName": "Starship",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Starship",
         "categories": {
@@ -23281,7 +24830,12 @@
         "displayName": "Super Fantasy Kingdom",
         "iconUrl": "super-fantasy-kingdom.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -23289,6 +24843,10 @@
             {
               "platform": "steam",
               "identifier": "2289750"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Super Fantasy Kingdom",
@@ -23399,7 +24957,12 @@
         "displayName": "Super Mario 3D World",
         "iconUrl": "super-mario-3d-world.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": null,
       "thunderstore": {
         "displayName": "Super Mario 3D World",
@@ -23448,7 +25011,12 @@
         "displayName": "The Choicer Voicer",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "The Choicer Voicer",
         "categories": {
@@ -23497,7 +25065,12 @@
         "displayName": "Vellum",
         "iconUrl": "vellum.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -23505,6 +25078,10 @@
             {
               "platform": "steam",
               "identifier": "917950"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Vellum",
@@ -23576,7 +25153,12 @@
         "displayName": "Vigil",
         "iconUrl": "vigil.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -23584,6 +25166,10 @@
             {
               "platform": "steam",
               "identifier": "3817090"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Vigil",
@@ -23653,7 +25239,12 @@
         "displayName": "Will You Snail",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Will You Snail",
         "categories": {
@@ -23701,7 +25292,12 @@
         "displayName": "Word Play",
         "iconUrl": "word-play.webp"
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "r2modman": [
         {
           "gameInstanceType": "game",
@@ -23709,6 +25305,10 @@
             {
               "platform": "steam",
               "identifier": "3586660"
+            },
+            {
+              "platform": "other",
+              "identifier": null
             }
           ],
           "steamFolderName": "Word Play",
@@ -23818,7 +25418,12 @@
         "displayName": "Zelda 64: Recompiled",
         "iconUrl": null
       },
-      "distributions": [],
+      "distributions": [
+        {
+          "platform": "other",
+          "identifier": null
+        }
+      ],
       "thunderstore": {
         "displayName": "Zelda 64: Recompiled",
         "categories": {
