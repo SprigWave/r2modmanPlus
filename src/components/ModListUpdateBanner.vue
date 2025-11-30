@@ -1,32 +1,24 @@
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
+<script lang="ts" setup>
 import R2Error from '../model/errors/R2Error';
+import { computed } from 'vue';
+import { getStore } from '../providers/generic/store/StoreProvider';
+import { State } from '../store';
 
-@Component({})
-export default class ModListUpdateBanner extends Vue {
-    get isModListLoaded(): boolean {
-        return this.$store.state.tsMods.modsLastUpdated !== undefined;
-    }
+const store = getStore<State>();
 
-    get isUpdateInProgress(): boolean {
-        return this.$store.state.tsMods.isThunderstoreModListUpdateInProgress;
-    }
+const isModListLoaded = computed<boolean>(() => store.state.tsMods.modsLastUpdated !== undefined);
+const isUpdateInProgress = computed<boolean>(() => store.state.tsMods.isThunderstoreModListUpdateInProgress);
+const updateError = computed<Error|undefined>(() => store.state.tsMods.thunderstoreModListUpdateError);
 
-    get updateError(): Error|undefined {
-        return this.$store.state.tsMods.thunderstoreModListUpdateError;
-    }
+function updateModList() {
+    store.dispatch('tsMods/syncPackageList');
+}
 
-    async updateModList() {
-        await this.$store.dispatch('tsMods/syncPackageList');
-    }
-
-    openErrorModal() {
-        this.$store.commit('error/handleError', R2Error.fromThrownValue(
-            this.updateError,
-            'Error updating the mod list from Thunderstore',
-        ));
-    }
+function openErrorModal() {
+    store.commit('error/handleError', R2Error.fromThrownValue(
+        updateError.value,
+        'Error updating the mod list from Thunderstore',
+    ));
 }
 </script>
 
@@ -34,7 +26,7 @@ export default class ModListUpdateBanner extends Vue {
     <div v-if="!isModListLoaded" id="mod-list-update-banner" class="margin-bottom">
         <div class="notification is-warning margin-right">
             <span v-if="isUpdateInProgress">
-                {{ $store.state.tsMods.thunderstoreModListUpdateStatus }}
+                {{ store.state.tsMods.thunderstoreModListUpdateStatus }}
             </span>
             <span v-else-if="updateError">
                 Error refreshing the mod list.
@@ -42,7 +34,7 @@ export default class ModListUpdateBanner extends Vue {
                 <br />
                 The manager will keep trying to refresh the mod list in the background.
             </span>
-            <span v-else-if="$store.getters['download/activeDownloadCount'] > 0">
+            <span v-else-if="store.getters['download/activeDownloadCount'] > 0">
                 An error occurred when refreshing the mod list from Thunderstore.<br />
                 However, the mod list can't be refreshed while the are mod downloads in progress.<br />
                 Please wait for the downloads to finish before continuing.

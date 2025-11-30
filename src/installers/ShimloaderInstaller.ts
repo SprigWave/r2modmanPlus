@@ -1,10 +1,11 @@
 import { InstallArgs, PackageInstaller } from "./PackageInstaller";
-import path from "path";
+import path from "../providers/node/path/path";
 import FsProvider from "../providers/generic/file/FsProvider";
 import FileTree from "../model/file/FileTree";
 import FileUtils from "../utils/FileUtils";
 import R2Error from "../model/errors/R2Error";
 import { InstallRuleInstaller } from "./InstallRuleInstaller";
+import { TrackingMethod } from "../model/schema/ThunderstoreSchema";
 
 export class ShimloaderInstaller implements PackageInstaller {
     /**
@@ -56,32 +57,33 @@ export class ShimloaderInstaller implements PackageInstaller {
 }
 
 export class ShimloaderPluginInstaller implements PackageInstaller {
-    readonly installer = new InstallRuleInstaller({
+    readonly installer = () => new InstallRuleInstaller({
         gameName: "none" as any,  // This isn't acutally used for actual installation but needs some value
         rules: [
             {
                 route: path.join("shimloader", "mod"),
                 isDefaultLocation: true,
                 defaultFileExtensions: [],
-                trackingMethod: "SUBDIR",
+                trackingMethod: TrackingMethod.SUBDIR,
                 subRoutes: [],
             },
             {
                 route: path.join("shimloader", "pak"),
                 defaultFileExtensions: [],
-                trackingMethod: "SUBDIR",
+                trackingMethod: TrackingMethod.SUBDIR,
                 subRoutes: [],
             },
             {
                 route: path.join("shimloader", "cfg"),
                 defaultFileExtensions: [],
-                trackingMethod: "NONE",
+                trackingMethod: TrackingMethod.NONE,
                 subRoutes: [],
             }
-        ]
+        ],
+        relativeFileExclusions: null
     });
 
     async install(args: InstallArgs) {
-        await this.installer.install(args);
+        await this.installer().install(args);
     }
 }

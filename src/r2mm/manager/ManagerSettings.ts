@@ -5,8 +5,9 @@ import { SortDirection } from '../../model/real_enums/sort/SortDirection';
 import { SortLocalDisabledMods } from '../../model/real_enums/sort/SortLocalDisabledMods';
 import SettingsDexieStore, { ManagerSettingsInterfaceHolder } from './SettingsDexieStore';
 import Game from '../../model/game/Game';
-import { StorePlatform } from '../../model/game/StorePlatform';
+import { Platform } from '../../model/schema/ThunderstoreSchema';
 import { GameSelectionViewMode } from '../../model/enums/GameSelectionViewMode';
+import { LaunchType } from "../../model/real_enums/launch/LaunchType";
 
 export default class ManagerSettings {
 
@@ -137,7 +138,7 @@ export default class ManagerSettings {
     }
 
     public async setInstalledSortBy(sortNaming: string) {
-        ManagerSettings.CONTEXT.gameSpecific.installedSortBy = EnumResolver.from(SortNaming, sortNaming)!;
+        ManagerSettings.CONTEXT.gameSpecific.installedSortBy = EnumResolver.from<SortNaming>(SortNaming, sortNaming);
         await this.save();
     }
 
@@ -151,7 +152,7 @@ export default class ManagerSettings {
     }
 
     public async setInstalledSortDirection(sortDirection: string) {
-        ManagerSettings.CONTEXT.gameSpecific.installedSortDirection = EnumResolver.from(SortDirection, sortDirection)!;
+        ManagerSettings.CONTEXT.gameSpecific.installedSortDirection = EnumResolver.from<SortDirection>(SortDirection, sortDirection);
         await this.save();
     }
 
@@ -164,8 +165,23 @@ export default class ManagerSettings {
         }
     }
 
+    public getLaunchType(): LaunchType | undefined {
+        const stored = ManagerSettings.CONTEXT.gameSpecific.launchType as LaunchType
+        if (Object.values(LaunchType).includes(stored)) {
+            return stored;
+        }
+        return undefined;
+    }
+
+    public getLastSelectedPlatform(): Platform | null {
+        if (ManagerSettings.CONTEXT.gameSpecific.lastSelectedPlatform) {
+            return EnumResolver.from<Platform>(Platform, ManagerSettings.CONTEXT.gameSpecific.lastSelectedPlatform);
+        }
+        return null;
+    }
+
     public async setInstalledDisablePosition(disablePosition: string) {
-        ManagerSettings.CONTEXT.gameSpecific.installedDisablePosition = EnumResolver.from(SortLocalDisabledMods, disablePosition)!;
+        ManagerSettings.CONTEXT.gameSpecific.installedDisablePosition = EnumResolver.from<SortLocalDisabledMods>(SortLocalDisabledMods, disablePosition);
         await this.save();
     }
 
@@ -188,7 +204,7 @@ export default class ManagerSettings {
         await this.save();
     }
 
-    public async setDefaultStorePlatform(storePlatform: StorePlatform | undefined) {
+    public async setDefaultStorePlatform(storePlatform: Platform | undefined) {
         ManagerSettings.CONTEXT.global.defaultStore = storePlatform;
         await this.save();
     }
@@ -196,5 +212,28 @@ export default class ManagerSettings {
     public async setGameSelectionViewMode(viewMode: GameSelectionViewMode) {
         ManagerSettings.CONTEXT.global.gameSelectionViewMode = viewMode;
         await this.save();
+    }
+
+    public async setLaunchType(launchType: LaunchType) {
+        ManagerSettings.CONTEXT.gameSpecific.launchType = launchType;
+        await this.save();
+    }
+
+    public async setLastSelectedPlatform(platform: Platform) {
+        ManagerSettings.CONTEXT.gameSpecific.lastSelectedPlatform = platform;
+        await this.save();
+    }
+
+    public async getPreviewPanelWidth() {
+        return ManagerSettings.CONTEXT.global.previewPanelWidth;
+    }
+
+    public async setPreviewPanelWidth(width: number) {
+        ManagerSettings.CONTEXT.global.previewPanelWidth = width;
+        await this.save();
+    }
+
+    public logActiveGameInDexieStore() {
+        console.debug(`Active game in Dexie store: "${ManagerSettings.DEXIE_STORE.activeGame.settingsIdentifier}".`);
     }
 }

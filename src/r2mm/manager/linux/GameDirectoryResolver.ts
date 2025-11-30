@@ -1,10 +1,8 @@
 import R2Error from '../../../model/errors/R2Error';
 import FileNotFoundError from '../../../model/errors/FileNotFoundError';
 import VdfParseError from '../../../model/errors/Vdf/VdfParseError';
-
 import * as vdf from '@node-steam/vdf';
-import * as path from 'path';
-import { homedir } from 'os';
+import os from "../../../providers/node/os/os";
 import ManagerSettings from '../ManagerSettings';
 import FsProvider from '../../../providers/generic/file/FsProvider';
 import GameDirectoryResolverProvider from '../../../providers/ror2/game/GameDirectoryResolverProvider';
@@ -12,6 +10,9 @@ import Game from '../../../model/game/Game';
 import GameManager from '../../../model/game/GameManager';
 import { getPropertyFromPath } from '../../../utils/Common';
 import DepotLoader from '../../../depots/loader/DepotLoader';
+import path from '../../../providers/node/path/path';
+import {getLaunchType, LaunchType} from "../../../model/real_enums/launch/LaunchType";
+import EnumResolver from "../../../model/enums/_EnumResolver";
 
 const FORCE_PROTON_FILENAME = ".forceproton";
 
@@ -24,14 +25,14 @@ export default class GameDirectoryResolverImpl extends GameDirectoryResolverProv
         }
         try {
             const dirs = [
-                path.resolve(homedir(), '.local', 'share', 'Steam'),
-                path.resolve(homedir(), '.steam', 'steam'),
-                path.resolve(homedir(), '.steam', 'root'),
-                path.resolve(homedir(), '.steam'),
-                path.resolve(homedir(), '.var', 'app', 'com.valvesoftware.Steam', '.local', 'share', 'Steam'),
-                path.resolve(homedir(), '.var', 'app', 'com.valvesoftware.Steam', '.steam', 'steam'),
-                path.resolve(homedir(), '.var', 'app', 'com.valvesoftware.Steam', '.steam', 'root'),
-                path.resolve(homedir(), '.var', 'app', 'com.valvesoftware.Steam', '.steam')
+                path.resolve(os.homedir(), '.local', 'share', 'Steam'),
+                path.resolve(os.homedir(), '.steam', 'steam'),
+                path.resolve(os.homedir(), '.steam', 'root'),
+                path.resolve(os.homedir(), '.steam'),
+                path.resolve(os.homedir(), '.var', 'app', 'com.valvesoftware.Steam', '.local', 'share', 'Steam'),
+                path.resolve(os.homedir(), '.var', 'app', 'com.valvesoftware.Steam', '.steam', 'steam'),
+                path.resolve(os.homedir(), '.var', 'app', 'com.valvesoftware.Steam', '.steam', 'root'),
+                path.resolve(os.homedir(), '.var', 'app', 'com.valvesoftware.Steam', '.steam')
             ];
             for (let dir of dirs) {
                 if (await FsProvider.instance.exists(dir) && (await FsProvider.instance.readdir(dir))
@@ -96,6 +97,13 @@ export default class GameDirectoryResolverImpl extends GameDirectoryResolverProv
     }
 
     public async isProtonGame(game: Game) {
+
+        // Skip isProtonGame check if user has explicitly declared launch behaviour.
+        const manualLaunchType = await getLaunchType(game);
+        if (manualLaunchType !== LaunchType.AUTO) {
+            return manualLaunchType === LaunchType.PROTON;
+        }
+
         try {
             if (await this._isProtonForced(game)) {
                 console.log(`Proton was forced due to presence of ${FORCE_PROTON_FILENAME} file`);

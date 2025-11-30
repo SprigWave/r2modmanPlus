@@ -1,6 +1,6 @@
 import FsProvider from '../../../../providers/generic/file/FsProvider';
 import LinuxGameDirectoryResolver from '../../../manager/linux/GameDirectoryResolver';
-import path from 'path';
+import path from '../../../../providers/node/path/path';
 import GameRunnerProvider from '../../../../providers/generic/game/GameRunnerProvider';
 import Game from '../../../../model/game/Game';
 import R2Error from '../../../../model/errors/R2Error';
@@ -8,10 +8,12 @@ import Profile from '../../../../model/Profile';
 import ManagerSettings from '../../../manager/ManagerSettings';
 import GameDirectoryResolverProvider from '../../../../providers/ror2/game/GameDirectoryResolverProvider';
 import LoggerProvider, { LogSeverity } from '../../../../providers/ror2/logging/LoggerProvider';
-import { exec } from 'child_process';
+import ChildProcess from '../../../../providers/node/child_process/child_process';
 import GameInstructions from '../../instructions/GameInstructions';
 import GameInstructionParser from '../../instructions/GameInstructionParser';
-import { PackageLoader } from '../../../../model/installing/PackageLoader';
+import { PackageLoader } from '../../../../model/schema/ThunderstoreSchema';
+import { getDeterminedLaunchType } from '../../../../utils/LaunchUtils';
+import { LaunchType } from '../../../../model/real_enums/launch/LaunchType';
 
 export default class SteamGameRunner_Linux extends GameRunnerProvider {
 
@@ -21,8 +23,8 @@ export default class SteamGameRunner_Linux extends GameRunnerProvider {
     }
 
     public async startModded(game: Game, profile: Profile): Promise<void | R2Error> {
-
-        const isProton = await (GameDirectoryResolverProvider.instance as LinuxGameDirectoryResolver).isProtonGame(game);
+        const settings = await ManagerSettings.getSingleton(game);
+        const isProton = await getDeterminedLaunchType(game, settings.getLaunchType() || LaunchType.AUTO) === LaunchType.PROTON;
         if (isProton instanceof R2Error) {
             return isProton;
         }
@@ -74,7 +76,7 @@ export default class SteamGameRunner_Linux extends GameRunnerProvider {
         try {
             const cmd = `"${steamDir}/steam.sh" -applaunch ${game.activePlatform.storeIdentifier} ${args} ${settings.getContext().gameSpecific.launchParameters}`;
             LoggerProvider.instance.Log(LogSeverity.INFO, `Running command: ${cmd}`);
-            await exec(cmd);
+            await ChildProcess.exec(cmd);
         } catch(err) {
             LoggerProvider.instance.Log(LogSeverity.ACTION_STOPPED, 'Error was thrown whilst starting the game');
             LoggerProvider.instance.Log(LogSeverity.ERROR, (err as Error).message);

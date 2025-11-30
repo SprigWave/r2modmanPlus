@@ -47,14 +47,14 @@
                     For Steam, this would be located in the game's properties.
                     <br/><br/>
                     Your current argument would be:
-                    <code v-if="doorstopTarget.length > 0">{{ doorstopTarget }}</code>
+                    <code v-if="launchArgs.length > 0">{{ launchArgs }}</code>
                     <code v-else>These parameters will be available after installing BepInEx.</code>
                     <br/>
                 </p>
                 <br/>
                 <template v-if="doorstopTarget.length > 0">
                     <p>
-                        <button class="button" @click="copyDoorstopTargetToClipboard" v-if="!copyingDoorstopText">
+                        <button class="button" @click="copyLaunchArgsToClipboard" v-if="!copyingDoorstopText">
                             <i class="fas fa-clipboard"></i>
                             <span class="margin-left--half-width smaller-font">Copy launch arguments</span>
                         </button>
@@ -71,7 +71,7 @@
                 <p>That's because you don't legally own the game. The manager only supports legal copies.</p>
                 <hr/>
                 <h2 class='title is-5'>A text window appears and closes immediately.</h2>
-                <p>Try running "Reset {{$store.state.activeGame.displayName}} installation" on the Settings screen.</p>
+                <p>Try running "Reset {{store.state.activeGame.displayName}} installation" on the Settings screen.</p>
                 <p>If it persists, force exit Steam and start modded with Steam closed.</p>
             </div>
             <div ref="Mods not appearing" v-if="activeTab === 'Mods not appearing'">
@@ -99,53 +99,70 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { Hero, ExternalLink } from '../components/all';
+<script lang="ts" setup>
+import {ExternalLink, Hero} from '../components/all';
 import GameRunnerProvider from '../providers/generic/game/GameRunnerProvider';
 import R2Error from '../model/errors/R2Error';
 import InteractionProvider from '../providers/ror2/system/InteractionProvider';
+import {onMounted, ref, watchEffect} from 'vue';
+import {getStore} from '../providers/generic/store/StoreProvider';
+import {State} from '../store';
+import {getDeterminedLaunchType} from "../utils/LaunchUtils";
+import {ComputedWrapperLaunchArguments} from "../components/computed/WrapperArguments";
+import {getLaunchType, LaunchType} from "../model/real_enums/launch/LaunchType";
+import appWindow from '../providers/node/app/app_window';
 
-@Component({
-    components: {
-        ExternalLink,
-        Hero
+const store = getStore<State>();
+
+const activeTab = ref('General');
+const tabs = ref(['General', 'Game won\'t start', 'Mods not appearing', 'Updating']);
+const doorstopTarget = ref("");
+const copyingDoorstopText = ref(false);
+const launchArgs = ref("");
+
+watchEffect(async () => {
+    const loaderArgs = doorstopTarget.value;
+    const prerequisiteText = ComputedWrapperLaunchArguments.value;
+    if (appWindow.getPlatform() === 'win32') {
+        launchArgs.value = loaderArgs;
+        return;
     }
-})
-export default class Help extends Vue {
-    private activeTab = 'General';
-    private tabs = ['General', 'Game won\'t start', 'Mods not appearing', 'Updating'];
-    private doorstopTarget = "";
-    private copyingDoorstopText = false;
-
-    changeTab(key: string) {
-        this.activeTab = key;
+    const storedLaunchType = await getLaunchType(store.state.activeGame);
+    const launchType = await getDeterminedLaunchType(store.state.activeGame, storedLaunchType);
+    if (launchType === LaunchType.NATIVE) {
+        launchArgs.value = `${prerequisiteText} ${loaderArgs}`;
+    } else {
+        launchArgs.value = `%command% ${loaderArgs}`;
     }
+});
 
-    copyDoorstopTargetToClipboard() {
-        InteractionProvider.instance.copyToClipboard(this.doorstopTarget);
-        this.copyingDoorstopText = true;
-        setTimeout(this.stopShowingCopy, 400);
-    }
-
-    stopShowingCopy() {
-        this.copyingDoorstopText = false;
-    }
-
-    mounted() {
-        GameRunnerProvider.instance.getGameArguments(
-            this.$store.state.activeGame,
-            this.$store.getters['profile/activeProfile']
-        ).then(target => {
-            if (target instanceof R2Error) {
-                this.doorstopTarget = "";
-            } else {
-                this.doorstopTarget = target;
-            }
-        });
-    }
-
+function changeTab(key: string) {
+    activeTab.value = key;
 }
+
+function copyLaunchArgsToClipboard() {
+    InteractionProvider.instance.copyToClipboard(launchArgs.value);
+    copyingDoorstopText.value = true;
+    setTimeout(stopShowingCopy, 400);
+}
+
+function stopShowingCopy() {
+    copyingDoorstopText.value = false;
+}
+
+onMounted(() => {
+    GameRunnerProvider.instance.getGameArguments(
+        store.state.activeGame,
+        store.getters['profile/activeProfile']
+    ).then(target => {
+        if (target instanceof R2Error) {
+            doorstopTarget.value = "";
+            return;
+        } else {
+            doorstopTarget.value = target;
+        }
+    });
+});
 </script>
 
 <style lang="scss" scoped>

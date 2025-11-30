@@ -1,12 +1,12 @@
-import path from "path";
-
+import path from "../providers/node/path/path";
 import { InstallRuleInstaller } from "./InstallRuleInstaller";
 import { InstallArgs, PackageInstaller } from "./PackageInstaller";
 import FileWriteError from "../model/errors/FileWriteError";
-import { PackageLoader } from "../model/installing/PackageLoader";
+import { PackageLoader } from "../model/schema/ThunderstoreSchema";
 import FsProvider from "../providers/generic/file/FsProvider";
 import { MODLOADER_PACKAGES } from "../r2mm/installing/profile_installers/ModLoaderVariantRecord";
 import FileUtils from "../utils/FileUtils";
+import { TrackingMethod } from "../model/schema/ThunderstoreSchema";
 
 const basePackageFiles = ["manifest.json", "readme.md", "icon.png"];
 
@@ -70,34 +70,35 @@ export class ReturnOfModdingPluginInstaller implements PackageInstaller {
     _DATA = "plugins_data";
     _CONFIG = "config"
 
-    readonly installer = new InstallRuleInstaller({
+    readonly installer = () => new InstallRuleInstaller({
         gameName: "none" as any,  // This isn't actually used for actual installation but needs some value
         rules: [
             {
                 route: path.join(this._ROOT, this._PLUGINS),
                 isDefaultLocation: true,
                 defaultFileExtensions: [],
-                trackingMethod: "SUBDIR_NO_FLATTEN",
+                trackingMethod: TrackingMethod.SUBDIR_NO_FLATTEN,
                 subRoutes: [],
             },
             {
                 route: path.join(this._ROOT, this._DATA),
                 defaultFileExtensions: [],
-                trackingMethod: "SUBDIR_NO_FLATTEN",
+                trackingMethod: TrackingMethod.SUBDIR_NO_FLATTEN,
                 subRoutes: [],
             },
             {
                 route: path.join(this._ROOT, this._CONFIG),
                 defaultFileExtensions: [],
-                trackingMethod: "SUBDIR_NO_FLATTEN",
+                trackingMethod: TrackingMethod.SUBDIR_NO_FLATTEN,
                 subRoutes: [],
             }
-        ]
+        ],
+        relativeFileExclusions: null
     });
 
 
     async install(args: InstallArgs) {
-        await this.installer.install(args);
+        await this.installer().install(args);
     }
 
     async uninstall(args: InstallArgs): Promise<void> {

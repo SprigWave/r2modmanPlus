@@ -6,10 +6,10 @@
                     <p class="menu-label">{{ activeGame.displayName }}</p>
                     <ul class="menu-list">
                         <li>
-                            <a href="#" @click="launch(LaunchMode.MODDED)"><i class="fas fa-play-circle icon--margin-right"/>Start modded</a>
+                            <a href="#" @click="launchGame(LaunchMode.MODDED)"><i class="fas fa-play-circle icon--margin-right"/>Start modded</a>
                         </li>
                         <li>
-                            <a href="#" @click="launch(LaunchMode.VANILLA)"><i class="far fa-play-circle icon--margin-right"/>Start vanilla</a>
+                            <a href="#" @click="launchGame(LaunchMode.VANILLA)"><i class="far fa-play-circle icon--margin-right"/>Start vanilla</a>
                         </li>
                     </ul>
                     <p class="menu-label">Mods</p>
@@ -19,7 +19,7 @@
                                 <router-link :to="{name: 'manager.installed'}" class="tagged-link">
                                     <i class="fas fa-folder tagged-link__icon icon--margin-right" />
                                     <span class="tagged-link__content">Installed</span>
-                                    <span :class="getTagLinkClasses(['manager.installed'])">{{localModCount}}</span>
+                                    <span :class="getTagLinkClasses(['manager.installed', 'manager'])">{{localModCount}}</span>
                                 </router-link>
                             </li>
                             <li>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="menu-bottom">
                     <div id="profile-switcher" @click="openProfileManagementModal">
-                        <img :src="getGameImage()" alt="Game icon"/>
+                        <img :src="ProtocolProvider.getPublicAssetUrl(`/images/game_selection/${activeGame.gameImage}`)" alt="Game icon"/>
                         <div>
                             <p>{{ profile.getProfileName() }}</p>
                             <p class="sub-action">Profile</p>
@@ -73,9 +73,8 @@
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 
-import { Component, Vue } from 'vue-property-decorator';
 import R2Error from '../../model/errors/R2Error';
 import Game from '../../model/game/Game';
 import Profile from '../../model/Profile';
@@ -87,57 +86,48 @@ import {
     throwIfNoGameDir
  } from '../../utils/LaunchUtils';
 import FileUtils from '../../utils/FileUtils';
+import { ref, computed, onMounted, getCurrentInstance } from 'vue';
+import { getStore } from '../../providers/generic/store/StoreProvider';
+import { State } from '../../store';
+import VueRouter, { useRouter } from 'vue-router';
+import ProtocolProvider from '../../providers/generic/protocol/ProtocolProvider';
 
-@Component
-export default class NavigationMenu extends Vue {
-    private LaunchMode = LaunchMode;
+const store = getStore<State>();
+const router = useRouter();
 
-    get activeGame(): Game {
-      return this.$store.state.activeGame;
-    }
+const activeGame = computed<Game>(() => store.state.activeGame);
+const profile = computed<Profile>(() => store.getters['profile/activeProfile']);
+const localModCount = computed<number>(() => store.state.profile.modList.length);
 
-    get profile(): Profile {
-        return this.$store.getters['profile/activeProfile'];
-    };
+const thunderstoreModCount = computed(() =>
+    store.state.modFilters.showDeprecatedPackages
+        ? store.state.tsMods.mods.length
+        : store.getters['tsMods/undeprecatedModCount']
+);
 
-    get thunderstoreModCount() {
-        return this.$store.state.modFilters.showDeprecatedPackages
-          ? this.$store.state.tsMods.mods.length
-          : this.$store.getters['tsMods/undeprecatedModCount'];
-    }
+function getTagLinkClasses(routeNames: string[]) {
+    const base = ["tag", "tagged-link__tag"];
+    return router && router.currentRoute.value && routeNames.includes(router.currentRoute.value.name as string || "") ? [...base, "is-link"] : [...base, "is-inactive-link"];
+}
 
-    get localModCount(): number {
-        return this.$store.state.profile.modList.length;
-    }
+function openProfileManagementModal() {
+    store.commit("openProfileManagementModal");
+}
 
-    getTagLinkClasses(routeNames: string[]) {
-        const base = ["tag", "tagged-link__tag"];
-        return routeNames.includes(this.$route.name || "") ? base : [...base, "is-link"];
-    }
+async function launchGame(mode: LaunchMode) {
+    try {
+        await setGameDirIfUnset(activeGame.value);
+        await throwIfNoGameDir(activeGame.value);
 
-    getGameImage() {
-        return FileUtils.requireImage(this.activeGame.gameImage);
-    }
-
-    openProfileManagementModal() {
-        this.$store.commit("openProfileManagementModal");
-    }
-
-    async launch(mode: LaunchMode) {
-        try {
-            await setGameDirIfUnset(this.activeGame);
-            await throwIfNoGameDir(this.activeGame);
-
-            if (mode === LaunchMode.MODDED) {
-                await linkProfileFiles(this.activeGame, this.profile.asImmutableProfile());
-            }
-
-            this.$store.commit("openGameRunningModal");
-            await launch(this.activeGame, this.profile, mode);
-        } catch (error) {
-            this.$store.commit("closeGameRunningModal");
-            this.$store.commit("error/handleError", R2Error.fromThrownValue(error));
+        if (mode === LaunchMode.MODDED) {
+            await linkProfileFiles(activeGame.value, profile.value.asImmutableProfile());
         }
+
+        store.commit("openGameRunningModal");
+        await launch(activeGame.value, profile.value, mode);
+    } catch (error) {
+        store.commit("closeGameRunningModal");
+        store.commit("error/handleError", R2Error.fromThrownValue(error));
     }
 }
 

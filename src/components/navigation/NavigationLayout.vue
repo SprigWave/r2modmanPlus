@@ -6,23 +6,20 @@
         <div class="content-column">
             <router-view />
         </div>
-        <GameRunningModal :activeGame="$store.state.activeGame" />
+        <GameRunningModal :activeGame="store.state.activeGame" />
         <ProfileManagementModal />
     </div>
 </template>
 
-<script lang="ts">
-
-import { Component, Vue } from 'vue-property-decorator';
+<script lang="ts" setup>
 
 import NavigationMenu from './NavigationMenu.vue';
 import GameRunningModal from '../modals/GameRunningModal.vue';
 import ProfileManagementModal from '../modals/ProfileManagementModal.vue';
+import { getStore } from '../../providers/generic/store/StoreProvider';
+import { State } from '../../store';
 
-@Component({
-    components: { ProfileManagementModal, GameRunningModal, NavigationMenu}
-})
-export default class NavigationLayout extends Vue {}
+const store = getStore<State>();
 
 </script>
 

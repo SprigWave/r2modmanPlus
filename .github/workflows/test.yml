@@ -21,19 +21,27 @@ jobs:
                     #   os: macos-11
                     #   platform: osx
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
+
+            - name: Enable Corepack
+              run: |
+                npm install -g corepack@latest --force
+                corepack enable
 
             - name: Set up Node
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   # The talk on the street says this might be a good version for building.
-                  node-version: 20.11.0
+                  node-version: 20.19.0
                   cache: yarn
 
             - name: Install Yarn dependencies
               run: yarn install --frozen-lockfile
 
+            - name: Prepare Quasar files
+              run: npx @quasar/cli prepare
+
             - name: Run tests
               run: >
                   node test/folder-structure-testing/populator.mjs &&
-                  yarn run test:unit:ci
+                  yarn run test

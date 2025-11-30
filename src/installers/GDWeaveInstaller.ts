@@ -4,11 +4,11 @@ import {
     InstallArgs,
     PackageInstaller
 } from './PackageInstaller';
-import path from 'path';
+import path from "../providers/node/path/path";
 import FsProvider from '../providers/generic/file/FsProvider';
 import FileUtils from '../utils/FileUtils';
 import { MODLOADER_PACKAGES } from '../r2mm/installing/profile_installers/ModLoaderVariantRecord';
-import { PackageLoader } from '../model/installing/PackageLoader';
+import { PackageLoader } from '../model/schema/ThunderstoreSchema';
 import FileWriteError from '../model/errors/FileWriteError';
 import R2Error from '../model/errors/R2Error';
 

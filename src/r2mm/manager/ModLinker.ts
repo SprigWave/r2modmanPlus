@@ -1,31 +1,31 @@
 import R2Error from '../../model/errors/R2Error';
-import { ImmutableProfile } from '../../model/Profile';
+import {ImmutableProfile} from '../../model/Profile';
 import FileWriteError from '../../model/errors/FileWriteError';
-
-import * as path from 'path';
 import FsProvider from '../../providers/generic/file/FsProvider';
-import LoggerProvider, { LogSeverity } from '../../providers/ror2/logging/LoggerProvider';
+import LoggerProvider, {LogSeverity} from '../../providers/ror2/logging/LoggerProvider';
 import GameDirectoryResolverProvider from '../../providers/ror2/game/GameDirectoryResolverProvider';
 import FileUtils from '../../utils/FileUtils';
 import ManagerInformation from '../../_managerinf/ManagerInformation';
 import Game from '../../model/game/Game';
-import LinuxGameDirectoryResolver from './linux/GameDirectoryResolver';
 import FileTree from '../../model/file/FileTree';
-import { PackageLoader } from "../../model/installing/PackageLoader";
+import {PackageLoader} from "../../model/schema/ThunderstoreSchema";
+import path from "../../providers/node/path/path";
+import {getDeterminedLaunchType} from '../../utils/LaunchUtils';
+import appWindow from '../../providers/node/app/app_window';
+import {LaunchType} from "../../model/real_enums/launch/LaunchType";
+import ManagerSettings from "../../r2mm/manager/ManagerSettings";
 
 export default class ModLinker {
 
     public static async link(profile: ImmutableProfile, game: Game): Promise<string[] | R2Error> {
-        if (game.packageLoader == PackageLoader.BEPINEX) {
-            if (process.platform === 'linux') {
-                const isProton = await (GameDirectoryResolverProvider.instance as LinuxGameDirectoryResolver).isProtonGame(game);
-                if (!isProton) {
+        if ([PackageLoader.BEPINEX, PackageLoader.BEPISLOADER].includes(game.packageLoader)) {
+            if (['linux', 'darwin'].includes(appWindow.getPlatform())) {
+                const settings = await ManagerSettings.getSingleton(game);
+                const launchType = await getDeterminedLaunchType(game, settings.getLaunchType() || LaunchType.AUTO);
+                if (launchType === LaunchType.NATIVE) {
                     // Game is native, BepInEx doesn't require moving. No linked files.
                     return [];
                 }
-            } else if (process.platform === 'darwin') {
-                // Linux games don't require moving BepInEx files.
-                return [];
             }
         }
         const gameDirectory: string | R2Error = await GameDirectoryResolverProvider.instance.getDirectory(game);
@@ -128,7 +128,7 @@ export default class ModLinker {
                                 "bepinex", "bepinex_server", "mods",
                                 "melonloader", "plugins", "userdata",
                                 "_state", "userlibs", "qmods", "shimloader",
-                                "returnofmodding", "gdweave"
+                                "returnofmodding", "gdweave", "renderer", "umm"
                             ];
 
                             if (!exclusionsList.includes(file.toLowerCase())) {

@@ -1,39 +1,29 @@
 <template>
     <div id="config-editor">
         <ConfigSelectionLayout v-show="editing === null" @edit="bindEdit($event)"/>
-        <ConfigEditLayout
-            :config-file="editing"
-            @changed="editing = null"
-            v-if="editing !== null"/>
+        <ConfigEditLayout :config-file="editing" @changed="editing = null" v-if="editing"/>
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import ConfigSelectionLayout from '../components/config-components/ConfigSelectionLayout.vue';
+import ConfigFile from '../model/file/ConfigFile';
+import ConfigEditLayout from '../components/config-components/ConfigEditLayout.vue';
+import { ref } from 'vue';
 
-    import { Component, Vue } from 'vue-property-decorator';
-    import ConfigSelectionLayout from '../components/config-components/ConfigSelectionLayout.vue';
-    import ConfigFile from '../model/file/ConfigFile';
-    import ConfigEditLayout from '../components/config-components/ConfigEditLayout.vue';
+const editing = ref<ConfigFile | null>(null);
 
-    @Component({
-        components: {
-            ConfigEditLayout,
-            ConfigSelectionLayout
-        }
-    })
-    export default class BetterConfigEditor extends Vue {
-        private editing: ConfigFile | null = null;
-
-        bindEdit(editing: ConfigFile | null) {
-            this.editing = editing;
-        }
-
-    }
+function bindEdit(editValue: ConfigFile | null) {
+    editing.value = editValue;
+}
 
 </script>
 
 <style lang="scss" scoped>
 #config-editor {
+    display: grid;
+    grid-template-rows: 1fr;
+    max-height: 100vh;
     width: 100%;
 }
 </style>

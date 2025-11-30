@@ -7,8 +7,7 @@
     </div>
 </template>
 
-<script lang="ts">
-import Component, { mixins } from 'vue-class-component';
+<script lang="ts" setup>
 import 'bulma-steps/dist/js/bulma-steps.min.js';
 import ManagerSettings from './r2mm/manager/ManagerSettings';
 import ProfileProvider from './providers/ror2/model_implementation/ProfileProvider';
@@ -17,9 +16,8 @@ import LogOutput from './r2mm/data/LogOutput';
 import LogOutputProvider from './providers/ror2/data/LogOutputProvider';
 import ThunderstoreDownloaderProvider from './providers/ror2/downloading/ThunderstoreDownloaderProvider';
 import BetterThunderstoreDownloader from './r2mm/downloading/BetterThunderstoreDownloader';
-import { ipcRenderer } from 'electron';
 import PathResolver from './r2mm/manager/PathResolver';
-import path from 'path';
+import path from './providers/node/path/path';
 import ThemeManager from './r2mm/manager/ThemeManager';
 import 'bulma-switch/dist/css/bulma-switch.min.css';
 import LoggerProvider, { LogSeverity } from './providers/ror2/logging/LoggerProvider';
@@ -31,7 +29,6 @@ import FileUtils from './utils/FileUtils';
 import LinkProvider from './providers/components/LinkProvider';
 import LinkImpl from './r2mm/component_override/LinkImpl';
 import FsProvider from './providers/generic/file/FsProvider';
-import NodeFs from './providers/generic/file/NodeFs';
 import { DataFolderProvider } from './providers/ror2/system/DataFolderProvider';
 import { DataFolderProviderImpl } from './r2mm/system/DataFolderProviderImpl';
 import InteractionProvider from './providers/ror2/system/InteractionProvider';
@@ -44,12 +41,23 @@ import PlatformInterceptorProvider from './providers/generic/game/platform_inter
 import PlatformInterceptorImpl from './providers/generic/game/platform_interceptor/PlatformInterceptorImpl';
 import ProfileInstallerProvider from './providers/ror2/installing/ProfileInstallerProvider';
 import InstallationRules from './r2mm/installing/InstallationRules';
-import InstallationRuleApplicator from './r2mm/installing/default_installation_rules/InstallationRuleApplicator';
 import GenericProfileInstaller from './r2mm/installing/profile_installers/GenericProfileInstaller';
-import UtilityMixin from './components/mixins/UtilityMixin.vue';
 import ErrorModal from './components/modals/ErrorModal.vue';
 import { provideStoreImplementation } from './providers/generic/store/StoreProvider';
 import baseStore from './store';
+import { onMounted, ref, watchEffect } from 'vue';
+import { useUtilityComposable } from './components/composables/UtilityComposable';
+import { useQuasar } from 'quasar';
+import { NodeFsImplementation } from './providers/node/fs/NodeFsImplementation';
+import { useRouter } from 'vue-router';
+import { ProtocolProviderImplementation } from './providers/generic/protocol/ProtocolProviderImplementation';
+import { provideProtocolImplementation } from './providers/generic/protocol/ProtocolProvider';
+
+const store = baseStore;
+const router = useRouter();
+provideStoreImplementation(() => store);
+
+const quasar = useQuasar();
 
 document.addEventListener('auxclick', e => {
     const target = e.target! as any;
@@ -57,91 +65,84 @@ document.addEventListener('auxclick', e => {
         LinkProvider.instance.openLink(target.getAttribute("href"))
     }
     e.preventDefault();
-}, false)
+}, false);
 
-@Component({
-    components: {
-        ErrorModal,
-    }
+const {
+    hookBackgroundUpdateThunderstoreModList,
+    hookModInstallingViaProtocol,
+    checkCdnConnection,
+} = useUtilityComposable();
+
+const visible = ref<boolean>(false);
+
+FsProvider.provide(() => NodeFsImplementation);
+
+ProfileProvider.provide(() => new ProfileImpl());
+LogOutputProvider.provide(() => LogOutput.getSingleton());
+
+const betterThunderstoreDownloader = new BetterThunderstoreDownloader();
+ThunderstoreDownloaderProvider.provide(() => betterThunderstoreDownloader);
+
+ZipProvider.provide(() => new AdmZipProvider());
+LocalModInstallerProvider.provide(() => new LocalModInstaller());
+ProfileInstallerProvider.provide(() => new GenericProfileInstaller());
+LoggerProvider.provide(() => new Logger());
+LinkProvider.provide(() => new LinkImpl());
+InteractionProvider.provide(() => new InteractionProviderImpl());
+DataFolderProvider.provide(() => new DataFolderProviderImpl());
+
+PlatformInterceptorProvider.provide(() => new PlatformInterceptorImpl());
+
+provideProtocolImplementation(() => ProtocolProviderImplementation)
+
+BindLoaderImpl.bind();
+
+onMounted(async () => {
+    const settings: ManagerSettings = await store.dispatch('resetActiveGame');
+
+    hookBackgroundUpdateThunderstoreModList(router);
+    hookModInstallingViaProtocol(router);
+    await checkCdnConnection();
+
+    InstallationRules.apply();
+    InstallationRules.validate();
+
+    window.app.getAppDataDirectory().then(async (appData: string) => {
+        PathResolver.APPDATA_DIR = path.join(appData, 'r2modmanPlus-local');
+        // Legacy path. Needed for migration.
+        PathResolver.CONFIG_DIR = path.join(PathResolver.APPDATA_DIR, "config");
+
+        if (ManagerSettings.NEEDS_MIGRATION) {
+            await ManagerSettingsMigration.migrate();
+        }
+
+        PathResolver.ROOT = settings.getContext().global.dataDirectory || PathResolver.APPDATA_DIR;
+
+        // If ROOT directory was set previously but no longer exists (EG: Drive disconnected) then fallback to original.
+        try {
+            await FileUtils.ensureDirectory(PathResolver.ROOT);
+        } catch (e) {
+            PathResolver.ROOT = PathResolver.APPDATA_DIR;
+        }
+
+        await FileUtils.ensureDirectory(PathResolver.APPDATA_DIR);
+
+        await ThemeManager.apply();
+
+        window.app.isApplicationPortable().then((isPortable: boolean) => {
+            ManagerInformation.IS_PORTABLE = isPortable;
+            LoggerProvider.instance.Log(LogSeverity.INFO, `Starting manager on version ${ManagerInformation.VERSION.toString()}`);
+            visible.value = true;
+        });
+    });
+
+    store.commit('updateModLoaderPackageNames');
+    store.dispatch('tsMods/updateExclusions');
+});
+
+watchEffect(() => {
+    document.documentElement.classList.toggle('html--dark', quasar.dark.isActive);
 })
-export default class App extends mixins(UtilityMixin) {
-    private visible: boolean = false;
-
-    async created() {
-        // Load settings using the default game before the actual game is selected.
-        const settings: ManagerSettings = await this.$store.dispatch('resetActiveGame');
-
-        this.hookBackgroundUpdateThunderstoreModList();
-        this.hookModInstallingViaProtocol();
-        await this.checkCdnConnection();
-
-        InstallationRuleApplicator.apply();
-        InstallationRules.validate();
-
-        ipcRenderer.once('receive-appData-directory', async (_sender: any, appData: string) => {
-            PathResolver.APPDATA_DIR = path.join(appData, 'r2modmanPlus-local');
-            // Legacy path. Needed for migration.
-            PathResolver.CONFIG_DIR = path.join(PathResolver.APPDATA_DIR, "config");
-
-            if (ManagerSettings.NEEDS_MIGRATION) {
-                await ManagerSettingsMigration.migrate();
-            }
-
-            PathResolver.ROOT = settings.getContext().global.dataDirectory || PathResolver.APPDATA_DIR;
-
-            // If ROOT directory was set previously but no longer exists (EG: Drive disconnected) then fallback to original.
-            try {
-                await FileUtils.ensureDirectory(PathResolver.ROOT);
-            } catch (e) {
-                PathResolver.ROOT = PathResolver.APPDATA_DIR;
-            }
-
-            await FileUtils.ensureDirectory(PathResolver.APPDATA_DIR);
-
-            await ThemeManager.apply();
-            ipcRenderer.once('receive-is-portable', async (_sender: any, isPortable: boolean) => {
-                ManagerInformation.IS_PORTABLE = isPortable;
-                LoggerProvider.instance.Log(LogSeverity.INFO, `Starting manager on version ${ManagerInformation.VERSION.toString()}`);
-                this.visible = true;
-            });
-            ipcRenderer.send('get-is-portable');
-        });
-        ipcRenderer.send('get-appData-directory');
-
-        this.$watch('$q.dark.isActive', () => {
-            document.documentElement.classList.toggle('html--dark', this.$q.dark.isActive);
-        });
-
-        this.$store.commit('updateModLoaderPackageNames');
-        this.$store.dispatch('tsMods/updateExclusions');
-    }
-
-    beforeCreate() {
-        FsProvider.provide(() => new NodeFs());
-
-        const store = baseStore();
-        provideStoreImplementation(() => store);
-
-        ProfileProvider.provide(() => new ProfileImpl());
-        LogOutputProvider.provide(() => LogOutput.getSingleton());
-
-        const betterThunderstoreDownloader = new BetterThunderstoreDownloader();
-        ThunderstoreDownloaderProvider.provide(() => betterThunderstoreDownloader);
-
-        ZipProvider.provide(() => new AdmZipProvider());
-        LocalModInstallerProvider.provide(() => new LocalModInstaller());
-        ProfileInstallerProvider.provide(() => new GenericProfileInstaller());
-        LoggerProvider.provide(() => new Logger());
-        LinkProvider.provide(() => new LinkImpl());
-        InteractionProvider.provide(() => new InteractionProviderImpl());
-        DataFolderProvider.provide(() => new DataFolderProviderImpl());
-
-        PlatformInterceptorProvider.provide(() => new PlatformInterceptorImpl());
-
-        BindLoaderImpl.bind();
-    }
-
-}
 </script>
 
 <style lang="scss">

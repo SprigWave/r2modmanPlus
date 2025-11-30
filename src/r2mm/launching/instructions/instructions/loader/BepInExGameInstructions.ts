@@ -4,8 +4,9 @@ import Game from '../../../../../model/game/Game';
 import Profile from '../../../../../model/Profile';
 import FsProvider from '../../../../../providers/generic/file/FsProvider';
 import { DynamicGameInstruction } from '../../DynamicGameInstruction';
-import { GameInstanceType } from '../../../../../model/game/GameInstanceType';
+import { GameInstanceType } from '../../../../../model/schema/ThunderstoreSchema';
 import { getUnityDoorstopVersion } from '../../../../../utils/UnityDoorstopUtils';
+import appWindow from '../../../../../providers/node/app/app_window';
 
 export default class BepInExGameInstructions extends GameInstructionGenerator {
 
@@ -19,7 +20,7 @@ export default class BepInExGameInstructions extends GameInstructionGenerator {
 
     private async genDoorstopV3(game: Game, profile: Profile): Promise<GameInstruction> {
         let extraArguments = "";
-        if (["linux", "darwin"].includes(process.platform.toLowerCase())) {
+        if (["linux", "darwin"].includes(appWindow.getPlatform().toLowerCase())) {
             extraArguments += ` --r2profile "${DynamicGameInstruction.PROFILE_NAME}"`;
             if (game.instanceType === GameInstanceType.SERVER) {
                 extraArguments += ` --server`;
@@ -36,7 +37,7 @@ export default class BepInExGameInstructions extends GameInstructionGenerator {
 
     private async genDoorstopV4(game: Game, profile: Profile): Promise<GameInstruction> {
         let extraArguments = "";
-        if (["linux", "darwin"].includes(process.platform.toLowerCase())) {
+        if (["linux", "darwin"].includes(appWindow.getPlatform().toLowerCase())) {
             extraArguments += ` --r2profile "${DynamicGameInstruction.PROFILE_NAME}"`;
             if (game.instanceType === GameInstanceType.SERVER) {
                 extraArguments += ` --server`;

@@ -1,15 +1,22 @@
+interface Action {
+    function: () => Promise<void>;
+    label: string;
+}
+
 export default class R2Error extends Error {
     public name: string;
     public message: string;
     public stack?: string | undefined;
     public solution: string;
     public errorReferenceString: string | undefined;
+    public action?: Action;
 
     public constructor(name: string, message: string, solution: string | null = null) {
         super(message);
         this.name = name;
         this.message = message;
         this.solution = solution || '';
+        this.stack = new Error().stack;
         Object.setPrototypeOf(this, R2Error.prototype);
     }
 
@@ -25,6 +32,10 @@ export default class R2Error extends Error {
         } else {
             return new R2Error(name, `${error}`, solution);
         }
+    }
+
+    public setAction(action: Action) {
+        this.action = action;
     }
 }
 

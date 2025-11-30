@@ -1,4 +1,4 @@
-import { PackageLoader } from '../../../model/installing/PackageLoader';
+import { PackageLoader } from '../../../model/schema/ThunderstoreSchema';
 import Game from '../../../model/game/Game';
 import GameInstructionGenerator from './instructions/GameInstructionGenerator';
 import BepInExGameInstructions from './instructions/loader/BepInExGameInstructions';
@@ -11,6 +11,8 @@ import ShimloaderGameInstructions from './instructions/loader/ShimloaderGameInst
 import LovelyGameInstructions from './instructions/loader/LovelyGameInstructions';
 import ReturnOfModdingGameInstructions from './instructions/loader/ReturnOfModdingGameInstructions';
 import GDWeaveGameInstructions from './instructions/loader/GDWeaveGameInstructions';
+import BepisLoaderGameInstructions from './instructions/loader/BepisLoaderGameInstructions';
+import UMMGameInstructions from './instructions/loader/UMMGameInstructions';
 
 export interface GameInstruction {
     moddedParameters: string,
@@ -25,15 +27,17 @@ export default class GameInstructions {
 
     public static LOADER_INSTRUCTIONS: Map<PackageLoader, GameInstructionGenerator> = new Map([
         [PackageLoader.BEPINEX, new BepInExGameInstructions()],
-        [PackageLoader.MELON_LOADER, new MelonLoaderGameInstructions()],
-        [PackageLoader.RECURSIVE_MELON_LOADER, new MelonLoaderGameInstructions()],
+        [PackageLoader.BEPISLOADER, new BepisLoaderGameInstructions()],
+        [PackageLoader.MELONLOADER, new MelonLoaderGameInstructions()],
+        [PackageLoader.RECURSIVE_MELONLOADER, new MelonLoaderGameInstructions()],
         [PackageLoader.NORTHSTAR, new NorthstarGameInstructions()],
-        [PackageLoader.GODOT_ML, new GodotMLGameInstructions()],
+        [PackageLoader.GODOTML, new GodotMLGameInstructions()],
         [PackageLoader.NONE, new CustomInstructions()],
         [PackageLoader.SHIMLOADER, new ShimloaderGameInstructions()],
         [PackageLoader.LOVELY, new LovelyGameInstructions()],
         [PackageLoader.RETURN_OF_MODDING, new ReturnOfModdingGameInstructions()],
-        [PackageLoader.GDWEAVE, new GDWeaveGameInstructions()]
+        [PackageLoader.GDWEAVE, new GDWeaveGameInstructions()],
+        [PackageLoader.UMM, new UMMGameInstructions()]
     ]);
 
     public static async getInstructionsForGame(game: Game, profile: Profile): Promise<GameInstruction> {

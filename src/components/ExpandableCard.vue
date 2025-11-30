@@ -7,7 +7,7 @@
                         <div class='card-header-icon mod-logo' v-if="image !== ''">
                             <figure class='image is-48x48 image-parent'>
                                 <img :src='image' alt='Mod Logo' class='image-overlap'/>
-                                <img v-if="$store.state.profile.funkyMode" src='../assets/funky_mode.png' alt='Mod Logo' class='image-overlap'/>
+                                <img v-if="store.state.profile.funkyMode" :src='ProtocolProvider.getPublicAssetUrl("/funky_mode.png")' alt='Funky mode' class='image-overlap'/>
                             </figure>
                         </div>
                         <span ref="title" class='card-header-title'><slot name='title'></slot></span>
@@ -39,51 +39,46 @@
     </keep-alive>
 </template>
 
-<script lang='ts'>
-    import Vue from 'vue';
-    import { Component, Prop, Watch } from 'vue-property-decorator'
+<script lang='ts' setup>
+import { computed, onMounted, ref, watchEffect } from 'vue';
+import { getStore } from '../providers/generic/store/StoreProvider';
+import { State } from '../store';
+import ProtocolProvider from '../providers/generic/protocol/ProtocolProvider';
 
-    @Component
-    export default class ExpandableCard extends Vue {
+const store = getStore<State>();
 
-        @Prop({default: ''})
-        image: string | undefined;
+type ExpandableCardProps = {
+    image?: string;
+    description?: string;
+    id: string;
+    allowSorting?: boolean;
+    enabled?: boolean;
+}
 
-        @Prop({default: ''})
-        description: string | undefined;
+const props = withDefaults(defineProps<ExpandableCardProps>(), {
+    image: '',
+    description: '',
+    allowSorting: false,
+    enabled: true,
+})
 
-        @Prop()
-        id: string | undefined;
+const visible = ref<boolean>(false);
 
-        @Prop({default: false})
-        allowSorting: boolean | undefined;
+const showSort = computed<boolean>(() => props.allowSorting && store.getters["profile/canSortMods"]);
 
-        @Prop({default: true})
-        enabled: boolean | undefined;
+watchEffect(() => {
+    visible.value = store.state.profile.expandedByDefault;
+})
 
-        // Keep track of visibility
-        visible: boolean | undefined = false;
+function toggleVisibility() {
+    visible.value = !visible.value;
+}
 
-        get showSort() {
-            return this.allowSorting && this.$store.getters["profile/canSortMods"];
-        }
-
-        @Watch('$store.state.profile.expandedByDefault')
-        visibilityChanged(current: boolean) {
-            this.visible = current;
-        }
-
-        toggleVisibility() {
-            this.visible = !this.visible;
-        }
-
-        async created() {
-            await this.$store.dispatch('profile/loadModCardSettings');
-            this.visible = this.$store.state.profile.expandedByDefault;
-        }
-    }
+onMounted(async () => {
+    await store.dispatch('profile/loadModCardSettings');
+    visible.value = store.state.profile.expandedByDefault;
+});
 </script>
-
 
 <style lang="scss" scoped>
 .card-header-title {

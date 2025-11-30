@@ -22,9 +22,9 @@
                         <div class="notification is-warning margin-right">
                             <span>
                                 You have {{ numberOfModsWithUpdates }} available mod update{{ numberOfModsWithUpdates > 1 ? "s" : ""}}.
-                                Would you like to <a @click="$store.commit('openUpdateAllModsModal')">update all</a>?
+                                Would you like to <a @click="store.commit('openUpdateAllModsModal')">update all</a>?
                             </span>
-                            <a class="float-right cursor-pointer" @click="$store.commit('profile/dismissUpdateAll')">
+                            <a class="float-right cursor-pointer" @click="store.commit('profile/dismissUpdateAll')">
                                 <i class="fas fa-times" />
                             </a>
                         </div>
@@ -35,32 +35,22 @@
     </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-import Component from "vue-class-component";
+<script lang="ts" setup>
+import { computed, defineAsyncComponent } from 'vue';
 
-import ManifestV2 from "../../model/ManifestV2";
-import LocalModListProvider from "../../providers/components/loaders/LocalModListProvider";
+import ManifestV2 from '../../model/ManifestV2';
+import LocalModListProvider from '../../providers/components/loaders/LocalModListProvider';
+import { getStore } from '../../providers/generic/store/StoreProvider';
+import { State } from '../../store';
 
-@Component({
-    components: {
-        LocalModList: LocalModListProvider.provider,
-    }
-})
+const store = getStore<State>();
 
-export default class InstalledModView extends Vue {
-    get dismissedUpdateAll() {
-        return this.$store.state.profile.dismissedUpdateAll;
-    }
+// const LocalModList = computed(() => LocalModListProvider.provider);
+const LocalModList = defineAsyncComponent(() => LocalModListProvider.provider());
 
-    get localModList(): ManifestV2[] {
-        return this.$store.state.profile.modList;
-    }
-
-    get numberOfModsWithUpdates(): number {
-        return this.$store.getters['profile/modsWithUpdates'].length;
-    }
-};
+const dismissedUpdateAll = computed<boolean>(() => store.state.profile.dismissedUpdateAll);
+const localModList = computed<ManifestV2[]>(() => store.state.profile.modList);
+const numberOfModsWithUpdates = computed<number>(() => store.getters['profile/modsWithUpdates'].length);
 </script>
 
 <style lang="scss" scoped>

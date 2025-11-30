@@ -4,9 +4,10 @@ import EnumResolver from '../../model/enums/_EnumResolver';
 import { SortNaming } from '../../model/real_enums/sort/SortNaming';
 import { SortDirection } from '../../model/real_enums/sort/SortDirection';
 import { SortLocalDisabledMods } from '../../model/real_enums/sort/SortLocalDisabledMods';
-import { StorePlatform } from '../../model/game/StorePlatform';
+import { Platform } from '../../model/schema/ThunderstoreSchema';
 import { GameSelectionViewMode } from '../../model/enums/GameSelectionViewMode';
 import GameManager from '../../model/game/GameManager'
+import {LaunchType} from "../../model/real_enums/launch/LaunchType";
 
 export const SETTINGS_DB_NAME = "settings";
 
@@ -60,6 +61,7 @@ export default class SettingsDexieStore extends Dexie {
         })
 
         this.activeGame = game;
+        console.debug("SettingsDexieStore created with active game", this.activeGame.settingsIdentifier);
         this.global = this.table("value");
         this.games = this.table("games");
     }
@@ -119,17 +121,20 @@ export default class SettingsDexieStore extends Dexie {
                 favouriteGames: [],
                 defaultGame: undefined,
                 defaultStore: undefined,
-                gameSelectionViewMode: GameSelectionViewMode.CARD
+                gameSelectionViewMode: GameSelectionViewMode.CARD,
+                previewPanelWidth: 500,
             },
             gameSpecific: {
                 version: 2,
                 gameDirectory: null,
-                installedDisablePosition: EnumResolver.from(SortLocalDisabledMods, SortLocalDisabledMods.CUSTOM)!,
-                installedSortBy: EnumResolver.from(SortNaming, SortNaming.CUSTOM)!,
-                installedSortDirection: EnumResolver.from(SortDirection, SortDirection.STANDARD)!,
+                installedDisablePosition: EnumResolver.from<SortLocalDisabledMods>(SortLocalDisabledMods, SortLocalDisabledMods.CUSTOM),
+                installedSortBy: EnumResolver.from<SortNaming>(SortNaming, SortNaming.CUSTOM),
+                installedSortDirection: EnumResolver.from<SortDirection>(SortDirection, SortDirection.STANDARD),
                 lastSelectedProfile: "Default",
                 launchParameters: "",
-                linkedFiles: []
+                linkedFiles: [],
+                launchType: LaunchType.AUTO,
+                lastSelectedPlatform: null,
             }
         }
     }
@@ -144,7 +149,16 @@ export default class SettingsDexieStore extends Dexie {
             });
 
             // Update the active game's settings.
-            await this.games.put({ identifier: this.activeGame.settingsIdentifier, settings: JSON.stringify(holder.gameSpecific) });
+            try {
+                await this.games.put({
+                    identifier: this.activeGame.settingsIdentifier,
+                    settings: JSON.stringify(holder.gameSpecific)
+                });
+            } catch (e) {
+                throw new Error(
+                    `IDB.Put fail for key "${this.activeGame.settingsIdentifier}": ${e}`
+                );
+            }
         }
 
         await this.transaction("rw!", this.global, this.games, update);
@@ -195,8 +209,9 @@ export interface ManagerSettingsInterfaceGlobal_V2 {
     lastSelectedGame: string | null;
     favouriteGames: string[] | undefined;
     defaultGame: string | undefined;
-    defaultStore: StorePlatform | undefined;
+    defaultStore: Platform | undefined;
     gameSelectionViewMode: GameSelectionViewMode;
+    previewPanelWidth: number;
 }
 
 /**
@@ -211,6 +226,8 @@ export interface ManagerSettingsInterfaceGame_V2 {
     installedSortBy: string;
     installedSortDirection: string;
     installedDisablePosition: string;
+    launchType: string;
+    lastSelectedPlatform: string | null;
 }
 
 /**

@@ -1,11 +1,11 @@
 <template>
     <div>
-        <hero :title=heroTitle :subtitle='loadingText' :heroType=heroType />
+        <hero :title=heroTitle :subtitle='splashText' :heroType=heroType />
         <div class='notification is-warning'>
             <p>Game updates may break mods. If a new update has been released, please be patient.</p>
         </div>
-        <progress-bar
-            :max='requests.length * 100'
+        <Progress
+            :max='store.state.splash.requests.length * 100'
             :value='reduceRequests().getProgress() > 0 ? reduceRequests().getProgress() : undefined'
             :className='[reduceRequests().getProgress() > 0 ? "is-info" : ""]' />
         <div class='columns'>
@@ -16,9 +16,9 @@
                         <li><a @click="view = 'about'" :class="[view === 'about' ? 'is-active' : '']">About</a></li>
                         <li><a @click="view = 'faq'" :class="[view === 'faq' ? 'is-active' : '']">FAQ</a></li>
                         <li>
-                            <link-component url="https://github.com/ebkr/r2modmanPlus">
+                            <ExternalLink url="https://github.com/ebkr/r2modmanPlus">
                                 <i class='fab fa-github fa-lg' aria-hidden='true' />
-                            </link-component>
+                            </ExternalLink>
                         </li>
                     </ul>
                 </aside>
@@ -35,16 +35,16 @@
                                 </div>
                                 <div class='container' v-if="view === 'main'">
                                     <p>
-                    <span class='icon margin-right margin-right--half-width'>
-                      <i class='fas fa-info-circle' />
-                    </span>
+                                        <span class='icon margin-right margin-right--half-width'>
+                                          <i class='fas fa-info-circle' />
+                                        </span>
                                         <strong>Did you know?</strong>
                                     </p>
                                     <ul class='margin-right'>
                                         <li>
                                             <p>
                                                 You can use the "Install with Mod Manager" button on
-                                                <link-component url="https://thunderstore.io">Thunderstore</link-component>
+                                                <ExternalLink url="https://thunderstore.io">Thunderstore</ExternalLink>
                                                 with r2modman.
                                             </p>
                                         </li>
@@ -57,9 +57,9 @@
                                         </li>
                                     </ul>
                                     <p>
-                    <span class='icon margin-right margin-right--half-width'>
-                      <i class='fas fa-question-circle' />
-                    </span>
+                                        <span class='icon margin-right margin-right--half-width'>
+                                          <i class='fas fa-question-circle' />
+                                        </span>
                                         <strong>Having trouble?</strong>
                                     </p>
                                     <p>
@@ -70,9 +70,9 @@
                                 </div>
                                 <div class='container' v-else-if="view === 'about'">
                                     <p>
-                    <span class='icon margin-right margin-right--half-width'>
-                      <i class='fas fa-address-card' />
-                    </span>
+                                        <span class='icon margin-right margin-right--half-width'>
+                                          <i class='fas fa-address-card' />
+                                        </span>
                                         <strong>About r2modman</strong>
                                     </p>
                                     <p>It's created by Ebkr, using Quasar.</p>
@@ -86,9 +86,9 @@
                                 </div>
                                 <div class='container' v-else-if="view === 'faq'">
                                     <p>
-                    <span class='icon margin-right margin-right--half-width'>
-                      <i class='fas fa-question-circle' />
-                    </span>
+                                        <span class='icon margin-right margin-right--half-width'>
+                                          <i class='fas fa-question-circle' />
+                                        </span>
                                         <strong>FAQ</strong>
                                     </p>
                                     <ul>
@@ -117,95 +117,87 @@
     </div>
 </template>
 
-<script lang='ts'>
-import * as path from 'path';
-
-import { ipcRenderer } from 'electron';
-import Component, { mixins } from 'vue-class-component';
-
+<script lang='ts' setup>
 import { ExternalLink, Hero, Progress } from '../components/all';
-import SplashMixin from '../components/mixins/SplashMixin.vue';
 import Game from '../model/game/Game';
-import RequestItem from '../model/requests/RequestItem';
 import FsProvider from '../providers/generic/file/FsProvider';
-import GameDirectoryResolverProvider from '../providers/ror2/game/GameDirectoryResolverProvider';
-import LinuxGameDirectoryResolver from '../r2mm/manager/linux/GameDirectoryResolver';
 import PathResolver from '../r2mm/manager/PathResolver';
+import { computed, onMounted, ref } from 'vue';
+import { State } from '../store';
+import { getStore } from '../providers/generic/store/StoreProvider';
+import { useRouter } from 'vue-router';
+import { useSplashComposable } from '../components/composables/SplashComposable';
+import path from '../providers/node/path/path';
+import FileUtils from '../utils/FileUtils';
+import { areWrapperArgumentsProvided, getDeterminedLaunchType } from '../utils/LaunchUtils';
+import appWindow from '../providers/node/app/app_window';
+import Buffer from '../providers/node/buffer/buffer';
+import ProtocolProvider from '../providers/generic/protocol/ProtocolProvider';
+import ManagerSettings from '../r2mm/manager/ManagerSettings';
+import { LaunchType } from '../model/real_enums/launch/LaunchType';
 
-@Component({
-    components: {
-        'hero': Hero,
-        'progress-bar': Progress,
-        'link-component': ExternalLink
-    }
-})
-export default class Splash extends mixins(SplashMixin) {
-    heroTitle: string = 'Starting r2modman';
-    loadingText: string = 'Initialising';
-    view: string = 'main';
+const store = getStore<State>();
+const router = useRouter();
 
-    requests = [
-        new RequestItem('UpdateCheck', 0),
-        new RequestItem('PackageListIndex', 0),
-        new RequestItem('PackageListChunks', 0),
-        new RequestItem('Vuex', 0)
-    ];
+const {
+    reduceRequests
+} = useSplashComposable();
 
-    // Ensure that r2modman isn't outdated.
-    private checkForUpdates() {
-        this.loadingText = 'Preparing';
-        ipcRenderer.once('update-done', async () => {
-            this.getRequestItem('UpdateCheck').setProgress(100);
-            await this.getThunderstoreMods();
-        });
-        ipcRenderer.send('update-app');
-    }
+const heroTitle = ref<string>('Starting r2modman');
+const heroType = ref<string>('primary');
+const view = ref<string>('main');
+const splashText = computed(() => store.state.splash.splashText);
 
-    async moveToNextScreen() {
-        if (process.platform === 'linux') {
-            const activeGame: Game = this.$store.state.activeGame;
+store.commit('splash/initialiseRequests');
 
-            if (!await (GameDirectoryResolverProvider.instance as LinuxGameDirectoryResolver).isProtonGame(activeGame)) {
-                console.log('Not proton game');
-                await this.ensureWrapperInGameFolder();
-                const launchArgs = await (GameDirectoryResolverProvider.instance as LinuxGameDirectoryResolver).getLaunchArgs(activeGame);
-                console.log(`Launch arguments for this game:`, launchArgs);
-                if (typeof launchArgs === 'string' && !launchArgs.startsWith(path.join(PathResolver.MOD_ROOT, 'linux_wrapper.sh'))) {
-                    this.$router.push({name: 'linux'});
-                    return;
-                }
+async function moveToNextScreen() {
+    if (appWindow.getPlatform() === 'linux') {
+        const activeGame: Game = store.state.activeGame;
+        const settings = await ManagerSettings.getSingleton(activeGame);
+        if (!(await getDeterminedLaunchType(activeGame, settings.getLaunchType() || LaunchType.AUTO) === LaunchType.PROTON)) {
+            console.log('Not proton game');
+            await ensureWrapperInGameFolder();
+            if (!(await areWrapperArgumentsProvided(activeGame))) {
+                return router.push({name: 'linux'});
             }
-        } else if (process.platform === 'darwin') {
-            await this.ensureWrapperInGameFolder();
-            this.$router.push({name: 'linux'});
-            return;
         }
-        this.$router.push({name: 'profiles'});
+    } else if (appWindow.getPlatform() === 'darwin') {
+        await ensureWrapperInGameFolder();
+        return router.push({name: 'linux'});
     }
-
-    private async ensureWrapperInGameFolder() {
-        const wrapperName = process.platform === 'darwin' ? 'macos_proxy' : 'linux_wrapper.sh';
-        const activeGame: Game = this.$store.state.activeGame;
-        console.log(`Ensuring wrapper for current game ${activeGame.displayName} in ${path.join(PathResolver.MOD_ROOT, wrapperName)}`);
-        try {
-            await FsProvider.instance.stat(path.join(PathResolver.MOD_ROOT, wrapperName));
-            const oldBuf = (await FsProvider.instance.readFile(path.join(PathResolver.MOD_ROOT, wrapperName)));
-            const newBuf = (await FsProvider.instance.readFile(path.join(__statics, wrapperName)));
-            if (!oldBuf.equals(newBuf)) {
-                throw new Error('Outdated buffer');
-            }
-        } catch (_) {
-            if (await FsProvider.instance.exists(path.join(PathResolver.MOD_ROOT, wrapperName))) {
-                await FsProvider.instance.unlink(path.join(PathResolver.MOD_ROOT, wrapperName));
-            }
-            await FsProvider.instance.copyFile(path.join(__statics, wrapperName), path.join(PathResolver.MOD_ROOT, wrapperName));
-        }
-        await FsProvider.instance.chmod(path.join(PathResolver.MOD_ROOT, wrapperName), 0o755);
-    }
-
-    async created() {
-        this.loadingText = 'Checking for updates';
-        setTimeout(this.checkForUpdates, 100);
-    }
+    return router.push({name: 'profiles'});
 }
+
+async function ensureWrapperInGameFolder() {
+    const staticsDirectory = window.app.getStaticsDirectory();
+    const wrapperName = 'linux_wrapper.sh';
+    const activeGame: Game = store.state.activeGame;
+    console.log(`Ensuring wrapper for current game ${activeGame.displayName} in ${path.join(PathResolver.MOD_ROOT, wrapperName)}`);
+    try {
+        await FsProvider.instance.stat(path.join(PathResolver.MOD_ROOT, wrapperName));
+        const oldBuf = (await FsProvider.instance.readFile(path.join(PathResolver.MOD_ROOT, wrapperName)));
+        const newBuf = (await FsProvider.instance.readFile(path.join(staticsDirectory, wrapperName)));
+        if (!oldBuf.equals(newBuf)) {
+            throw new Error('Outdated buffer');
+        }
+    } catch (_) {
+        await FileUtils.ensureDirectory(PathResolver.MOD_ROOT);
+        if (await FsProvider.instance.exists(path.join(PathResolver.MOD_ROOT, wrapperName))) {
+            await FsProvider.instance.unlink(path.join(PathResolver.MOD_ROOT, wrapperName));
+        }
+        const wrapperFileResult = await fetch(ProtocolProvider.getPublicAssetUrl(`/${wrapperName}`)).then(res => res.arrayBuffer());
+        const wrapperFileContent = Buffer.from(wrapperFileResult);
+        await FsProvider.instance.writeFile(path.join(PathResolver.MOD_ROOT, wrapperName), wrapperFileContent);
+    }
+    await FsProvider.instance.chmod(path.join(PathResolver.MOD_ROOT, wrapperName), 0o755);
+}
+
+onMounted(async () => {
+    store.commit('splash/updateRequestItem', {
+        requestName: 'UpdateCheck',
+        value: 100
+    } as UpdateRequestItemBody);
+    await store.dispatch('splash/getThunderstoreMods');
+    moveToNextScreen();
+})
 </script>

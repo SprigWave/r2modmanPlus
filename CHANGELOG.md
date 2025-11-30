@@ -1,3 +1,123 @@
+### 3.2.11
+#### Games added
+- Aeruta
+- Beetleball (playtest version)
+- Football Manager 26
+- Necropolis
+- Super Fantasy Kingdom
+- Vigil
+
+#### Fixes
+- PEAK image has been restored
+- Steam directory resolution improvements on Linux platforms (thanks to @RossBrunton)
+
+### 3.2.10
+#### Games added
+- Bendy and the Ink Machine
+- Forsaken Frontiers
+- Return From Core
+- Mimesis
+- Five Nights at Freddy's: Into the Pit
+  - EGS support
+- Broforce
+- Megabonk
+  - Linux executable can now be selected
+
+#### Bugs fixed
+- Being offline no longer prevents the manager from loading into a game
+- Updates are now checked on app startup instead of after game selection
+- EGS games can be launched again
+
+### 3.2.9
+#### Games added
+- Megabonk
+- An Unfinished Game
+- Easy Delivery Co
+- Jump Space
+- CloverPit
+- Grey Hack
+- Slasher's Keep
+
+#### Changes
+- Hollow Knight: Silksong Linux can now be selected
+- NSFW indicator in the preview panel and mod list row in the online section
+- Preview metadata can be collapsed to reveal allow for more preview space
+
+### 3.2.8
+#### Changes
+- Config Editor
+  - Config Editor headers are now less obtrusive
+  - Config Editor now supports multi-select options
+  - When loading a large number of config files, a spinner is shown instead of hanging the application
+  - "Show more" functionality now restricts per line length until selected
+- Linux Native/Proton detection and install fixes
+
+### 3.2.7
+#### Changes
+- GTK version issue preventing launches should no longer be present
+- Resonite Renderer path in mods (affecting AudioBridge) should now resolve as intended
+- First-time install of Linux wrapper is now written to disk correctly
+
+### 3.2.6
+#### Changes
+- Linux wrapper is now resolved correctly if not previously present
+
+### 3.2.5
+#### Changes
+- Fixed several bugs causing rendering issues
+
+### 3.2.4
+#### Games added
+- Hollow Knight: Silksong
+- Resonite
+- House of Legacy
+- Beton Brutal
+- Pair A Dice
+- Maltese's Fluffy Onsen
+- Paper Animal Adventure
+- PAC-MAN WORLD Re-PAC
+- Darkwater
+
+#### Changes
+- Preview panel can now be resized
+- Download and install progress is now better reflected
+- The entire application has upgraded to Vue 3 along with some other internal tooling upgrades
+
+### 3.2.3
+#### Games added
+- Len's Island
+- Mage Arena
+- Ostranauts
+- Patapon 1+2 Replay
+
+### 3.2.2
+#### Games added
+- Bad North
+- Logic World
+- Lost Skies Island Creator
+- Mycopunk
+- Vellum
+- Word Play
+
+#### Other changes
+This release primarily focuses on improved Linux support, of which:
+- The `Other` platform option no longer hangs the application on Linux
+- You can now manually choose between Native, Proton, and Auto launch behaviour
+
+### 3.2.1
+#### Games added
+- PEAK
+- Painting VR
+- DEPO : Death Epileptic Pixel Origins
+- 9 Kings
+- Guilty as Sock!
+- Return of the Obra Dinn
+- ASKA
+- PIGFACE (Demo)
+
+#### Other changes
+- General bug fixes and enhancements
+
 ### 3.2.0
 #### Major changes
 - You can now preview a mod's README, CHANGELOG, and dependencies all within the Online section.

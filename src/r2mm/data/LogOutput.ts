@@ -1,7 +1,7 @@
 import Profile from '../../model/Profile';
 import FsProvider from '../../providers/generic/file/FsProvider';
 import GameManager from '../../model/game/GameManager';
-import { PackageLoader } from '../../model/installing/PackageLoader';
+import { PackageLoader } from '../../model/schema/ThunderstoreSchema';
 import Timeout = NodeJS.Timeout;
 
 let fs: FsProvider;
@@ -34,6 +34,7 @@ export default class LogOutput {
         const game = GameManager.activeGame;
         switch (game.packageLoader) {
             case PackageLoader.BEPINEX:
+            case PackageLoader.BEPISLOADER:
                 fs.exists(Profile.getActiveProfile().joinToProfilePath('BepInEx', 'LogOutput.log'))
                     .then(value => this._exists = value);
                 break;
@@ -41,13 +42,17 @@ export default class LogOutput {
                 fs.exists(Profile.getActiveProfile().joinToProfilePath('ReturnOfModding', 'LogOutput.log'))
                     .then(value => this._exists = value);
                 break;
-            case PackageLoader.MELON_LOADER:
+            case PackageLoader.MELONLOADER:
             case PackageLoader.NORTHSTAR:
                 fs.exists(Profile.getActiveProfile().joinToProfilePath('MelonLoader', 'Latest.log'))
                     .then(value => this._exists = value);
                 break;
             case PackageLoader.GDWEAVE:
                 fs.exists(Profile.getActiveProfile().joinToProfilePath('GDWeave', 'GDWeave.log'))
+                    .then(value => this._exists = value);
+                break;
+            case PackageLoader.UMM:
+                fs.exists(Profile.getActiveProfile().joinToProfilePath('UMM', 'Core', 'Log.txt'))
                     .then(value => this._exists = value);
                 break;
         }
